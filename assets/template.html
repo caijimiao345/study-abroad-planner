@@ -125,6 +125,13 @@ footer{margin-top:26px;font-size:11.5px;color:var(--sub);border-top:1px solid va
 
 <div class="stats" id="stats"></div>
 
+<!-- ═══ AI 判定免责声明（静态渲染，无 JS 也可见）═══ -->
+<div class="card" style="border:1px solid #f0c36d;background:#fff8e6;padding:12px 16px">
+  <b style="color:#92400e">🤖 AI 判定说明（重要，务必读）</b>
+  <p style="font-size:12.5px;color:#7a5b00;margin-top:4px;line-height:1.7">
+    本页的<b>录取四类（保底/主申/冲刺/高风险）、预算四档、课程匹配度分数、先修风险</b>均为 AI 依据公开网页信息做的<b>机械估算</b>，<b>不是学校官方结论，不构成任何录取承诺</b>；「待核验」字段尚未经官网复核，不可直接采信。<b>具体申请资格（先修课认定、学历认证与均分口径、语言豁免）、当期学费与截止日，请务必向学校招生办官方确认</b>——每张卡片的「官方链接」区块都给出该校<b>招生办邮箱 / 电话</b>与官网入口，发邮件问一句比任何估算都可靠。</p>
+</div>
+
 <!-- ═══ 卡片视图 ═══ -->
 <div id="cardView"></div>
 <!-- ═══ 表格视图 ═══ -->
@@ -146,6 +153,8 @@ footer{margin-top:26px;font-size:11.5px;color:var(--sub);border-top:1px solid va
    2. DATA 元素结构见技能 references/data-schema.md，字段名不可改。
    3. match.score / match.tier / match.explanations 由生成方按
       course-matching.md 规则算好后写入，本页不重算。
+      bachelorBenchmark（本科对标）由本页渲染在课程匹配度区：
+      有 program/coreCourses/coverage 就完整展示，只有 note 则显示待核验。
    4. 录取三档判定、预算四档判定由本页 JS 按 data-schema.md 规则
       实时重算，字段缺失会静默跳过该条判定，生成时务必填全。
    ══════════════════════════════════════════════════════════════ */
@@ -174,6 +183,10 @@ const EXCLUSIONS = P.exclusions || [];
 function linksHTML(d){const L=SCHOOL_LINKS[d.id]||{};const R=REGION_LINKS[d.region]||[];
   const a=[];if(L.program)a.push(`<a class="lnk" target="_blank" rel="noopener" onclick="event.stopPropagation()" href="${esc(L.program)}">专业官网 ↗</a>`);
   if(L.admissions)a.push(`<a class="lnk" target="_blank" rel="noopener" onclick="event.stopPropagation()" href="${esc(L.admissions)}">招生入口 ↗</a>`);
+  const K=L.contact||{};const c=[];
+  if(K.email)c.push(`<a class="lnk" href="mailto:${esc(K.email)}" onclick="event.stopPropagation()">✉ ${esc(K.email)}</a>`);
+  if(K.phone)c.push(`<span style="font-size:12px">☎ ${esc(K.phone)}</span>`);
+  if(c.length)a.push(`<span style="font-size:12px">联系招生办：${c.join("　")}${K.note?`（${esc(K.note)}）`:""}</span>`);
   const r=R.map(x=>`<a class="lnk" target="_blank" rel="noopener" onclick="event.stopPropagation()" href="${esc(x[1])}">${esc(x[0])} ↗</a>`).join(" ");
   return a.join(" ")+(a.length&&r?"<br>":"")+r}
 
@@ -262,6 +275,7 @@ function filtered(){
 function detailHTML(x){const d=x.d,a=x.a,b=x.b;const li=a=>a.map(t=>`<li>${esc(t)}</li>`).join("");
   const tl=d.timeline.map(t=>`<li><b>${esc(t.date)}</b>：${esc(t.event)}</li>`).join("");
   const ex=d.match.explanations.map(e=>`<div class="match-line"><span class="t t-${e.type==="核心"?"core":e.type==="加分"?"bonus":"gap"}">${esc(e.type)}</span>${esc(e.text)}</div>`).join("");
+  const bb=d.bachelorBenchmark||{};const bbHTML=(()=>{const has=(bb.program)||(bb.coreCourses&&bb.coreCourses.length)||(bb.coverage);if(!has)return`<div class="match-line"><span class="t t-gap">本科对标</span>${esc(bb.note||"待核验：未取得该校同专业本科的官方课程结构页，取得后补覆盖率与校准")}</div>`;const seg=[];if(bb.program)seg.push(`对标本科：<b>${esc(bb.program)}</b>`);if(bb.url)seg.push(`<a href="${esc(bb.url)}" target="_blank">官方课程结构页</a>`);if(bb.coreCourses&&bb.coreCourses.length)seg.push(`对标核心课（${bb.coreCourses.length} 门）：${bb.coreCourses.map(esc).join("、")}`);if(bb.coverage)seg.push(`本科课程覆盖率：<b>${esc(bb.coverage)}</b>`);if(bb.fetchedAt)seg.push(`（取自 ${esc(bb.fetchedAt)}）`);return`<div class="match-line"><span class="t t-gap">本科对标</span>${seg.filter(Boolean).join(" ｜ ")}${bb.note?`<br><span style="color:var(--sub)">${esc(bb.note)}</span>`:""}</div>`})();
   const sch=d.scholarships.map(s=>`<li><b>${esc(s.name)}</b>：${esc(s.amount)}（上限约 ¥${fmtWan(s.amountCnyMax)}，${s.countable?"计入预算档③口径":"不计入——小概率全奖，仅作努力方向"}）<br><span style="color:var(--sub)">获取路径：${esc(s.effort)}</span></li>`).join("");
   const gapTxt=b.gap<=0?`缺口 ¥0（预算内）`:`缺口 ¥${fmtWan(b.gap)}`;
   return `
@@ -269,9 +283,11 @@ function detailHTML(x){const d=x.d,a=x.a,b=x.b;const li=a=>a.map(t=>`<li>${esc(t
   <div class="dsec"><h4>申请要求</h4><div class="kv">
     <span class="k">入学时间</span><span><b>${esc((d.intake||[]).join(" / ")||"待核验")}</b> ｜ 学制 ${esc(d.duration)} ｜ 申请窗口见「申请时间线」</span>
     <span class="k">学位背景</span><span>${esc(d.entryReq.degree)}</span>
+    <span class="k">学分门槛</span><span>${(()=>{const cr=d.entryReq.creditReq;if(!cr)return"该项目无明示学分总量门槛（以招生办答复为准）";const pc=PROFILE.credits||{};const est=(pc.total!=null&&pc.hoursPerCredit)?Math.round(pc.total*pc.hoursPerCredit/((META.creditConversion||{}).hoursPerEcts||27)*10)/10:null;const ok=est!=null&&est>=(cr.ectsRequired||0);return `${cr.ectsRequired?cr.ectsRequired+' ECTS':'见官方说明'}（官方口径${cr.source?'，已核验':''}）｜${est!=null?`你的 ${pc.total} 学分 ≈ ${est} ECTS（AI 换算估算）→ ${ok?'<b>估算满足</b>':'<b style="color:var(--red)">估算不足</b>'}`:'档案未填 profile.credits'}｜换算与认定以校方答复为准${cr.note?'：'+esc(cr.note):''}`})()}</span>
     <span class="k">均分线</span><span>985/211：${esc(d.entryReq.gpaTier.tier1)}｜双非：${esc(d.entryReq.gpaTier.tier2)} <span style="color:var(--sub)">${esc(d.entryReq.gpaTier.note||"")}</span></span>
     <span class="k">语言</span><span>${d.entryReq.language.ielts?`雅思 ${d.entryReq.language.ielts.overall}${d.entryReq.language.ielts.min!=null?"（小分 "+d.entryReq.language.ielts.min+"）":""}`:""}${d.entryReq.language.toefl?`｜托福 ${d.entryReq.language.toefl.overall}`:""}${d.entryReq.language.langClass?"｜可配语言班":""}｜<b>按当前档案：${a&&a.langGap>0?`差 ${a.langGap.toFixed(1)} 分`:"过线"}</b></span>
     <span class="k">GRE</span><span>${esc(d.entryReq.gre)}</span>
+    <span class="k">工作经验</span><span>${(()=>{const w=d.entryReq.workExp;if(w===undefined)return'<span style="color:var(--red)">未调查（缺字段）</span>';if(w.required===true)return`<b style="color:var(--red)">必须有${w.years?'：'+esc(w.years):''}</b>${w.note?'｜'+esc(w.note):''}`;if(w.required===false)return`<b style="color:var(--green)">不要求（应届可申）</b>${w.note?'｜'+esc(w.note):''}`;return`<b style="color:var(--orange)">待核验</b>${w.note?'｜'+esc(w.note):''}`})()}</span>
     <span class="k">授课语言</span><span><b>${esc(langOf(d))}</b>${d.entryReq.localLang?` ｜ 本地语言要求：${esc(d.entryReq.localLang.detail||'')}${d.entryReq.localLang.langSchool?'（提供语言班/预科路径）':''}`:''}</span>
     <span class="k">毕业语言要求</span><span>${d.graduationLang?`<b>${esc(d.graduationLang.req)}</b> ｜ ${esc(d.graduationLang.detail)}<br><span style="color:var(--sub)">${esc(d.graduationLang.note||"")}</span>`:"待核验"}</span>
     <span class="k">先修要求</span><span>${esc(d.entryReq.prereq)}</span>
@@ -282,7 +298,7 @@ function detailHTML(x){const d=x.d,a=x.a,b=x.b;const li=a=>a.map(t=>`<li>${esc(t
   <div class="dsec"><h4>申请材料</h4><ul>${li(d.materials)}</ul></div>
   <div class="dsec"><h4>录取标准（学校按什么排）</h4><p>${esc(d.admissionLogic)}</p></div>
   <div class="dsec"><h4>申请时间线</h4><ul>${tl}</ul></div>
-  <div class="dsec"><h4>课程匹配度：${d.match.score} 分（${esc(d.match.tier)}）</h4>${ex}</div>
+  <div class="dsec"><h4>课程匹配度：${d.match.score} 分（${esc(d.match.tier)}）</h4>${ex}${bbHTML}</div>
   <div class="dsec"><h4>学生签证（中国学生）</h4><div class="kv">
     <span class="k">签证类型</span><span>${esc(d.visa.type)}</span>
     <span class="k">流程</span><span>${esc(d.visa.process)}</span>
@@ -514,7 +530,7 @@ function renderExclusions(){
     <p style="font-size:12px;color:var(--sub);margin-top:6px">共 ${EXCLUSIONS.length} 条，全部计入检索量、不隐藏。理由必须具体（语言不符 / 硬性先修缺失 / 均分差距过大 / 学费超预算 / 已停招 / 方向不符 / 未开设该学位），且能指到官方页面；「待核验」= 未取得官方页，不算核验过。被问「为什么没有 XX」时，先在此清单查证。</p>`}
 function initMeta(){
   document.getElementById("metaLine").innerHTML=`生成日期 ${esc(META.generatedDate)}｜数据核验 ${esc(META.verifiedDateRange)}｜${esc(META.fxNote)}<br>${esc(META.qsNote)}｜${esc(META.disclaimer)}<br><b>${esc(META.zeroMemoryPolicy||"")}</b><br><b>${esc(META.zeroMemoryPolicy||"")}</b>`;
-  document.getElementById("foot").innerHTML=`<b>口径说明</b>：录取判定=四类互斥（保底/主申/冲刺/高风险，按当前档案对每校均分线与语言要求实时算）+ 先修风险叠加标记（硬性先修未覆盖时单独警示，GPA/语言再好也可能被拒）；预算四档=年缺口(gap) 对照 兼职年收入上限(pt) 与可计入奖学金合计(sch)，算式见各校详情"费用与预算检查"；课程匹配度=按档案专业核心课程与项目模块对齐测算，逐条解释见详情。带"待核验"灰标的条目未经官网复核。<br>${esc(META.disclaimer)}`}
+  document.getElementById("foot").innerHTML=`<b>口径说明</b>：录取判定=四类互斥（保底/主申/冲刺/高风险，按当前档案对每校均分线与语言要求实时算）+ 先修风险叠加标记（硬性先修未覆盖时单独警示，GPA/语言再好也可能被拒）；预算四档=年缺口(gap) 对照 兼职年收入上限(pt) 与可计入奖学金合计(sch)，算式见各校详情"费用与预算检查"；课程匹配度=按档案专业核心课程与项目模块对齐测算，逐条解释见详情。<b>以上判定与匹配度均为 AI 估算、非官方结论，具体申请资格请向各校招生办确认（联系方式见卡片「官方链接」区块）。</b>带"待核验"灰标的条目未经官网复核。<br>${esc(META.disclaimer)}`}
 document.getElementById("cardView").addEventListener("click",e=>{
   const h=e.target.closest(".sch-h");if(!h)return;h.parentElement.classList.toggle("open")});
 document.getElementById("vCard").addEventListener("click",()=>{state.view="card";document.getElementById("vCard").classList.add("on");document.getElementById("vTable").classList.remove("on");render()});

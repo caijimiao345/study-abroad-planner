@@ -39,6 +39,8 @@
                  "toefl": {"overall": 92},
                  "langClass": false},
     "gre": "不要求",
+    "workExp": {"required": false, "years": "", "note": "申请页未列工作经验要求，应届可申；以招生办答复为准", "checkedDate": "2026-10-03"},
+    "creditReq": {"ectsRequired": 240, "note": "高级硕士要求至少 240 ECTS 学位背景", "source": "官方URL", "verifiedAt": "2026-10-03"},
     "prereq": "量化背景（数学/统计/编程课程）",
     "prereqHard": false,                    // true=硬性先修，未覆盖时页面叠加"先修风险"警示
     "others": "相关实习/科研加分"
@@ -56,8 +58,17 @@
     "tier": "高",                          // 高|中|低
     "explanations": [
       {"type": "核心", "text": "《GIS原理》→ 覆盖 'Foundations of GIS' 模块"},
-      {"type": "缺口", "text": "缺高级统计，建议补修或 PS 说明"}
+      {"type": "缺口", "text": "缺高级统计，建议补修或 PS 说明"},
+      {"type": "本科对标", "text": "本科对标：该校同专业本科核心课 18 门，覆盖 13 门（72%）—— 缺《流体力学》《土力学》"},
+      {"type": "学分门槛", "text": "要求 240 ECTS；153.5 中国学分 ≈ 91 ECTS（AI 换算估算）→ 估算不足，属资格性缺口"}
     ]
+  },
+  "bachelorBenchmark": {                  // 本科对标（course-matching.md 第 4 步）：找不到官方页就只留 note 待核验
+    "program": "BSc Civil Engineering（对标本科）",
+    "url": "官方课程结构页 URL",
+    "coreCourses": ["流体力学", "土力学", "工程经济学"],
+    "coverage": "13/18（72%）",
+    "fetchedAt": "2026-10-03"
   },
   "visa": {
     "type": "Student visa（原 Tier 4）",
@@ -237,16 +248,20 @@ scripts/build.js        ← 唯一构建入口：注入 + 前置自检 + 输出 
            "thresholds":{"safeGap":-8,"mainHi":0.5,"reachGap":5,"reachLang":1}},
   "profile": {"name":"","gpa":{"value":85.0,"scale":"百分制加权","schoolTier":"tier2"},
               "major":"","language":{"test":"IELTS","overall":6.5,"min":6.0},
-              "budget":{"cnyTotal":200000},"goal":"就业回国"},
+              "budget":{"cnyTotal":200000},"goal":"就业回国",
+              "credits":{"total":153.5,"hoursPerCredit":16,"note":"五年制本科 88 门 153.5 学分"}},
   "data": [ /* 每校一条，字段见上 */ ],
-  "schoolLinks": {"<id>": {"program":"","admissions":""}},
+  "schoolLinks": {"<id>": {"program":"","admissions":"","contact":{"email":"","phone":"","note":"","source":"","verifiedAt":""}}},
   "regionLinks": {"<region>": [["链接名","URL"]]},
   "exclusions": []
 }
 ```
 
+- `schoolLinks.<id>.contact`（强烈建议逐校补齐）：招生办**官方**邮箱/电话（从学校官网 contact/admissions 页实时核验，禁止凭记忆写）；`source` 记联系方式所在官方页 URL，`verifiedAt` 记核验日期。页面会在每张卡片渲染「联系招生办：✉ 邮箱 ☎ 电话」，配合页面顶部 AI 免责声明，引导用户向官方确认具体申请资格（先修认定、学历认证、均分口径、语言豁免等 AI 无法替官方拍板的事项）
+
 - `meta.thresholds` 会覆盖模板默认阈值，页面顶部还能再手动调（保底线 / 冲刺线两个输入框）
 - `meta.today` + `meta.planWindowDays` 决定「行动清单」的倒计时基准与窗口
+- `meta.creditConversion`（可选）：`{"hoursPerEcts":27}`——学分换算 AI 估算口径（1 ECTS≈27 小时总学习量）；页面用它把 `profile.credits.total × hoursPerCredit` 折成 ECTS 当量对照 `entryReq.creditReq.ectsRequired`，给出「估算满足/估算不足」；官方换算以校方答复为准
 
 ### exclusions.json 结构（结构化排除留痕）
 

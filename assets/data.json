@@ -29,7 +29,12 @@
    "cnyTotal": 300000,
    "note": "家庭可支持的【整个学制总额】= 30 万（示例值；不是每年）"
   },
-  "goal": "就业回国"
+  "goal": "就业回国",
+  "credits": {
+   "total": 153.5,
+   "hoursPerCredit": 16,
+   "note": "示例档案口径"
+  }
  },
  "data": [
   {
@@ -95,6 +100,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -272,7 +287,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ucl-casa",
@@ -336,6 +354,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -507,7 +535,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ed-gis",
@@ -571,6 +602,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -743,7 +784,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "leeds-gis",
@@ -807,6 +851,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -979,7 +1033,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "man-gis",
@@ -1044,6 +1101,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -1215,7 +1282,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "cuhk-gis",
@@ -1279,6 +1349,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -1454,7 +1534,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "polyu-geo",
@@ -1517,6 +1600,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -1689,7 +1782,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "polyu-ui",
@@ -1752,6 +1848,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -1924,7 +2030,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "nus-agis",
@@ -1987,6 +2096,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -2160,7 +2279,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "unimelb-spatial",
@@ -2225,6 +2347,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -2401,7 +2533,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "twente-itc",
@@ -2465,6 +2600,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -2642,7 +2787,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "tum-ggi",
@@ -2706,6 +2854,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -2890,7 +3048,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "polimi-gi",
@@ -2956,6 +3117,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -3137,7 +3308,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "kul-gis",
@@ -3202,6 +3376,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -3377,7 +3561,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "tuwien-gg",
@@ -3443,6 +3630,16 @@
      "detail": "DSH-2 或 TestDaF 4×4；建议同时准备英语成绩",
      "langSchool": true,
      "note": "小语种授课：语言门槛是硬条件；多数学校提供语言班/预科路径"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -3614,7 +3811,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "upc-gis",
@@ -3678,6 +3878,16 @@
      "detail": "西班牙语 DELE B2 或加泰语证明；英授方向另需IELTS",
      "langSchool": true,
      "note": "小语种授课：语言门槛是硬条件；多数学校提供语言班/预科路径"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -3852,7 +4062,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ucd-gda",
@@ -3916,6 +4129,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -4088,7 +4311,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "eth-ggie",
@@ -4154,6 +4380,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -4329,7 +4565,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "utm-gi",
@@ -4394,6 +4633,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -4566,7 +4815,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ucl-ud",
@@ -4631,6 +4883,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -4805,7 +5067,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "man-up",
@@ -4869,6 +5134,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -5042,7 +5317,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "birm-urp",
@@ -5106,6 +5384,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -5277,7 +5565,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "hku-up",
@@ -5341,6 +5632,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -5513,7 +5814,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "polyu-up",
@@ -5576,6 +5880,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -5747,7 +6061,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "nus-up",
@@ -5811,6 +6128,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -5983,7 +6310,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "unimelb-up",
@@ -6049,6 +6379,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -6225,7 +6565,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "tud-up",
@@ -6290,6 +6633,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -6463,7 +6816,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ic-cs",
@@ -6529,6 +6885,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -6700,7 +7066,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "uoft-mscac",
@@ -6766,6 +7135,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -6940,7 +7319,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ucl-ds",
@@ -7006,6 +7388,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -7177,7 +7569,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "nus-dsml",
@@ -7242,6 +7637,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -7402,7 +7807,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ic-elec",
@@ -7468,6 +7876,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -7628,7 +8046,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "tud-ee",
@@ -7694,6 +8115,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -7853,7 +8284,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "bris-mech",
@@ -7919,6 +8353,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -8083,7 +8527,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "tum-mech",
@@ -8148,6 +8595,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -8312,7 +8769,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ic-mats",
@@ -8378,6 +8838,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -8538,7 +9008,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "warwick-math",
@@ -8604,6 +9077,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -8768,7 +9251,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ic-civil",
@@ -8834,6 +9320,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -9002,7 +9498,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "man-ibm",
@@ -9068,6 +9567,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -9232,7 +9741,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "lse-fin",
@@ -9298,6 +9810,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -9463,7 +9985,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "hku-llm",
@@ -9529,6 +10054,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -9687,7 +10222,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ucl-ling",
@@ -9753,6 +10291,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": true,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -9918,7 +10466,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "lse-media",
@@ -9984,6 +10535,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -10150,7 +10711,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ucl-esd",
@@ -10216,6 +10780,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -10381,7 +10955,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ic-ph",
@@ -10447,6 +11024,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -10611,7 +11198,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "wur-env",
@@ -10677,6 +11267,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -10840,7 +11440,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "rca-design",
@@ -10905,6 +11508,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -11065,7 +11678,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "polyu-htm",
@@ -11131,6 +11747,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -11294,7 +11920,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "titech-eng",
@@ -11358,6 +11987,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -11531,7 +12170,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "pw-gis",
@@ -11597,6 +12239,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -11764,7 +12416,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "upenn-musa",
@@ -11829,6 +12484,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -12003,7 +12668,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "wisc-gis",
@@ -12068,6 +12736,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -12238,7 +12916,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "kaist-me",
@@ -12302,6 +12983,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -12467,7 +13158,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "psaclay-geo",
@@ -12532,6 +13226,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -12708,7 +13412,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "kth-geo",
@@ -12774,6 +13481,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -12947,7 +13664,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "aalto-geo",
@@ -13013,6 +13733,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -13179,7 +13909,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "dtu-geo",
@@ -13245,6 +13978,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -13410,7 +14153,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ntnu-geomatics",
@@ -13475,6 +14221,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -13641,7 +14397,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "nova-gis",
@@ -13706,6 +14465,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -13870,7 +14639,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "bme-civil",
@@ -13935,6 +14707,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -14101,7 +14883,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ctu-geodesy",
@@ -14166,6 +14951,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -14333,7 +15128,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "tartu-geo",
@@ -14399,6 +15197,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -14564,7 +15372,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "otago-surveying",
@@ -14631,6 +15442,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -14803,7 +15624,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "kust-geo",
@@ -14868,6 +15692,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -15031,7 +15865,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ait-rsgis",
@@ -15098,6 +15935,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -15261,7 +16108,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "itu-geomatics",
@@ -15326,6 +16176,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -15491,7 +16351,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ntu-geo",
@@ -15556,6 +16419,16 @@
      "detail": "IELTS/TOEFL（门槛见语言要求字段）",
      "langSchool": false,
      "note": "英授项目无需本地语言"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -15717,7 +16590,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "stuttgart-geo-de",
@@ -15783,6 +16659,16 @@
      "detail": "DSH-2 或 TestDaF 4×4",
      "langSchool": true,
      "note": "德语授课：语言是硬门槛；可先在德国读语言班/预科"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -15960,7 +16846,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "tum-umwelt-de",
@@ -16025,6 +16914,16 @@
      "detail": "DSH-2 或 TestDaF 4×4",
      "langSchool": true,
      "note": "德语授课；TUM 提供部分德语强化课程"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -16192,7 +17091,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "ensg-geomatique-fr",
@@ -16257,6 +17159,16 @@
      "detail": "DELF B2 或 TCF 400+（部分项目要求 C1）",
      "langSchool": true,
      "note": "法语授课；可通过 Campus France 申请语言预科"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -16434,7 +17346,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "upm-geomatica-es",
@@ -16499,6 +17414,16 @@
      "detail": "DELE B2（西语授课）",
      "langSchool": true,
      "note": "西语授课；多数高校有语言中心课程"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -16666,7 +17591,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   },
   {
    "id": "utokyo-infra-jp",
@@ -16732,6 +17660,16 @@
      "detail": "JLPT N2（日语授课）；英语项目另需 IELTS/TOEFL",
      "langSchool": true,
      "note": "日语授课门槛高，但国立学费极低+可减免"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验（示例骨架数据，交付前必须逐条补齐）",
+     "checkedDate": null
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "待核验（示例骨架数据）"
     }
    },
    "materials": [
@@ -16905,7 +17843,10 @@
    "verifiedFields": [],
    "fetchedAt": null,
    "verificationScope": "none",
-   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。"
+   "unverifiedNote": "**本条目为示例口径，未经官网逐项实时核验**：学费/截止/语言/课程结构等均须由 agent 实时检索官网后替换。禁止直接据此申请。",
+   "bachelorBenchmark": {
+    "note": "待核验（示例骨架数据）"
+   }
   }
  ],
  "schoolLinks": {

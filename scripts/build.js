@@ -103,6 +103,17 @@ const POLICY_FIELDS = ['visa', 'workVisa', 'pr', 'citizenship'];
   if (d.match && (d.match.score === undefined || !Array.isArray(d.match.explanations) || !d.match.explanations.length))
     errs.push(tag + '：match 缺 score/explanations（匹配度必须带逐条解释）');
   if (d.partTime && typeof d.partTime.incomeYearCnyMax !== 'number') errs.push(tag + '：partTime.incomeYearCnyMax 非数字（预算四档的输入）');
+  // ── 反偷懒门禁（24 项字段收齐纪律：缺一项 = 这条记录不合格，不许交付）──
+  const hasCJK = s => /[\u4e00-\u9fff]/.test(String(s || ''));
+  if (!hasCJK(d.school)) errs.push(tag + '：school 必须是中文校名（英文名放 schoolEn；页面所有输出中文优先）');
+  if (!hasCJK(d.programCn)) errs.push(tag + '：programCn 必须是中文专业名（英文原名放 program）');
+  if (!hasCJK(d.region)) errs.push(tag + '：region 必须是中文地区名');
+  if (!d.career || typeof d.career !== 'object' || Array.isArray(d.career) || !Array.isArray(d.career.directions) || !Array.isArray(d.career.employers))
+    errs.push(tag + '：career 必须为对象 {directions:[], employers:[], note}（毕业去向必查，不许只写一句话字符串）');
+  if (!d.salary || !d.salary.amount || !d.salary.cny) errs.push(tag + '：salary 缺 amount/cny（薪资必查；官方未披露也要写明"官方未披露"）');
+  if (!d.entryReq.workExp) errs.push(tag + '：缺 entryReq.workExp（工作经验必查；页面无明示要求就写 required:false + note）');
+  if (d.entryReq.creditReq === undefined) errs.push(tag + '：缺 entryReq.creditReq（学分门槛必查；无明示门槛也要留 note 说明）');
+  if (d.bachelorBenchmark === undefined) errs.push(tag + '：缺 bachelorBenchmark（本科对标必须尝试；未取得官方课程结构页就只留 note 待核验，不许整个跳过）');
   if (!d.verified) warns.push(tag + '：verified=false（页面会打待核验灰标，属正常）');
 });
 // 链接覆盖
@@ -110,10 +121,19 @@ const SL = payload.schoolLinks || {}, RL = payload.regionLinks || {};
 (DATA || []).forEach(d => {
   if (d && d.id && !SL[d.id]) errs.push(d.id + '：缺 schoolLinks 条目（官网项目页/招生页）');
   if (d && d.region && !RL[d.region]) errs.push(d.region + '：缺 regionLinks 条目（学签/工签/永居官方链接）');
+  const ct = d && d.id && SL[d.id] && SL[d.id].contact;
+  if (d && d.verified === true && !(ct && ct.email && ct.phone))
+    errs.push(d.id + '：verified=true 但 schoolLinks 缺 contact.email/phone（官方联系方式必查——用户要靠它向官方确认申请资格）');
+  else if (d && !(ct && ct.email))
+    warns.push(d.id + '：schoolLinks 缺 contact.email（未核验条目也应在交付前补齐）');
 });
 (payload.exclusions || []).forEach((e, i) => {
   if (!e || !e.reason || !e.school) errs.push('exclusions[' + i + ']：缺 school 或 reason（排除必须写明理由）');
+  if (e && e.school && !/[\u4e00-\u9fff]/.test(String(e.school || ''))) errs.push('exclusions[' + i + ']：school 必须是中文校名（排除清单同样中文优先）');
 });
+// 反偷懒：穷举检索下零排除几乎不可能
+if ((DATA || []).length >= 8 && !(payload.exclusions || []).length)
+  warns.push('排除清单为空：穷举检索的候选池必然大于入选数，零排除几乎不可能——若确实全候选入选，请在 meta.noExclusionNote 写明依据');
 // 结构校验（警告级）
 const cnt = { 保底: 0, 主申: 0, 冲刺: 0, 高风险: 0 };
 console.log('读入数据：' + (DATA || []).length + ' 条；地区 ' + new Set((DATA || []).map(d => d.region)).size +

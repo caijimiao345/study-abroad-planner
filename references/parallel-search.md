@@ -30,10 +30,10 @@
 输入：地区、方向簇、用户档案（GPA/语言/预算/学位年限）
 步骤：
 1) 打开该地区**官方课程名录**，枚举该方向全部项目（记录翻到的页数/条目数）
-2) 逐个进项目页，抄 20 项字段（见 finding-schools.md 第三节）
+2) 逐个进项目页，抄 24 项字段（见 finding-schools.md 第三节）
 3) 语言核验：只保留「纯英语」项目；官方写明荷语/法语/德语的 → 进 exclusions，并原文引用官方表述
 4) 交叉核验：项目在招？截止日期？学费口径（本地生 vs 非 EEA）
-5) 输出两份：projects[]（符合条件，20 字段）+ exclusions[]（学校/项目/理由/来源/核验日期）
+5) 输出两份：projects[]（符合条件，24 字段）+ exclusions[]（学校/项目/理由/来源/核验日期）
 6) 不得输出任何未核验的数字；无来源的字段留空并在 note 写「待核验」
 ```
 
@@ -41,7 +41,7 @@
 
 ```json
 { "shard": "BE-PLAN", "checkedPages": 14, "candidates": 23,
-  "projects": [ { ...20 字段同 data-schema.md... } ],
+  "projects": [ { ...24 字段同 data-schema.md... } ],
   "exclusions": [ {"school":"","program":"","reason":"","source":"","checkedDate":""} ] }
 ```
 
@@ -50,7 +50,7 @@
 1. **合并去重**：按 `学校+项目` 去重（同名项目在不同分片被查到很常见）
 2. **补全链接**：`schoolLinks` / `regionLinks` 缺的补齐（build.js 会强制校验，缺了构建不过）
 3. **跑门禁**：`node scripts/build.js` 会校验字段完整性、verifiedDate、policyYear、链接覆盖
-4. **验收检索量**（finding-schools.md 6.4）：把各分片的 `checkedPages` 与 `candidates` 加总，对照下限
+4. **验收检索量**（finding-schools.md 7.4）：把各分片的 `checkedPages` 与 `candidates` 加总，对照下限；**多国任务额外按国分组验收**——每个国家独立达标并产出「国家覆盖表」（finding-schools.md 8.0），不许用全部分片的总平均掩盖某个国家的缩水
 5. **汇总排除清单**：所有分片的 exclusions 合并 → `assets/exclusions.json` → 页面自动渲染成折叠区/表格
 6. **产出**：HTML（按需一个总页或每个地区一页）+ Notion 四表 CSV
 
@@ -68,6 +68,7 @@
 - 分片后不合并（用户拿到 4 份不完整清单）
 - 子 Agent 自己补数据（未核验不得写入；发现缺口要回报，由主 Agent 决定再查一轮）
 - 用"这片没查到"代替"这片没查"——每片必须给出 `checkedPages` 数字
+- 合并时丢弃某个国家的分片、或把某国标成"低优先级"跳过——每个国家分片都必须真实执行并进入国家覆盖表（finding-schools.md 8.0）
 
 ## 五、效率提示
 

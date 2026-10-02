@@ -19,7 +19,12 @@
   "disclaimer": "本案例随开源包分发，用于演示「检索→核验→判定→出页」全流程。带 ✅ 的记录为 2026-10-02 实时核验官方页面；标「待核验」的问题必须回官网复核。政策以院校官网与阿联酋联邦/酋长国主管部门当期公布为准。",
   "zeroMemoryPolicy": "零记忆交付：所有数据由 agent 实时检索官网写入；本轮未取得官方页的字段一律标「待核验」，不以模型记忆充当结论。",
   "adminNote": "阿联酋为联邦制，7 个酋长国在生活成本、签证办理渠道（ICP 联邦 / GDRFA 迪拜）、学校定价上不同——招生要求以联邦教育部（CAA 认证）为准，签证与费用按酋长国核验。",
-  "dataGradeLegend": "✅ 已核验=关键字段有官方页支撑；⚠ 部分核验=部分字段有官方页、部分待核；待核验=未取得官方页（不可直接当结论）"
+  "dataGradeLegend": "✅ 已核验=关键字段有官方页支撑；⚠ 部分核验=部分字段有官方页、部分待核；待核验=未取得官方页（不可直接当结论）",
+  "contactDisclaimer": "每校招生办邮箱/电话已于 2026-10-03 逐校官网核验（见 contact.source）；具体申请资格请直接邮件官方确认。",
+  "creditConversion": {
+   "hoursPerEcts": 27,
+   "note": "AI 估算口径：1 ECTS≈27 小时总学习量；官方换算以校方答复为准"
+  }
  },
  "profile": {
   "name": "示例档案 · 城乡规划（五年制）",
@@ -38,7 +43,12 @@
    "cnyTotal": 200000,
    "note": "家庭可支持的【整个学制总额】= 20 万（示例值；不是每年）"
   },
-  "goal": "就业回国"
+  "goal": "就业回国",
+  "credits": {
+   "total": 153.5,
+   "hoursPerCredit": 16,
+   "note": "示例档案口径（五年制城乡规划 88 门 153.5 学分）"
+  }
  },
  "data": [
   {
@@ -102,6 +112,17 @@
      "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
      "langSchool": false,
      "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "官方页未明示学分总量门槛（美式学位体系，要求学士学位即可），换算与认定以招生办答复为准",
+     "checkedDate": "2026-10-03"
+    },
+    "workExp": {
+     "required": false,
+     "years": "",
+     "note": "申请要求页未列工作经验要求（2026-10-02 核验口径），应届可申；以招生办答复为准",
+     "checkedDate": "2026-10-02"
     }
    },
    "materials": [
@@ -168,7 +189,19 @@
      "verified": false
     }
    },
-   "career": "交通工程/交通规划、基建咨询、道路与轨道交通部门、政府交通局（如 RTA 迪拜道路与交通局）",
+   "career": {
+    "directions": [
+     "交通工程/交通规划",
+     "基建咨询",
+     "道路与轨道交通部门",
+     "政府交通局"
+    ],
+    "employers": [
+     "RTA（迪拜道路和交通局）",
+     "联邦/酋长国公共工程部门"
+    ],
+    "note": "交通与路面方向毕业生多进政府部门与基建咨询"
+   },
    "salary": {
     "amount": "AED 240,000–360,000",
     "cny": "约 44 万–66 万/年",
@@ -253,7 +286,10 @@
     "官方门户核实：学生居留签证由就读大学担保、需大学证明学习期限、1 年一签可续"
    ],
    "fetchedAt": "2026-10-02",
-   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
+   "bachelorBenchmark": {
+    "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   }
   },
   {
    "id": "uaeu-rsgis",
@@ -315,6 +351,17 @@
      "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
      "langSchool": false,
      "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "官方页未明示学分总量门槛（美式学位体系，要求学士学位即可），换算与认定以招生办答复为准",
+     "checkedDate": "2026-10-03"
+    },
+    "workExp": {
+     "required": false,
+     "years": "",
+     "note": "申请要求页未列工作经验要求（2026-10-02 核验口径），应届可申；以招生办答复为准",
+     "checkedDate": "2026-10-02"
     }
    },
    "materials": [
@@ -381,7 +428,20 @@
      "verified": false
     }
    },
-   "career": "GIS/遥感工程师、测绘与空间数据部门、城市规划与国土部门、环境监测、能源与基建空间数据岗",
+   "career": {
+    "directions": [
+     "GIS/遥感工程师",
+     "测绘与空间数据部门",
+     "城市规划与国土部门",
+     "环境监测",
+     "能源与基建空间数据岗"
+    ],
+    "employers": [
+     "联邦地理测绘机构",
+     "市政与国土管理部门"
+    ],
+    "note": ""
+   },
    "salary": {
     "amount": "AED 200,000–320,000",
     "cny": "约 37 万–58 万/年",
@@ -458,7 +518,10 @@
     "官方费率表核实：该硕士 30 学分、AED 3,000/学分 → 全项目 AED 90,000"
    ],
    "fetchedAt": "2026-10-02",
-   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
+   "bachelorBenchmark": {
+    "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   }
   },
   {
    "id": "aus-msce",
@@ -520,6 +583,17 @@
      "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
      "langSchool": false,
      "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "官方页未明示学分总量门槛（美式学位体系，要求学士学位即可），换算与认定以招生办答复为准",
+     "checkedDate": "2026-10-03"
+    },
+    "workExp": {
+     "required": false,
+     "years": "",
+     "note": "申请要求页未列工作经验要求（2026-10-02 核验口径），应届可申；以招生办答复为准",
+     "checkedDate": "2026-10-02"
     }
    },
    "materials": [
@@ -588,7 +662,19 @@
      "verified": false
     }
    },
-   "career": "结构/交通/基建工程师、咨询公司（AECOM、Parsons、Jacobs 等在 GCC 招聘）、政府基建部门",
+   "career": {
+    "directions": [
+     "结构/交通/基建工程师",
+     "咨询公司",
+     "政府基建部门"
+    ],
+    "employers": [
+     "AECOM",
+     "Parsons",
+     "Jacobs（在 GCC 均有招聘）"
+    ],
+    "note": "AUS 工程学院在 GCC 雇主网络强"
+   },
    "salary": {
     "amount": "AED 220,000–350,000",
     "cny": "约 40 万–64 万/年",
@@ -668,7 +754,10 @@
     "官方知识库核实：雅思 6.5 / 托福 iBT 80、申请材料清单、需 Certificate of Equivalency"
    ],
    "fetchedAt": "2026-10-02",
-   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
+   "bachelorBenchmark": {
+    "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   }
   },
   {
    "id": "aus-mup",
@@ -730,6 +819,17 @@
      "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
      "langSchool": false,
      "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "官方页未明示学分总量门槛（美式学位体系，要求学士学位即可），换算与认定以招生办答复为准",
+     "checkedDate": "2026-10-03"
+    },
+    "workExp": {
+     "required": false,
+     "years": "",
+     "note": "申请要求页未列工作经验要求（2026-10-02 核验口径），应届可申；以招生办答复为准",
+     "checkedDate": "2026-10-02"
     }
    },
    "materials": [
@@ -797,7 +897,18 @@
      "verified": false
     }
    },
-   "career": "规划咨询、政府规划部门、房地产与城市开发、基础设施与交通规划协同岗",
+   "career": {
+    "directions": [
+     "规划咨询",
+     "政府规划部门",
+     "房地产与城市开发",
+     "基础设施与交通规划协同岗"
+    ],
+    "employers": [
+     "AUS Master of Urban Planning 校方就业数据（详见官网）"
+    ],
+    "note": ""
+   },
    "salary": {
     "amount": "AED 200,000–320,000",
     "cny": "约 37 万–58 万/年",
@@ -876,7 +987,10 @@
     "官方学费页核实：MUP 33 学分 × AED 5,480 = 全项目 AED 180,840（2026–2027）"
    ],
    "fetchedAt": "2026-10-02",
-   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
+   "bachelorBenchmark": {
+    "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   }
   },
   {
    "id": "ku-mscie",
@@ -938,6 +1052,17 @@
      "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
      "langSchool": false,
      "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "官方页未明示学分总量门槛（美式学位体系，要求学士学位即可），换算与认定以招生办答复为准",
+     "checkedDate": "2026-10-03"
+    },
+    "workExp": {
+     "required": false,
+     "years": "",
+     "note": "申请要求页未列工作经验要求（2026-10-02 核验口径），应届可申；以招生办答复为准",
+     "checkedDate": "2026-10-02"
     }
    },
    "materials": [
@@ -1004,7 +1129,17 @@
      "verified": false
     }
    },
-   "career": "结构/交通/基建工程师、研究机构、政府基建与交通部门；论文轨毕业生多继续读博",
+   "career": {
+    "directions": [
+     "结构/交通/基建工程师",
+     "研究机构",
+     "政府基建与交通部门"
+    ],
+    "employers": [
+     "ADNOC 等阿布扎比国企与政府基建部门"
+    ],
+    "note": "论文轨毕业生多继续读博；KU 研究型定位"
+   },
    "salary": {
     "amount": "AED 250,000–400,000",
     "cny": "约 46 万–73 万/年",
@@ -1081,7 +1216,10 @@
     "官方 FAQ 核实：硕士学费 AED 5,000/学分；英语 IELTS 6.5 / TOEFL iBT 91（2 年内）；GRE 只对 Direct PhD 强制"
    ],
    "fetchedAt": "2026-10-02",
-   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
+   "bachelorBenchmark": {
+    "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   }
   },
   {
    "id": "uos-msce",
@@ -1143,6 +1281,17 @@
      "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
      "langSchool": false,
      "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "官方页未明示学分总量门槛（美式学位体系，要求学士学位即可），换算与认定以招生办答复为准",
+     "checkedDate": "2026-10-03"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验：该条目未经实时核验，工作经验要求须回官网确认后更新",
+     "checkedDate": null
     }
    },
    "materials": [
@@ -1207,7 +1356,18 @@
      "verified": false
     }
    },
-   "career": "交通工程、道路与市政基建、咨询、政府工程部门",
+   "career": {
+    "directions": [
+     "交通工程",
+     "道路与市政基建",
+     "咨询",
+     "政府工程部门"
+    ],
+    "employers": [
+     "沙迦公共工程部等酋长国政府部门"
+    ],
+    "note": ""
+   },
    "salary": {
     "amount": "AED 180,000–280,000",
     "cny": "约 33 万–51 万/年",
@@ -1286,7 +1446,10 @@
     "**未核实**：学分单价 AED 3,200（官方 PDF 未能解析，未取得官方文本）"
    ],
    "fetchedAt": "2026-10-02",
-   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
+   "bachelorBenchmark": {
+    "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   }
   },
   {
    "id": "hw-dubai-msce",
@@ -1348,6 +1511,17 @@
      "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
      "langSchool": false,
      "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    },
+    "creditReq": {
+     "ectsRequired": null,
+     "note": "官方页未明示学分总量门槛（美式学位体系，要求学士学位即可），换算与认定以招生办答复为准",
+     "checkedDate": "2026-10-03"
+    },
+    "workExp": {
+     "required": null,
+     "years": "",
+     "note": "待核验：该条目未经实时核验，工作经验要求须回官网确认后更新",
+     "checkedDate": null
     }
    },
    "materials": [
@@ -1413,7 +1587,17 @@
      "verified": false
     }
    },
-   "career": "基建与施工管理、咨询公司、迪拜基建项目（D33 规划下的轨交与城市开发）",
+   "career": {
+    "directions": [
+     "基建与施工管理",
+     "咨询公司",
+     "迪拜基建项目（轨交与城市开发）"
+    ],
+    "employers": [
+     "Heriot-Watt Dubai 校企合作网络（详见官网）"
+    ],
+    "note": "D33 规划下的迪拜轨交与城市开发持续招人"
+   },
    "salary": {
     "amount": "AED 220,000–340,000",
     "cny": "约 40 万–62 万/年",
@@ -1490,37 +1674,89 @@
     "**未核实**：学费、入学要求、截止日全部来自第三方，未取得官方页"
    ],
    "fetchedAt": "2026-10-02",
-   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
+   "bachelorBenchmark": {
+    "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   }
   }
  ],
  "schoolLinks": {
   "uaeu-msce": {
    "program": "https://www.uaeu.ac.ae/en/cgs/",
-   "admissions": "https://www.uaeu.ac.ae/en/admission/"
+   "admissions": "https://www.uaeu.ac.ae/en/admission/",
+   "contact": {
+    "email": "PG@uaeu.ac.ae",
+    "phone": "+971 3 713 4254（阿联酋境内 800-8238 免费热线）",
+    "note": "研究生招生组 Admissions Section - Postgraduate Programs",
+    "source": "https://www.uaeu.ac.ae/en/admission/contact.shtml",
+    "verifiedAt": "2026-10-03"
+   }
   },
   "uaeu-rsgis": {
    "program": "https://www.uaeu.ac.ae/en/cgs/",
-   "admissions": "https://www.uaeu.ac.ae/en/admission/"
+   "admissions": "https://www.uaeu.ac.ae/en/admission/",
+   "contact": {
+    "email": "PG@uaeu.ac.ae",
+    "phone": "+971 3 713 4254（阿联酋境内 800-8238 免费热线）",
+    "note": "研究生招生组 Admissions Section - Postgraduate Programs",
+    "source": "https://www.uaeu.ac.ae/en/admission/contact.shtml",
+    "verifiedAt": "2026-10-03"
+   }
   },
   "aus-msce": {
    "program": "https://www.aus.edu/cen/department-of-civil-engineering",
-   "admissions": "https://www.aus.edu/admissions/masters-degrees"
+   "admissions": "https://www.aus.edu/admissions/masters-degrees",
+   "contact": {
+    "email": "graduateadmissions@aus.edu",
+    "phone": "+971 6 515 1000",
+    "note": "研究生招生办；研究生院 ogs@aus.edu / +971 6 515 4721",
+    "source": "https://www.aus.edu/admissions/contact",
+    "verifiedAt": "2026-10-03"
+   }
   },
   "aus-mup": {
    "program": "https://www.aus.edu/caad/master-of-urban-planning",
-   "admissions": "https://www.aus.edu/admissions/masters-degrees"
+   "admissions": "https://www.aus.edu/admissions/masters-degrees",
+   "contact": {
+    "email": "graduateadmissions@aus.edu",
+    "phone": "+971 6 515 1000",
+    "note": "研究生招生办；研究生院 ogs@aus.edu / +971 6 515 4721",
+    "source": "https://www.aus.edu/admissions/contact",
+    "verifiedAt": "2026-10-03"
+   }
   },
   "ku-mscie": {
    "program": "https://www.ku.ac.ae/academics/college-of-engineering/department-of-civil-infrastructure-and-environmental-engineering",
-   "admissions": "https://www.ku.ac.ae/admissions/graduate-admissions"
+   "admissions": "https://www.ku.ac.ae/admissions/graduate-admissions",
+   "contact": {
+    "email": "pgadmissions@ku.ac.ae",
+    "phone": "+971 2 312 3333（境内 800 332211 免费热线）",
+    "note": "Office of Student Recruitment and Admission",
+    "source": "https://www.ku.ac.ae/postgraduate-admissions",
+    "verifiedAt": "2026-10-03"
+   }
   },
   "uos-msce": {
    "program": "https://www.sharjah.ac.ae/Academics/Degree/Graduate/Master-of-Civil-Engineering",
-   "admissions": "https://www.sharjah.ac.ae/en/Admissions/Graduate"
+   "admissions": "https://www.sharjah.ac.ae/en/Admissions/Graduate",
+   "contact": {
+    "email": "admission@sharjah.ac.ae",
+    "phone": "+971 6 505 0000（选语言后按 2）",
+    "note": "Admission Department",
+    "source": "https://www.sharjah.ac.ae/en/admission",
+    "verifiedAt": "2026-10-03"
+   }
   },
   "hw-dubai-msce": {
    "program": "https://www.hw.ac.uk/dubai/study/postgraduate",
-   "admissions": "https://www.hw.ac.uk/dubai/study/apply"
+   "admissions": "https://www.hw.ac.uk/dubai/study/apply",
+   "contact": {
+    "email": "dubaienquiries@hw.ac.uk",
+    "phone": "+971 4 571 7000",
+    "note": "Dubai 校区 Student Recruitment and Admissions",
+    "source": "https://www.hw.ac.uk/dubai",
+    "verifiedAt": "2026-10-03"
+   }
   }
  },
  "regionLinks": {
