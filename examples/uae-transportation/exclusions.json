@@ -1,0 +1,37 @@
+[
+ {
+  "school": "全阿联酋（CAA 认证高校普遍情况）",
+  "program": "独立的「交通规划 / Transportation Planning」硕士学位",
+  "reason": "阿联酋未开设独立的交通规划硕士：交通内容一律挂在土木/基建硕士之下的 concentration 或选修模块（已逐一在 UAEU / AUS / KU / University of Sharjah 官方项目页确认）。若目标是「交通规划」本体，需在土木硕士里选交通方向，或考虑荷兰/英国等设独立交通规划硕士的国家。",
+  "source": "UAEU 官方费率页（MSc Civil Engineering 含 Transportation and Pavement 方向）、AUS 官方 MSCE 知识库、KU 官方项目页（CIVE 638 Transportation Systems 为选修）、沙迦大学官方项目页（Infrastructure Systems Engineering → Transportation Engineering）",
+  "checkedDate": "2026-10-02"
+ },
+ {
+  "school": "哈利法大学 Khalifa University",
+  "program": "独立的交通工程硕士",
+  "reason": "KU 土木方向以「Civil and Infrastructural Engineering」统一招生，交通仅为选修课（CIVE 638 / CIVE 637），无独立交通硕士项目。",
+  "source": "https://www.ku.ac.ae/?p=4673/（官方 FAQ 与项目结构）",
+  "checkedDate": "2026-10-02"
+ },
+ {
+  "school": "沙迦美国大学 AUS",
+  "program": "Master of Science in Transportation Engineering",
+  "reason": "AUS 工程学院硕士统一为「All Master of Science Engineering programs」（AED 5,480/学分），无独立交通硕士；交通在土木硕士内以选修与论文题目体现。",
+  "source": "https://www.aus.edu/admissions/masters-degrees/graduate-tuition-and-fees",
+  "checkedDate": "2026-10-02"
+ },
+ {
+  "school": "阿布扎比大学 / 阿杰曼大学 / 迪拜其他分校（Birmingham Dubai、Middlesex Dubai、RIT Dubai 等）",
+  "program": "土木或交通类硕士",
+  "reason": "本轮未在其官方页取得「交通方向」的明确课程或 concentration 说明，为避免拿第三方转述当结论，暂列待核验、不入正式名单；如需覆盖，请按 finding-schools.md 的穷尽流程逐校核官网。",
+  "source": "待核验（本轮未取得官方项目页）",
+  "checkedDate": "2026-10-02"
+ },
+ {
+  "school": "赫瑞-瓦特大学迪拜校区 Heriot-Watt Dubai",
+  "program": "MSc Civil Engineering（交通方向）",
+  "reason": "已列入候选名单但标「待核验」：本轮只命中第三方留学站（AED 103,000/年），未取得官方页，因此**不标已核验**，学费与要求以官网复核为准。",
+  "source": "待核验（本轮仅第三方来源）",
+  "checkedDate": "2026-10-02"
+ }
+]

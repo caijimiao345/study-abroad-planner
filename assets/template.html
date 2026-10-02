@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>留学院校对比 · 选校规划</title>
+<style>
+:root{--bg:#f6f7f9;--card:#ffffff;--ink:#1e293b;--sub:#64748b;--line:#e2e8f0;--blue:#2563eb;--green:#16a34a;--amber:#d97706;--red:#dc2626;--orange:#ea580c;--gray:#6b7280}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;border-radius:14px;padding:22px 24px;margin-bottom:16px}
+header h1{font-size:21px;margin-bottom:4px}
+header .meta{font-size:12px;opacity:.85}
+.badge{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11.5px;font-weight:600;line-height:1.7;white-space:nowrap}
+.b-green{background:#dcfce7;color:#15803d}.b-blue{background:#dbeafe;color:#1d4ed8}.b-amber{background:#fef3c7;color:#b45309}.b-red{background:#fee2e2;color:#b91c1c}.b-orange{background:#ffedd5;color:#c2410c}.b-gray{background:#f1f5f9;color:#475569}.b-navy{background:#e0e7ff;color:#3730a3}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+h2{font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+h2 .hint{font-weight:400;font-size:12px;color:var(--sub)}
+.grid{display:grid;gap:12px}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.pg label{font-size:12px;color:var(--sub);display:block;margin-bottom:3px}
+.pg input,.pg select{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:8px;font-size:13px;background:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:4px 12px;border-radius:99px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:12.5px;user-select:none}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.frow{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}
+.fblock{min-width:130px}
+.fblock .fl{font-size:11.5px;color:var(--sub);margin-bottom:5px}
+select.sort{padding:6px 9px;border:1px solid var(--line);border-radius:8px;font-size:12.5px}
+input.q{padding:6px 10px;border:1px solid var(--line);border-radius:8px;font-size:12.5px;width:180px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--sub);margin:10px 2px}
+.stats b{color:var(--ink)}
+.sch{border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:14px;overflow:hidden}
+.sch-h{padding:14px 18px;cursor:pointer}
+.sch-h:hover{background:#f8fafc}
+.sch-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.sch-name{font-size:15.5px;font-weight:700}
+.sch-name .en{font-weight:400;font-size:12px;color:var(--sub);margin-left:6px}
+.sch-prog{font-size:13px;color:#334155;margin-top:2px}
+.sch-prog .en{color:var(--sub);font-size:12px}
+.sch-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center}
+.sch-facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px;font-size:12.5px;color:#475569}
+.sch-facts b{color:var(--ink);font-weight:600}
+.qs{font-size:11px;font-weight:700;background:#1e3a8a;color:#fff;border-radius:6px;padding:2px 7px;white-space:nowrap}
+.warn-verify{font-size:11px;color:var(--gray);border:1px dashed var(--gray);border-radius:6px;padding:1px 7px}
+.lnk{font-size:11.5px;color:var(--blue);text-decoration:none;border:1px solid #bfdbfe;border-radius:6px;padding:1px 7px;margin:2px 4px 2px 0;display:inline-block;background:#eff6ff;white-space:nowrap}
+.lnk:hover{background:#dbeafe}
+.srcmark{font-size:10.5px;color:#1d4ed8;background:#dbeafe;border-radius:4px;padding:0 4px;text-decoration:none;vertical-align:super}
+.srcmark:hover{background:#bfdbfe}
+.sch-d{display:none;border-top:1px solid var(--line);padding:6px 18px 16px;background:#fcfcfd}
+.sch.open .sch-d{display:block}
+.dsec{margin-top:12px}
+.dsec h4{font-size:13px;color:var(--blue);margin-bottom:6px;padding-left:8px;border-left:3px solid var(--blue)}
+.dsec ul{padding-left:18px;font-size:13px}
+.dsec ul li{margin:3px 0}
+.dsec p{font-size:13px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:4px 10px;font-size:13px}
+.kv .k{color:var(--sub)}
+.match-line{font-size:12.5px;padding:4px 0;border-bottom:1px dashed var(--line)}
+.match-line .t{display:inline-block;width:44px;font-weight:600}
+.t-core{color:var(--green)}.t-bonus{color:var(--blue)}.t-gap{color:var(--red)}
+.calc{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+table.cmp{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff}
+table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+table.cmp th{background:#f1f5f9;font-size:12px;white-space:nowrap}
+table.cmp tr:hover td{background:#f8fafc}
+footer{margin-top:26px;font-size:11.5px;color:var(--sub);border-top:1px solid var(--line);padding-top:12px}
+.viewbtns{display:flex;gap:6px}
+.viewbtns button{padding:5px 14px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;font-size:12.5px}
+.viewbtns button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+#tblView{display:none}
+.empty{padding:30px;text-align:center;color:var(--sub)}
+@media print{.sch-d{display:block!important}.chips,.viewbtns,.pg{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>留学院校对比 · 选校规划（示例数据演示）</h1>
+  <div class="meta" id="metaLine"></div>
+</header>
+
+<!-- ═══ 我的档案（可编辑，改完实时重算判定） ═══ -->
+<div class="card">
+  <h2>📋 我的档案 <span class="hint">修改任意一项，下方判定与预算档实时重算（课程匹配度为生成时测算，不随此处变化）</span></h2>
+  <div class="pg">
+    <div><label>GPA / 均分（百分制）</label><input type="number" id="fGpa" step="0.5"></div>
+    <div><label>院校层次</label><select id="fTier"><option value="tier1">985 / 211</option><option value="tier2">双非 / 普通本科</option></select></div>
+    <div><label>本科专业</label><input id="fMajor"></div>
+    <div><label>语言考试</label><select id="fLangTest"><option>IELTS</option><option>TOEFL</option></select></div>
+    <div><label>语言总分</label><input type="number" id="fLang" step="0.5"></div>
+    <div><label>语言小分（最低项）</label><input type="number" id="fLangMin" step="0.5"></div>
+    <div><label>家庭支持总额（覆盖整个学制，人民币）</label><input type="number" id="fBudget" step="10000"></div>
+    <div><label>读研目的</label><select id="fGoal"><option>就业回国</option><option>留当地工作</option><option>移民</option><option>读博跳板</option></select></div>
+  </div>
+</div>
+
+<!-- ═══ 筛选器 ═══ -->
+<div class="card">
+  <h2>🔎 筛选 <span class="hint">点击选中/取消，可多选</span></h2>
+  <div class="frow">
+    <div class="fblock"><div class="fl">地区（按数据动态生成）</div><div class="chips" id="cRegion"></div></div>
+    <div class="fblock"><div class="fl">预算可行性档</div><div class="chips" id="cBudget"></div></div>
+    <div class="fblock"><div class="fl">录取可行性档</div><div class="chips" id="cAdmit"></div></div>
+    <div class="fblock" style="flex:1 1 100%"><div class="fl">目标专业方向（可多选·开放枚举，示例覆盖多专业，可自行扩展）</div><div class="chips" id="cField"></div></div>
+    <div class="fblock"><div class="fl">课程匹配档</div><div class="chips" id="cMatch"></div></div>
+    <div class="fblock"><div class="fl">排序</div>
+      <select class="sort" id="fSort">
+        <option value="match">匹配度 高→低</option>
+        <option value="admit">志愿顺序 保底→主申→冲刺→高风险</option>
+        <option value="budget">预算档 ①→④（省钱优先）</option>
+        <option value="cost">全学制总花费 低→高</option>
+        <option value="qs">QS 排名 高→低</option>
+        <option value="pt">兼职收入上限 高→低</option>
+        <option value="sch">可计入奖学金上限 高→低</option>
+      </select>
+    </div>
+    <div class="fblock"><div class="fl">关键词（校名/专业名）</div><input class="q" id="fQ" placeholder="如 UCL / 鲁汶 / 遥感"></div>
+    <div class="fblock"><div class="fl">视图</div><div class="viewbtns"><button id="vCard" class="on">卡片</button><button id="vTable">对比表</button></div></div>
+    <div class="fblock"><div class="fl">&nbsp;</div><button class="chip" id="fReset">清空筛选</button></div>
+  </div>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<!-- ═══ 卡片视图 ═══ -->
+<div id="cardView"></div>
+<!-- ═══ 表格视图 ═══ -->
+<div id="tblView" style="overflow-x:auto"></div>
+<!-- ═══ 排除清单（穷举留痕，回答"为什么没有 XX 学校"）═══ -->
+<div class="card" id="exclCard" style="display:none;margin-top:14px">
+  <h2>🚫 排除清单（<span id="exclCount">0</span> 条）<span class="hint">穷举检索中已核验但不符合条件的项目 —— 逐条给出理由与官方来源，回答「为什么没有 XX 学校 / XX 专业」</span>
+    <button class="chip" id="exclToggle" style="float:right;margin-left:8px">收起</button></h2>
+  <div id="exclBody" style="overflow-x:auto"></div>
+</div>
+
+<footer id="foot"></footer>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   模板使用说明（study-abroad-planner 技能）：
+   1. 只需替换下方 PROFILE 与 DATA 两个常量（META 视情况更新）。
+   2. DATA 元素结构见技能 references/data-schema.md，字段名不可改。
+   3. match.score / match.tier / match.explanations 由生成方按
+      course-matching.md 规则算好后写入，本页不重算。
+   4. 录取三档判定、预算四档判定由本页 JS 按 data-schema.md 规则
+      实时重算，字段缺失会静默跳过该条判定，生成时务必填全。
+   ══════════════════════════════════════════════════════════════ */
+</script>
+
+<!-- ② 数据载荷占位块（build.js 注入生成；与说明块相互独立） -->
+<script id="payload" type="application/json">{}</script>
+<script>
+/* ═══ 数据由 scripts/build.js 注入到上面的 #payload ═══
+   模板本身不含任何数据（DATA 默认为空数组），避免"照抄旧数据"和"脚本锚点依赖"两类问题。
+   build.js 会在注入前自行校验：data 非空、必填字段完整、verifiedDate 齐备、链接覆盖。   */
+const P = (function(){try{return JSON.parse(document.getElementById('payload').textContent||'{}')}catch(e){return{}}})();
+const META = Object.assign({
+  generatedDate:'—', verifiedDateRange:'—', fxNote:'—', qsNote:'—',
+  disclaimer:'以院校官网与移民局当期公布为准',
+  zeroMemoryPolicy:'零记忆交付：所有数据须由 agent 实时检索官网写入；标「未核验」的为示例口径'
+}, P.meta||{});
+const PROFILE = Object.assign({
+  name:'—', gpa:{value:0,scale:'百分制加权',schoolTier:'tier1'}, major:'—',
+  language:{test:'IELTS',overall:0,min:0}, budget:{cnyTotal:0}, goal:'就业回国'
+}, P.profile||{});
+const DATA = P.data || [];
+const SCHOOL_LINKS = P.schoolLinks || {};
+const REGION_LINKS = P.regionLinks || {};
+const EXCLUSIONS = P.exclusions || [];
+function linksHTML(d){const L=SCHOOL_LINKS[d.id]||{};const R=REGION_LINKS[d.region]||[];
+  const a=[];if(L.program)a.push(`<a class="lnk" target="_blank" rel="noopener" onclick="event.stopPropagation()" href="${esc(L.program)}">专业官网 ↗</a>`);
+  if(L.admissions)a.push(`<a class="lnk" target="_blank" rel="noopener" onclick="event.stopPropagation()" href="${esc(L.admissions)}">招生入口 ↗</a>`);
+  const r=R.map(x=>`<a class="lnk" target="_blank" rel="noopener" onclick="event.stopPropagation()" href="${esc(x[1])}">${esc(x[0])} ↗</a>`).join(" ");
+  return a.join(" ")+(a.length&&r?"<br>":"")+r}
+
+/* ═══ 判定规则（与 references/data-schema.md 口径一致） ═══ */
+function langReq(s){const l=s.entryReq&&s.entryReq.language;if(!l)return null;
+  if(PROFILE.language.test==="IELTS"&&l.ielts)return l.ielts;
+  if(PROFILE.language.test==="TOEFL"&&l.toefl)return{overall:l.toefl.overall,min:l.toefl.overall?null:null};
+  return l.ielts||null}
+/* 判定阈值（可调）：均分线是"最低门槛"而非"录取线"，超线并不等于稳录。
+   保底要超线更多才算稳，故 safeGap 默认 -8；用户偏好保守/激进时调整此常量即可。 */
+/* 判定阈值：默认值可在 payload.meta.thresholds 覆盖，页面顶部也可手动调整
+   safeGap = 超均分线多少分算「保底」；reachGap = 差多少分仍算「冲刺」 */
+const TH=Object.assign({safeGap:-8,mainHi:0.5,reachGap:5,reachLang:1},(META.thresholds||{}));
+function admitVerdict(s){const r=s.entryReq;if(!r||!r.gpaTier)return null;
+  const line=parseFloat(PROFILE.gpa.schoolTier==="tier1"?r.gpaTier.tier1:r.gpaTier.tier2)||85;
+  const gpaGap=line-PROFILE.gpa.value;
+  const rq=langReq(s);let langGap=0;
+  if(rq&&rq.overall!=null){langGap=Math.max(langGap,(rq.overall-PROFILE.language.overall));
+    if(rq.min!=null)langGap=Math.max(langGap,rq.min-PROFILE.language.min)}
+  let cls;
+  if(gpaGap<=TH.safeGap&&langGap<=0)cls="保底";
+  else if(gpaGap<=0&&langGap<=TH.mainHi)cls="主申";
+  else if(gpaGap<=TH.reachGap||langGap<=TH.reachLang)cls="冲刺";
+  else cls="高风险";
+  const risk=(r.prereqHard===true)||((s.match&&s.match.explanations)||[]).some(e=>e.type==="先修风险");
+  const star=(r.language&&r.language.langClass===true&&langGap>0&&langGap<=0.5);
+  return{cls,risk,star,gpaLine:line,gpaGap,langGap}}
+/* 预算口径：家庭支持通常是「总额」而不是「每年」——必须按学制年限折算全周期总花费。
+   totalCost = (学费 + 生活费)/年 × 学制年数
+   可计入收入 = 兼职年收入上限 × 学制年数 + 可计入奖学金
+   gap = totalCost − 预算总额；四档按 gap 与「可计入收入」比较。
+   兼容：若档案只给了 cnyPerYear，则按 总额 = cnyPerYear × 学制年数 折算。 */
+function yearsOf(s){const m=String((s&&s.duration)||"").match(/(\d+(?:\.\d+)?)\s*年/);return m?parseFloat(m[1]):1}
+function budgetCapOf(s){const bg=PROFILE.budget||{};
+  if(bg.cnyTotal!=null&&bg.cnyTotal>0)return{budget:bg.cnyTotal,basis:"档案填写的家庭支持总额"};
+  if(bg.cnyPerYear!=null&&bg.cnyPerYear>0)return{budget:Math.round(bg.cnyPerYear*yearsOf(s)),basis:"按 年预算 × 学制年数 折算"};
+  return{budget:0,basis:"档案未填预算"}}
+function budgetCalc(s){const per=(s.tuition?s.tuition.cny:0)+(s.livingCost?s.livingCost.cny:0);
+  const yrs=s.years||yearsOf(s);
+  const cost=Math.round(per*yrs);
+  const cap=budgetCapOf(s);
+  const gap=cost-cap.budget;
+  const pt=(s.partTime?s.partTime.incomeYearCnyMax||0:0)*yrs;
+  const sch=(s.scholarships||[]).filter(x=>x.countable).reduce((a,x)=>a+(x.amountCnyMax||0),0);
+  let n;if(gap<=0)n=1;else if(gap<=pt)n=2;else if(gap<=pt+sch)n=3;else n=4;
+  return{gap,pt,sch,n,per,yrs,cost,budget:cap.budget,basis:cap.basis}}
+const B_LABEL={1:"① 可行",2:"② 加兼职可行",3:"③ 兼职+奖学金",4:"④ 超预算"};
+const B_CLS={1:"b-green",2:"b-blue",3:"b-orange",4:"b-red"};
+const A_CLS={"主申":"b-green","冲刺":"b-amber","保底":"b-blue","高风险":"b-red"};
+const M_CLS={"高":"b-green","中":"b-amber","低":"b-gray"};
+
+/* ═══ 筛选与渲染 ═══ */
+const state={regions:new Set(),budget:new Set(),admit:new Set(),match:new Set(),field:new Set(),lang:new Set(),intake:new Set(),sort:"match",q:"",view:"card"};
+function fieldOf(d){return d.field||"其他"}
+/* 授课语言归并成粗类，便于筛选（英授 / 各小语种 / 双语或多语） */
+function langGroup(d){
+  const t=((d.entryReq||{}).teachingLanguage||"未标注");
+  if(t==="英语")return "英语授课";
+  if(t.indexOf("（")>=0||t.indexOf("+")>=0||t.indexOf("/")>=0)return "双语/多语授课";
+  return t+"授课";}
+function langOf(d){return (d.entryReq||{}).teachingLanguage||"未标注"}
+function esc(s){return String(s==null?"":s)}
+function fmtWan(n){return n>=10000?(n/10000).toFixed(n%10000===0?0:1)+"万":n}
+function costCny(s){return (s.tuition?s.tuition.cny:0)+(s.livingCost?s.livingCost.cny:0)}
+/* 全学制总花费 = 年花费 × 学制年数（预算口径用这个，不用年花费） */
+function totalCostCny(s){return Math.round(costCny(s)*yearsOf(s))}
+function filtered(){
+  let list=DATA.map(d=>{const a=admitVerdict(d),b=budgetCalc(d);return{d,a,b}});
+  if(state.regions.size)list=list.filter(x=>state.regions.has(x.d.region));
+  if(state.budget.size)list=list.filter(x=>state.budget.has(x.b.n));
+  if(state.admit.size)list=list.filter(x=>x.a&&state.admit.has(x.a.cls));
+  if(state.match.size)list=list.filter(x=>state.match.has(x.d.match.tier));
+  if(state.field.size)list=list.filter(x=>state.field.has(fieldOf(x.d)));
+  if(state.lang.size)list=list.filter(x=>state.lang.has(langGroup(x.d)));
+  if(state.intake.size)list=list.filter(x=>(x.d.intake||[]).some(m=>state.intake.has(m)));
+  if(state.q){const q=state.q.toLowerCase();list=list.filter(x=>(x.d.school+x.d.schoolEn+x.d.program+x.d.programCn+(x.d.region||"")).toLowerCase().includes(q))}
+  const A_ORD={"保底":0,"主申":1,"冲刺":2,"高风险":3};
+  const cmp={"match":(a,b)=>b.d.match.score-a.d.match.score,
+    "admit":(a,b)=>(A_ORD[a.a?a.a.cls:"高风险"]-A_ORD[b.a?b.a.cls:"高风险"])||(b.d.match.score-a.d.match.score),
+    "budget":(a,b)=>a.b.n-b.b.n||(totalCostCny(a.d)-totalCostCny(b.d)),
+    "cost":(a,b)=>totalCostCny(a.d)-totalCostCny(b.d),
+    "qs":(a,b)=>a.d.qsRank-b.d.qsRank,
+    "pt":(a,b)=>(b.d.partTime.incomeYearCnyMax||0)-(a.d.partTime.incomeYearCnyMax||0),
+    "sch":(a,b)=>(b.d.scholarships||[]).filter(s=>s.countable).reduce((t,s)=>t+(s.amountCnyMax||0),0)-(a.d.scholarships||[]).filter(s=>s.countable).reduce((t,s)=>t+(s.amountCnyMax||0),0)};
+  return list.sort(cmp[state.sort])}
+function detailHTML(x){const d=x.d,a=x.a,b=x.b;const li=a=>a.map(t=>`<li>${esc(t)}</li>`).join("");
+  const tl=d.timeline.map(t=>`<li><b>${esc(t.date)}</b>：${esc(t.event)}</li>`).join("");
+  const ex=d.match.explanations.map(e=>`<div class="match-line"><span class="t t-${e.type==="核心"?"core":e.type==="加分"?"bonus":"gap"}">${esc(e.type)}</span>${esc(e.text)}</div>`).join("");
+  const sch=d.scholarships.map(s=>`<li><b>${esc(s.name)}</b>：${esc(s.amount)}（上限约 ¥${fmtWan(s.amountCnyMax)}，${s.countable?"计入预算档③口径":"不计入——小概率全奖，仅作努力方向"}）<br><span style="color:var(--sub)">获取路径：${esc(s.effort)}</span></li>`).join("");
+  const gapTxt=b.gap<=0?`缺口 ¥0（预算内）`:`缺口 ¥${fmtWan(b.gap)}`;
+  return `
+  <div class="dsec"><h4>研究生课程（${d.programCn}）</h4><ul>${li(d.curriculum)}</ul><p style="color:var(--sub);font-size:12px">${esc(d.department||"")} · 学制 ${esc(d.duration)} · 开学 ${esc((d.intake||[]).join("/"))}</p></div>
+  <div class="dsec"><h4>申请要求</h4><div class="kv">
+    <span class="k">入学时间</span><span><b>${esc((d.intake||[]).join(" / ")||"待核验")}</b> ｜ 学制 ${esc(d.duration)} ｜ 申请窗口见「申请时间线」</span>
+    <span class="k">学位背景</span><span>${esc(d.entryReq.degree)}</span>
+    <span class="k">均分线</span><span>985/211：${esc(d.entryReq.gpaTier.tier1)}｜双非：${esc(d.entryReq.gpaTier.tier2)} <span style="color:var(--sub)">${esc(d.entryReq.gpaTier.note||"")}</span></span>
+    <span class="k">语言</span><span>${d.entryReq.language.ielts?`雅思 ${d.entryReq.language.ielts.overall}${d.entryReq.language.ielts.min!=null?"（小分 "+d.entryReq.language.ielts.min+"）":""}`:""}${d.entryReq.language.toefl?`｜托福 ${d.entryReq.language.toefl.overall}`:""}${d.entryReq.language.langClass?"｜可配语言班":""}｜<b>按当前档案：${a&&a.langGap>0?`差 ${a.langGap.toFixed(1)} 分`:"过线"}</b></span>
+    <span class="k">GRE</span><span>${esc(d.entryReq.gre)}</span>
+    <span class="k">授课语言</span><span><b>${esc(langOf(d))}</b>${d.entryReq.localLang?` ｜ 本地语言要求：${esc(d.entryReq.localLang.detail||'')}${d.entryReq.localLang.langSchool?'（提供语言班/预科路径）':''}`:''}</span>
+    <span class="k">毕业语言要求</span><span>${d.graduationLang?`<b>${esc(d.graduationLang.req)}</b> ｜ ${esc(d.graduationLang.detail)}<br><span style="color:var(--sub)">${esc(d.graduationLang.note||"")}</span>`:"待核验"}</span>
+    <span class="k">先修要求</span><span>${esc(d.entryReq.prereq)}</span>
+    <span class="k">其他</span><span>${esc(d.entryReq.others)}</span></div></div>
+  <div class="dsec"><h4>所在州/大区与属地要求（${esc(d.adminDivision||'—')}）</h4>
+    ${(d.adminRules&&d.adminRules.length)?`<ul>${d.adminRules.map(r=>`<li>${esc(r).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}</li>`).join('')}</ul>`:'<p style="color:var(--sub);font-size:12px">该地区未见州/大区层级差异；如为联邦制国家，需按 finding-schools.md 第十一节核验属地要求。</p>'}
+    <p style="font-size:12px;color:var(--sub)">同一国家不同州/大区在学费档、授课语言、学历认证、移民州担保上可能不同——不要用国家级结论代替地方要求。</p></div>
+  <div class="dsec"><h4>申请材料</h4><ul>${li(d.materials)}</ul></div>
+  <div class="dsec"><h4>录取标准（学校按什么排）</h4><p>${esc(d.admissionLogic)}</p></div>
+  <div class="dsec"><h4>申请时间线</h4><ul>${tl}</ul></div>
+  <div class="dsec"><h4>课程匹配度：${d.match.score} 分（${esc(d.match.tier)}）</h4>${ex}</div>
+  <div class="dsec"><h4>学生签证（中国学生）</h4><div class="kv">
+    <span class="k">签证类型</span><span>${esc(d.visa.type)}</span>
+    <span class="k">流程</span><span>${esc(d.visa.process)}</span>
+    <span class="k">材料</span><span>${esc((d.visa.materials||[]).join("；"))}</span>
+    <span class="k">费用/时长</span><span>${d.visa.cost?`${esc(d.visa.cost.currency)} ${esc(d.visa.cost.amount)}`:""} · ${esc(d.visa.processingTime)}</span></div></div>
+  <div class="dsec"><h4>毕业去向与薪资</h4><div class="kv">
+    <span class="k">方向</span><span>${esc((d.career.directions||[]).join("；"))}</span>
+    <span class="k">典型雇主</span><span>${esc((d.career.employers||[]).join("；"))}</span>
+    <span class="k">薪资</span><span>${esc(d.salary.amount)}（${esc(d.salary.cny)}）<span style="color:var(--sub)"> ${esc(d.salary.note)}</span></span>
+    <span class="k">备注</span><span>${esc(d.career.note||"")}</span></div></div>
+  <div class="dsec"><h4>工签 → 永居 → 入籍</h4><div class="kv">
+    <span class="k">毕业后工签</span><span><b>${esc(d.workVisa.name)}（${esc(d.workVisa.duration)}）</b>${srcMark(d,'policy')}：${esc(d.workVisa.condition)}</span>
+    <span class="k">永居</span><span>${esc(d.pr.years)}${srcMark(d,'policy')}；条件：${esc((d.pr.conditions||[]).join("；"))}</span>
+    <span class="k">入籍</span><span>${esc(d.citizenship.years)}${srcMark(d,'policy')}；条件：${esc((d.citizenship.conditions||[]).join("；"))}</span></div></div>
+  <div class="dsec"><h4>费用与预算检查（家庭支持总额 ¥${fmtWan(b.budget)}，整个学制口径）</h4>
+    <div class="calc">① 年花费 = 学费 ¥${fmtWan(d.tuition.cny)}${srcMark(d,'fee')} + 生活 ¥${fmtWan(d.livingCost.cny)} = ¥${fmtWan(b.per)}/年
+② 全学制总花费 = ¥${fmtWan(b.per)}/年 × ${b.yrs} 年 = ¥${fmtWan(b.cost)}
+③ 预算来源：${esc(b.basis)} = ¥${fmtWan(b.budget)}
+④ 总缺口 gap = ¥${fmtWan(b.cost)} − ¥${fmtWan(b.budget)} = ${gapTxt}
+⑤ 全周期兼职收入上限 pt = ¥${fmtWan(d.partTime.incomeYearCnyMax||0)}/年 × ${b.yrs} 年 = ¥${fmtWan(b.pt)}（${esc(d.partTime.hours)}）
+⑥ 可计入奖学金 sch = ¥${fmtWan(b.sch)}（仅 countable 条目合计）
+→ 预算档：${B_LABEL[b.n]}（${b.n===1?"总额内可覆盖":b.n===2?"缺口 ≤ 兼职总收入":b.n===3?"缺口 ≤ 兼职总收入 + 奖学金":"缺口超出兼职+奖学金"}）</div>
+    <p style="color:var(--sub);font-size:12px">${esc(d.livingCost.note||"")} ${esc(d.tuition.note||"")}　预算按「整个学制的总花费」判定，不是按年；若家里给的是每年额度，请在档案里改用「家庭支持总额」或直接换算成总额。</p></div>
+  <div class="dsec"><h4>兼职</h4><p>${esc(d.partTime.hours)}｜时薪参考 ${esc(d.partTime.hourlyWage)}｜年收入上限 ¥${fmtWan(d.partTime.incomeYearCnyMax)}${srcMark(d,'policy')}<br><span style="color:var(--sub)">${esc(d.partTime.note)}</span></p></div>
+  <div class="dsec"><h4>可以努力的奖学金/助学金${srcMark(d,'scholar')}</h4><ul>${sch}</ul></div>
+  <div class="dsec"><h4>官方链接（可点开核对）</h4>${linksHTML(d)}
+    <p style="font-size:12px;color:var(--sub);margin-top:6px">数据出处：${esc((d.sources||[]).join("；"))}｜核验日期 ${esc(d.verifiedDate)}</p>
+    ${d.verified?`<p style="font-size:12px;color:#15803d;margin-top:4px"><b>✅ 本轮已实时核验</b>（抓取时间 ${esc(d.fetchedAt||'')}）：<ul style="margin:3px 0 0 16px">${(d.verifiedFields||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></p>`
+      :`<p style="font-size:12px;color:var(--red);margin-top:4px"><b>⚠️ 未经实时核验（示例口径）</b>${d.unverifiedNote?'：'+esc(d.unverifiedNote):''}——使用时必须由 agent 实时检索官网替换。</p>`}</div>`}
+function cardHTML(x){const d=x.d,a=x.a,b=x.b;
+  const v=d.verified?"":` <span class="warn-verify">待核验</span>`;
+  const aBadge=a?`<span class="badge ${A_CLS[a.cls]}">录取:${a.cls}（均分线 ${a.gpaLine}）</span>${a.risk?'<span class="badge b-orange">⚠先修风险</span>':""}${a.star?'<span class="badge b-amber">*可配语言班</span>':""}`:"";
+  const bBadge=`<span class="badge ${B_CLS[b.n]}">预算:${B_LABEL[b.n]}</span>`;
+  const mBadge=`<span class="badge ${M_CLS[d.match.tier]}">匹配:${esc(d.match.tier)} ${d.match.score}</span>`;
+  const lBadge=`<span class="badge ${/^英语$/.test(langOf(d))?'b-gray':'b-orange'}">${esc(langOf(d))}</span>`;
+  const iBadge=`<span class="badge b-blue">入学 ${esc((d.intake||[]).join(' / ')||'待核验')}</span>`;
+  return `<div class="sch" data-id="${esc(d.id)}">
+  <div class="sch-h">
+    <div class="sch-top"><div>
+      <div class="sch-name"><span class="qs">${d.qsRank>0?'QS '+d.qsRank:'QS 不适用'}</span> ${esc(d.school)}${v}<span class="en">${esc(d.schoolEn)}</span></div>
+      <div class="sch-prog">${esc(d.programCn)} <span class="en">${esc(d.program)}</span></div>
+    </div><div style="color:var(--sub);font-size:12px;white-space:nowrap;text-align:right">${esc(d.region)}<br>${esc(d.adminDivision||'')}</div></div>
+    <div class="sch-badges">${aBadge}${bBadge}${mBadge}${lBadge}${iBadge}<span class="badge b-navy">${esc(d.duration)}</span></div>
+    <div class="sch-facts">
+      <span>学费 <b>${esc(d.tuition.currency)} ${d.tuition.amount.toLocaleString()}/${esc(d.tuition.per)}</b>（¥${fmtWan(d.tuition.cny)}）</span>
+      <span>生活费 <b>¥${fmtWan(d.livingCost.cny)}/年</b></span>
+      <span>全学制 <b>${b.yrs} 年 ¥${fmtWan(b.cost)}</b></span>
+      <span>预算 <b>¥${fmtWan(b.budget)}</b>${b.gap>0?` <span style="color:var(--red)">差 ¥${fmtWan(b.gap)}</span>`:` <span style="color:var(--green)">够</span>`}</span>
+      <span>语言 <b>雅思 ${d.entryReq.language.ielts?d.entryReq.language.ielts.overall+(d.entryReq.language.ielts.min!=null?"("+d.entryReq.language.ielts.min+")":""):"—"}</b></span>
+      <span>入学 <b>${esc((d.intake||[]).join(' / '))}</b></span>
+      <span>兼职上限 <b>¥${fmtWan(d.partTime.incomeYearCnyMax)}/年</b></span>
+      <span>奖助学金 <b>${(d.scholarships&&d.scholarships.length)?d.scholarships.length+" 项 · 可计入 ¥"+fmtWan(d.scholarships.filter(s=>s.countable).reduce((t,s)=>t+(s.amountCnyMax||0),0)):"—"}</b></span>
+      <span style="color:var(--sub)">${esc(d.subjectRank||"")}</span>
+    </div>
+    <div style="margin-top:8px">${linksHTML(d)}</div>
+  </div>
+  <div class="sch-d">${detailHTML(x)}</div>
+</div>`}
+function tableHTML(list){
+  const rows=list.map(x=>{const d=x.d,a=x.a,b=x.b;
+    return `<tr><td><b>${esc(d.school)}</b><br><span style="color:var(--sub);font-size:11.5px">${esc(d.schoolEn)}</span></td>
+    <td>${esc(d.region)}<br><span class="qs" style="display:inline-block;margin-top:2px">${d.qsRank>0?'QS '+d.qsRank:'QS 不适用'}</span></td>
+    <td><b>${esc(d.programCn)}</b><br><span style="color:var(--sub);font-size:11.5px">${esc(d.program)}</span></td>
+    <td>${esc(langOf(d))}</td>
+    <td>${esc((d.intake||[]).join('/'))}</td>
+    <td>${esc(d.tuition.currency)} ${d.tuition.amount.toLocaleString()}/${esc(d.tuition.per)}<br>年 ¥${fmtWan(b.per)}<br><b>全学制 ${b.yrs} 年 ¥${fmtWan(b.cost)}</b>${b.gap>0?`<br><span style="color:var(--red);font-size:11.5px">差 ¥${fmtWan(b.gap)}</span>`:''}</td>
+    <td>${(d.scholarships&&d.scholarships.length)?d.scholarships.length+" 项<br>可计入 ¥"+fmtWan(d.scholarships.filter(s=>s.countable).reduce((t,s)=>t+(s.amountCnyMax||0),0)):"—"}</td>
+    <td>${(d.scholarships&&d.scholarships.length)?d.scholarships.length+" 项<br>可计入 ¥"+fmtWan(d.scholarships.filter(s=>s.countable).reduce((t,s)=>t+(s.amountCnyMax||0),0)):"—"}</td>
+    <td>${d.entryReq.gpaTier.tier1} / ${d.entryReq.gpaTier.tier2}<br>雅思 ${d.entryReq.language.ielts?d.entryReq.language.ielts.overall+(d.entryReq.language.ielts.min!=null?"("+d.entryReq.language.ielts.min+")":""):"—"}</td>
+    <td>${a?`<span class="badge ${A_CLS[a.cls]}">${a.cls}</span>${a.risk?"<br><span class='badge b-orange'>⚠先修风险</span>":""}`:""}</td>
+    <td><span class="badge ${B_CLS[b.n]}">${B_LABEL[b.n]}</span></td>
+    <td><span class="badge ${M_CLS[d.match.tier]}">${esc(d.match.tier)} ${d.match.score}</span></td>
+    <td>${esc(d.workVisa.name)} ${esc(d.workVisa.duration)}<br><span style="color:var(--sub);font-size:11.5px">PR：${esc(d.pr.years)}</span></td>
+    <td>${d.verified?"✓":"<span class='warn-verify'>待核验</span>"}</td></tr>`}).join("");
+  return `<table class="cmp"><thead><tr><th>学校</th><th>地区</th><th>专业</th><th>授课语言</th><th>入学季</th><th>学费/全学制总花费</th><th>奖助学金</th><th>均分线/雅思</th><th>录取</th><th>预算档</th><th>匹配</th><th>工签/永居</th><th>核验</th></tr></thead><tbody>${rows}</tbody></table>`}
+function render(){
+  const list=filtered();
+  const c1=list.filter(x=>x.b.n===1).length,c2=list.filter(x=>x.b.n===2).length,c3=list.filter(x=>x.b.n===3).length,c4=list.filter(x=>x.b.n===4).length;
+  const ac=t=>list.filter(x=>x.a&&x.a.cls===t).length,nRisk=list.filter(x=>x.a&&x.a.risk).length;
+  document.getElementById("stats").innerHTML=`<span>共 <b>${list.length}</b> 所（已筛）</span>`+`<span>检索候选池 <b>${DATA.length+EXCLUSIONS.length}</b>（入选 <b>${DATA.length}</b> · 排除 <b>${EXCLUSIONS.length}</b>）</span>`+`<span>录取：主申 <b>${ac("主申")}</b> · 冲刺 <b>${ac("冲刺")}</b> · 保底 <b>${ac("保底")}</b> · 高风险 <b>${ac("高风险")}</b> · ⚠先修风险 <b>${nRisk}</b></span><span>预算：①可行 <b>${c1}</b> · ②加兼职 <b>${c2}</b> · ③兼职+奖学金 <b>${c3}</b> · ④超预算 <b>${c4}</b></span>`;
+  document.getElementById("cardView").innerHTML=list.length?list.map(cardHTML).join(""):(DATA.length?'<div class="empty">没有符合条件的院校——试试放宽筛选或调高预算</div>':'<div class="empty">模板未注入数据：请用 scripts/build.js 从 assets/data.json 生成页面（模板本身默认无数据）</div>');
+  document.getElementById("tblView").innerHTML=tableHTML(list);
+  document.getElementById("tblView").style.display=state.view==="table"?"block":"none";
+  document.getElementById("cardView").style.display=state.view==="table"?"none":"block"}
+/* ═══ chips 与事件 ═══ */
+function chipHTML(val,on){return `<span class="chip${on?" on":""}" data-v="${esc(val)}">${esc(val)}</span>`}
+function buildChips(){
+  const regions=[...new Set(DATA.map(d=>d.region))];
+  document.getElementById("cRegion").innerHTML=regions.map(r=>chipHTML(r,state.regions.has(r))).join("");
+  [["① 可行",1],["② 加兼职可行",2],["③ 兼职+奖学金",3],["④ 超预算",4]].forEach(([t,n])=>{});
+  document.getElementById("cBudget").innerHTML=[1,2,3,4].map(n=>chipHTML(B_LABEL[n],state.budget.has(n))).join("");
+  document.getElementById("cAdmit").innerHTML=["达标","冲刺","风险"].map(t=>chipHTML(t,state.admit.has(t))).join("");
+  document.getElementById("cMatch").innerHTML=["高","中","低"].map(t=>chipHTML(t,state.match.has(t))).join("");
+  const fields=[...new Set(DATA.map(fieldOf))];
+  document.getElementById("cField").innerHTML=fields.map(f=>chipHTML(f,state.field.has(f))).join("");
+  let lb=document.getElementById("cLang");
+  if(!lb){const host=document.getElementById("cField").closest(".fblock").parentNode;
+    host.insertAdjacentHTML("beforeend",'<div class="fblock" style="flex:1 1 100%"><div class="fl">授课语言（可多选·英授与小语种项目同库）</div><div class="chips" id="cLang"></div></div>');
+    lb=document.getElementById("cLang")}
+  const langs=[...new Set(DATA.map(langGroup))];
+  lb.innerHTML=langs.map(g=>chipHTML(g,state.lang.has(g))).join("");
+  let ib=document.getElementById("cIntake");
+  if(!ib){const host2=document.getElementById("cField").closest(".fblock").parentNode;
+    host2.insertAdjacentHTML("beforeend",'<div class="fblock" style="flex:1 1 100%"><div class="fl">入学季（可多选·按 intake 月份筛）</div><div class="chips" id="cIntake"></div></div>');
+    ib=document.getElementById("cIntake")}
+  const intakes=[...new Set(DATA.flatMap(d=>d.intake||[]))].sort();
+  ib.innerHTML=intakes.map(m=>chipHTML(m,state.intake.has(m))).join("")}
+function bindChips(id,set){document.getElementById(id).addEventListener("click",e=>{
+  const c=e.target.closest(".chip");if(!c)return;const v=c.dataset.v;
+  set.has(v)?set.delete(v):set.add(v);buildChips();render()})}
+function initProfile(){
+  document.getElementById("fGpa").value=PROFILE.gpa.value;
+  document.getElementById("fTier").value=PROFILE.gpa.schoolTier;
+  document.getElementById("fMajor").value=PROFILE.major;
+  document.getElementById("fLangTest").value=PROFILE.language.test;
+  document.getElementById("fLang").value=PROFILE.language.overall;
+  document.getElementById("fLangMin").value=PROFILE.language.min;
+  document.getElementById("fBudget").value=(PROFILE.budget&&PROFILE.budget.cnyTotal!=null)?PROFILE.budget.cnyTotal:((PROFILE.budget&&PROFILE.budget.cnyPerYear)||0);
+  document.getElementById("fGoal").value=PROFILE.goal}
+function bindProfile(){[
+  ["fGpa",v=>PROFILE.gpa.value=parseFloat(v)||0],
+  ["fTier",v=>PROFILE.gpa.schoolTier=v],
+  ["fMajor",v=>PROFILE.major=v],
+  ["fLangTest",v=>PROFILE.language.test=v],
+  ["fLang",v=>PROFILE.language.overall=parseFloat(v)||0],
+  ["fLangMin",v=>PROFILE.language.min=parseFloat(v)||0],
+  ["fBudget",v=>{const n=parseFloat(v)||0;PROFILE.budget.cnyTotal=n;PROFILE.budget.cnyPerYear=null;}],
+  ["fGoal",v=>PROFILE.goal=v]
+].forEach(([id,fn])=>{document.getElementById(id).addEventListener("change",e=>{fn(e.target.value);render()})})}
+/* ═══ 阈值调节输入框（动态注入到档案卡，避免改动 HTML 骨架）═══ */
+function injectThresholdInputs(){
+  const goal=document.getElementById('fGoal');if(!goal)return;
+  const row=goal.closest('div').parentNode;if(!row||document.getElementById('fSafeGap'))return;
+  row.insertAdjacentHTML('beforeend',
+    '<div><label>判定阈值：保底线（超均分线几分算保底）</label><input type="number" id="fSafeGap" step="1"></div>'+
+    '<div><label>判定阈值：冲刺线（差几分仍算冲刺）</label><input type="number" id="fReachGap" step="1"></div>');
+  document.getElementById('fSafeGap').value=TH.safeGap;
+  document.getElementById('fReachGap').value=TH.reachGap;
+  const bind=(id,fn)=>{document.getElementById(id).addEventListener('change',e=>{fn(e.target.value);render();renderActionPlan()})};
+  bind('fSafeGap',v=>TH.safeGap=parseFloat(v)||-8);
+  bind('fReachGap',v=>TH.reachGap=parseFloat(v)||5);
+}
+
+/* ═══ 行动清单：从 timeline 生成「未来 N 天我要做什么」（倒计时+勾选，勾选状态本地保存）═══ */
+function planDone(){try{return JSON.parse(localStorage.getItem('sap_plan_done')||'{}')}catch(e){return{}}}
+function planSet(k,v){const o=planDone();o[k]=v;try{localStorage.setItem('sap_plan_done',JSON.stringify(o))}catch(e){}}
+function renderActionPlan(){
+  const host=document.getElementById('stats');if(!host)return;
+  let card=document.getElementById('planCard');
+  if(!DATA.length){if(card)card.remove();return}
+  if(!card){card=document.createElement('div');card.className='card';card.id='planCard';
+    host.insertAdjacentElement('afterend',card)}
+  const today=new Date(META.today||new Date().toISOString().slice(0,10));
+  const win=parseInt(META.planWindowDays||120,10);
+  const items=[];
+  DATA.forEach(d=>(d.timeline||[]).forEach(t=>{
+    const m=String(t.date||'').match(/(\d{4})-(\d{2})-(\d{2})/);
+    if(!m)return;
+    const dt=new Date(m[0]);const days=Math.round((dt-today)/864e5);
+    if(days>=-3&&days<=win)items.push({key:d.id+'|'+t.date+'|'+t.event,days,date:m[0],school:d.school,prog:d.programCn,act:t.event,url:(SCHOOL_LINKS[d.id]||{}).program||''});
+  }));
+  items.sort((a,b)=>a.days-b.days);
+  const extras=[['材料定稿（PS/CV/推荐信/成绩单）','主轮截止前 3 周','对照材料清单逐项勾选'],
+                ['语言成绩到位（含小分）','递签前 4–6 个月','差 0.5 分也要尽早重考'],
+                ['资金证明准备','递签前 1–2 个月','按官方月标准，勿用中介数字']];
+  const done=planDone();
+  const rows=items.slice(0,10).map(it=>{
+    const k=it.key;const ok=!!done[k];
+    const cls=ok?'b-green':it.days<=14?'b-red':it.days<=45?'b-orange':'b-blue';
+    const txt=it.days<0?('已过 '+(-it.days)+' 天'):(it.days===0?'就是今天':('剩 '+it.days+' 天'));
+    return `<tr><td><input type="checkbox" data-plan="${esc(k)}" ${ok?'checked':''}></td>
+      <td><b>${esc(it.school)}</b><br><span style="color:var(--sub);font-size:11.5px">${esc(it.prog)}</span></td>
+      <td>${esc(it.act)}</td><td>${esc(it.date)}</td><td><span class="badge ${cls}">${txt}</span></td>
+      <td>${it.url?`<a class="lnk" target="_blank" rel="noopener" href="${esc(it.url)}">官网 ↗</a>`:''}</td></tr>`}).join('');
+  card.innerHTML=`<h2>🗓️ 行动清单 <span class="hint">从各校时间线自动生成，未来 ${win} 天内共 ${items.length} 个节点；勾选后本地保存</span></h2>
+    ${items.length?`<table class="cmp"><thead><tr><th style="width:34px">✓</th><th>学校 / 项目</th><th>事项</th><th>日期</th><th>倒计时</th><th>入口</th></tr></thead><tbody>${rows}</tbody></table>`
+      :'<p style="font-size:13px;color:var(--sub)">当前数据里没有可解析的绝对日期节点（时间线多为「10 月」「次年 3 月」这类相对表述）——请对照上表官网时间，或在校档案里补充具体日期。</p>'}
+    <div style="margin-top:10px;font-size:12.5px;color:var(--sub)"><b>通用待办：</b>${extras.map(e=>`${esc(e[0])}（${esc(e[1])}）`).join(' ｜ ')}</div>`;
+  card.querySelectorAll('input[data-plan]').forEach(cb=>cb.addEventListener('change',()=>{
+    planSet(cb.dataset.plan,cb.checked);renderActionPlan()}));
+}
+
+/* ═══ 关键数字溯源角标：点击直达官方页 ═══ */
+function srcMark(d,kind){
+  const L=SCHOOL_LINKS[d.id]||{},R=REGION_LINKS[d.region]||[];
+  let url=L.program||'';
+  if(kind==='policy'||kind==='visa'){const h=R.find(x=>/签证|居留|工作|永居|入籍|学生/.test(x[0]));if(h)url=h[1]}
+  if(kind==='scholar'){const h=R.find(x=>/奖学金|资助/.test(x[0]));if(h)url=h[1]}
+  if(!url)return '';
+  return ` <a class="srcmark" target="_blank" rel="noopener" onclick="event.stopPropagation()" href="${esc(url)}" title="点击直达官方页面核对">源</a>`;
+}
+
+function renderExclusions(){
+  const card=document.getElementById('exclCard'),body=document.getElementById('exclBody');
+  if(!card)return;
+  if(!EXCLUSIONS.length){card.style.display='none';return}
+  card.style.display='block';
+  const cnt=document.getElementById('exclCount'); if(cnt)cnt.innerHTML=EXCLUSIONS.length;
+  // 来源可能是单条链接，也可能是「多条 URL + 说明文字」——逐条抽出 URL 生成可点链接，其余按文字渲染
+  const srcHTML=t=>{ if(!t)return '<span style="color:var(--sub)">—</span>';
+    const urls=t.match(/https?:\/\/[^\s；;）)]+/g)||[];
+    const label=t.replace(/https?:\/\/[^\s；;）)]+/g,'').replace(/[；;]\s*$/,'').trim();
+    const links=urls.map((u,i)=>`<a class="lnk" target="_blank" rel="noopener" href="${esc(u)}">来源${urls.length>1?(i+1):''} ↗</a>`).join(' ');
+    const text=label?`<div style="font-size:11.5px;color:var(--sub);margin-top:3px">${esc(label)}</div>`:'';
+    return links+text};
+  // 理由可能含换行与「待核验」等标记，拆句渲染更易读
+  const reasonHTML=r=>String(r||'').split(/\n+/).filter(Boolean)
+    .map(line=>`<div style="margin-bottom:3px">${esc(line).replace(/待核验/g,'<b style="color:var(--orange)">待核验</b>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}</div>`).join('');
+  const rows=EXCLUSIONS.map(e=>`<tr>
+    <td><b>${esc(e.school)}</b></td>
+    <td>${esc(e.program||'')}</td>
+    <td>${esc(e.region||'')}</td>
+    <td style="min-width:260px">${reasonHTML(e.reason)}</td>
+    <td style="min-width:150px">${srcHTML(e.source)}</td>
+    <td style="white-space:nowrap">${esc(e.checkedDate||'')}</td></tr>`).join('');
+  // 按理由关键词归类，先给「为什么被排除」的总览
+  const CATS=[['语言','语言不符（非英语/需本地语）'],['先修','硬性先修缺失'],['均分','均分/绩点差距过大'],
+              ['学费','学费超预算'],['停招','项目停招/暂停'],['方向','专业方向不符'],['核验','来源待核验/未取得官方页']];
+  const buckets=CATS.map(([k,label])=>({label,n:EXCLUSIONS.filter(e=>String(e.reason||'').includes(k)).length})).filter(b=>b.n);
+  const noCat=EXCLUSIONS.length-buckets.reduce((a,b)=>a+b.n,0);
+  const summary=buckets.map(b=>`<span class="badge b-gray">${esc(b.label)} ${b.n}</span>`).join(' ')
+    +(noCat>0?` <span class="badge b-gray">其他原因 ${noCat}</span>`:'');
+  body.innerHTML=`
+    <div style="margin-bottom:8px;line-height:2">${summary}
+      <span class="badge b-navy">排除 ${EXCLUSIONS.length} 条</span>
+      <span class="badge b-navy">入选 ${DATA.length} 条</span>
+      <span class="badge b-navy">候选池 ${EXCLUSIONS.length+DATA.length} 条</span></div>
+    <table class="cmp"><thead><tr><th>学校</th><th>项目</th><th>地区</th><th>为什么排除（逐条理由）</th><th>官方来源</th><th>核验日期</th></tr></thead><tbody>${rows}</tbody></table>
+    <p style="font-size:12px;color:var(--sub);margin-top:6px">共 ${EXCLUSIONS.length} 条，全部计入检索量、不隐藏。理由必须具体（语言不符 / 硬性先修缺失 / 均分差距过大 / 学费超预算 / 已停招 / 方向不符 / 未开设该学位），且能指到官方页面；「待核验」= 未取得官方页，不算核验过。被问「为什么没有 XX」时，先在此清单查证。</p>`}
+function initMeta(){
+  document.getElementById("metaLine").innerHTML=`生成日期 ${esc(META.generatedDate)}｜数据核验 ${esc(META.verifiedDateRange)}｜${esc(META.fxNote)}<br>${esc(META.qsNote)}｜${esc(META.disclaimer)}<br><b>${esc(META.zeroMemoryPolicy||"")}</b><br><b>${esc(META.zeroMemoryPolicy||"")}</b>`;
+  document.getElementById("foot").innerHTML=`<b>口径说明</b>：录取判定=四类互斥（保底/主申/冲刺/高风险，按当前档案对每校均分线与语言要求实时算）+ 先修风险叠加标记（硬性先修未覆盖时单独警示，GPA/语言再好也可能被拒）；预算四档=年缺口(gap) 对照 兼职年收入上限(pt) 与可计入奖学金合计(sch)，算式见各校详情"费用与预算检查"；课程匹配度=按档案专业核心课程与项目模块对齐测算，逐条解释见详情。带"待核验"灰标的条目未经官网复核。<br>${esc(META.disclaimer)}`}
+document.getElementById("cardView").addEventListener("click",e=>{
+  const h=e.target.closest(".sch-h");if(!h)return;h.parentElement.classList.toggle("open")});
+document.getElementById("vCard").addEventListener("click",()=>{state.view="card";document.getElementById("vCard").classList.add("on");document.getElementById("vTable").classList.remove("on");render()});
+document.getElementById("vTable").addEventListener("click",()=>{state.view="table";document.getElementById("vTable").classList.add("on");document.getElementById("vCard").classList.remove("on");render()});
+document.getElementById("fSort").addEventListener("change",e=>{state.sort=e.target.value;render()});
+document.getElementById("fQ").addEventListener("input",e=>{state.q=e.target.value.trim();render()});
+document.getElementById("fReset").addEventListener("click",()=>{state.regions.clear();state.budget.clear();state.admit.clear();state.match.clear();state.field.clear();state.lang.clear();state.intake.clear();state.q="";document.getElementById("fQ").value="";buildChips();render()});
+{const t=document.getElementById("exclToggle");if(t)t.addEventListener("click",()=>{const b=document.getElementById("exclBody");const hide=b.style.display==="none";b.style.display=hide?"":"none";t.textContent=hide?"收起":"展开"})}
+bindProfile();initProfile();buildChips();initMeta();injectThresholdInputs();renderExclusions();renderActionPlan();
+bindChips("cRegion",state.regions);bindChips("cBudget",state.budget);bindChips("cAdmit",state.admit);bindChips("cMatch",state.match);bindChips("cField",state.field);bindChips("cLang",state.lang);bindChips("cIntake",state.intake);
+render();
+</script>
+</body>
+</html>

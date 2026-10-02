@@ -1,0 +1,1595 @@
+{
+ "meta": {
+  "title": "参考案例：阿联酋 × 交通规划（含相邻方向）",
+  "generatedDate": "2026-10-02",
+  "today": "2026-10-02",
+  "planWindowDays": 180,
+  "thresholds": {
+   "safeGap": -8,
+   "mainHi": 0.5,
+   "reachGap": 5,
+   "reachLang": 1
+  },
+  "currency": {
+   "base": "AED",
+   "cny": 1.826,
+   "date": "2026-10-02",
+   "note": "1 AED ≈ 1.826 CNY（2026-10-02，多来源一致）；AED 与 USD 挂钩 3.6725"
+  },
+  "disclaimer": "本案例随开源包分发，用于演示「检索→核验→判定→出页」全流程。带 ✅ 的记录为 2026-10-02 实时核验官方页面；标「待核验」的问题必须回官网复核。政策以院校官网与阿联酋联邦/酋长国主管部门当期公布为准。",
+  "zeroMemoryPolicy": "零记忆交付：所有数据由 agent 实时检索官网写入；本轮未取得官方页的字段一律标「待核验」，不以模型记忆充当结论。",
+  "adminNote": "阿联酋为联邦制，7 个酋长国在生活成本、签证办理渠道（ICP 联邦 / GDRFA 迪拜）、学校定价上不同——招生要求以联邦教育部（CAA 认证）为准，签证与费用按酋长国核验。",
+  "dataGradeLegend": "✅ 已核验=关键字段有官方页支撑；⚠ 部分核验=部分字段有官方页、部分待核；待核验=未取得官方页（不可直接当结论）"
+ },
+ "profile": {
+  "name": "示例档案 · 城乡规划（五年制）",
+  "gpa": {
+   "value": 85,
+   "scale": "百分制加权（示例值）",
+   "schoolTier": "tier2"
+  },
+  "major": "城乡规划（五年制）",
+  "language": {
+   "test": "IELTS",
+   "overall": 6.5,
+   "min": 6.0
+  },
+  "budget": {
+   "cnyTotal": 200000,
+   "note": "家庭可支持的【整个学制总额】= 20 万（示例值；不是每年）"
+  },
+  "goal": "就业回国"
+ },
+ "data": [
+  {
+   "id": "uaeu-msce",
+   "field": "交通规划",
+   "school": "阿联酋大学（哈利法城）",
+   "schoolEn": "United Arab Emirates University",
+   "region": "阿联酋",
+   "program": "Master of Science in Civil Engineering (Transportation and Pavement focus)",
+   "programCn": "土木工程硕士（交通与路面方向）",
+   "department": "土木与环境工程系（College of Engineering）",
+   "duration": "2 年（论文轨 33 学分 / 非论文轨 30 学分）",
+   "intake": [
+    "8月",
+    "1月"
+   ],
+   "qsRank": 229,
+   "subjectRank": "土木工程 世界前 300（QS 学科，待核验）",
+   "curriculum": [
+    "土木工程前沿（含交通与路面方向）：Advanced Traffic Engineering and Management、Theory and Design of Pavement Structures、Pavement Management Systems、Design of Transportation Systems、Digital Terrain Modeling、Operations Research for Engineers",
+    "结构/岩土/环境等方向课程亦在同一硕士下，可组合方向"
+   ],
+   "tuition": {
+    "amount": 39600,
+    "currency": "AED",
+    "cny": 72310,
+    "per": "年",
+    "note": "官方费率 AED 2,400/学分；论文轨 33 学分 → 全项目 AED 79,200（本行按 2 年摊 AED 39,600/年）"
+   },
+   "livingCost": {
+    "amount": 33600,
+    "currency": "AED",
+    "cny": 61354,
+    "per": "年",
+    "note": "估算：Al Ain 校外合租约 AED 2,800/月（研究生无校内宿舍）→ AED 33,600/年；含食宿交通保险"
+   },
+   "entryReq": {
+    "degree": "相关专业本科学位（土木/工程/规划类）",
+    "gpaTier": {
+     "tier1": "80",
+     "tier2": "82",
+     "note": "官方门槛多为 CGPA 3.0/4.0；中国院校百分制折算口径各校不同，需以官方评估为准"
+    },
+    "language": {
+     "ielts": {
+      "overall": 6.0,
+      "min": 5.5
+     },
+     "toefl": {
+      "overall": 80
+     },
+     "langClass": true
+    },
+    "gre": "GPA 不足时部分学校要求（AUS 官方列为条件项）",
+    "prereq": "需土木工程或相关工程本科；非土木背景需补修本科课程（修读期限会拉长）",
+    "prereqHard": true,
+    "others": "需学历认证/等同证明（Certificate of Equivalency）",
+    "teachingLanguage": "英语",
+    "localLang": {
+     "type": "无本地语言要求",
+     "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
+     "langSchool": false,
+     "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    }
+   },
+   "materials": [
+    "本科成绩单（需认证）",
+    "学位证 + 等同证明（Certificate of Equivalency）",
+    "雅思 6.0 / 托福 80",
+    "两封推荐信",
+    "CV",
+    "个人陈述",
+    "申请费 AED 200"
+   ],
+   "admissionLogic": "以本科院校层次、GPA（CGPA 3.0/4.0 为硬线）、英语成绩与是否需补修本科课程综合评估；跨专业申请由系研究生委员会个案审核",
+   "timeline": [
+    {
+     "date": "1 月入学",
+     "event": "申请窗口（约前一年 8–11 月）"
+    },
+    {
+     "date": "8 月入学（秋季）",
+     "event": "申请窗口（约当年 1–5 月）— 具体截止日未在官网抓到，须回官网确认"
+    },
+    {
+     "date": "入学前",
+     "event": "学历等同证明（UAE 教育部）+ 学生签证由学校办理"
+    }
+   ],
+   "match": {
+    "score": 78,
+    "tier": "中",
+    "explanations": [
+     {
+      "type": "核心",
+      "text": "《测量学》《工程制图》《城市规划原理》覆盖交通与基础设施规划的空间基础，与 Transportation and Pavement 方向的部分课程（Advanced Traffic Engineering、Pavement Management）有衔接"
+     },
+     {
+      "type": "缺口",
+      "text": "本科非土木工程：官方要求补修本科土木课程（材料力学、结构、路面基础），可能延长 1 个学期"
+     },
+     {
+      "type": "先修风险",
+      "text": "城乡规划本科申请土木硕士（即使方向为交通）在多数院校属跨专业，需逐案评估并补修，属真实风险点而非小瑕疵"
+     },
+     {
+      "type": "加分",
+      "text": "GIS/遥感课程与交通建模（需求预测、路网分析）结合是加分项，且该系同时开设遥感与 GIS 硕士，可跨系选课（需确认）"
+     }
+    ]
+   },
+   "visa": {
+    "type": "学生居留签证（Student Residence Visa）",
+    "duration": "1 年一签，凭在读证明逐年续签",
+    "sponsor": "由录取的大学担保（ accredited university ）",
+    "policyYear": 2026,
+    "rule": "官方 u.ae：可由就读大学或 UAE 居民父母担保；需提交大学出具的注明学习期限的证明；入境后 60 天内完成居留手续",
+    "fundsNote": "联邦层面未统一公布金额；由担保大学按学费+居留费收取押金",
+    "fundsProof": {
+     "amount": "未统一规定",
+     "currency": "AED",
+     "amountCny": null,
+     "covers": "由担保大学按学费 + 居留费收取押金",
+     "form": "大学代收押金/在读证明",
+     "timing": "入学注册时",
+     "note": "联邦层面未统一公布金额；以录取大学通知为准（待核验）",
+     "verified": false
+    }
+   },
+   "career": "交通工程/交通规划、基建咨询、道路与轨道交通部门、政府交通局（如 RTA 迪拜道路与交通局）",
+   "salary": {
+    "amount": "AED 240,000–360,000",
+    "cny": "约 44 万–66 万/年",
+    "note": "阿联酋薪资无个人所得税，到手即全额（来源：官方税务口径/行业薪酬报告，待核验）"
+   },
+   "workVisa": {
+    "name": "毕业求职签证（Job Seeker Visa）",
+    "duration": "60 / 90 / 120 天（无担保人）",
+    "condition": "毕业后用于找工作；转工作签后由雇主担保。GPA 3.5+（A 类院校）或 3.8+（B 类）可申请 10 年 Golden Visa",
+    "policyYear": 2026
+   },
+   "pr": {
+    "years": "无常规永久居留制度",
+    "conditions": [
+     "阿联酋不发常规永居；长期身份靠 10 年 Golden Visa（可续）"
+    ],
+    "policyYear": 2026
+   },
+   "citizenship": {
+    "years": "无常规入籍路径（需联邦特批，个案极少）",
+    "conditions": [
+     "阿联酋国籍原则上不通过留学/居住年限获得；极少数情况由联邦层面特批"
+    ],
+    "policyYear": 2026
+   },
+   "partTime": {
+    "hours": "需 MOHRE 学生工作许可 + 校方 NOC；学期内时长上限各校不一（第三方口径 15 小时/周）",
+    "hourlyWage": "AED 20–30/时（估算，待核验）",
+    "incomeYearCnyMax": 36520,
+    "note": "阿联酋打工必须先取得工作许可，无许可打工违法；以毕业求职签证与 Golden Visa 为更现实的留境路径"
+   },
+   "scholarships": [
+    {
+     "name": "UAEU 校长研究生奖学金（Chancellor's Fellowship）",
+     "amount": "学费减免 + 津贴（STEM 与战略领域优先）",
+     "amountCnyMax": 0,
+     "countable": false,
+     "effort": "入学后按学业表现与名额评定；不适用于 MBA/教育等部分项目。**属竞争型，不计入预算可行性**"
+    },
+    {
+     "name": "研究/教学助理（RA/TA）",
+     "amount": "按小时或按月津贴",
+     "amountCnyMax": 0,
+     "countable": false,
+     "effort": "入学后联系导师申请；时长与额度按院系预算"
+    }
+   ],
+   "verified": true,
+   "verifiedDate": "2026-10-02",
+   "sources": [
+    "https://www.uaeu.ac.ae/en/dvcsae/student_account_office/program_and_housing_rates.shtml（官方研究生费率表：MSc Civil Engineering 论文轨 33 学分 / 非论文轨 30 学分，AED 2,400/学分，费率页注明有效期至 2025–2026 学年）",
+    "https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-studying-in-the-uae（阿联酋政府官方门户：学生签证担保与要求）"
+   ],
+   "adminDivision": "阿布扎比酋长国（Al Ain 校区）",
+   "adminRules": [
+    "**酋长国差异**：UAE 由 7 个酋长国组成，高校由联邦教育部（CAA）统一认证，但生活成本、房租差异显著（迪拜/阿布扎比高于 Al Ain、沙迦）",
+    "**学费口径**：公立大学（UAEU、KU）联邦费率统一公布；私立（AUS、沙迦大学）各自定价，同一国家不同校差异可达 2–3 倍",
+    "**校区所在地决定生活成本**：UAEU 主校区在 Al Ain，非迪拜/阿布扎比市区"
+   ],
+   "graduationLang": {
+    "req": "无本地语言要求（英语授课项目）",
+    "detail": "阿联酋高校普遍全英语授课，毕业不要求阿拉伯语",
+    "note": "★三个语言要求要分清：入学语言（雅思/托福）/ 毕业语言（本项目无）/ 永居入籍语言（UAE 无常规入籍路径）"
+   },
+   "countryProcess": [
+    "1) 选校 → 提交申请（多数学校 8 月秋季 / 1 月春季两轮入学）",
+    "2) 学历等同证明（Certificate of Equivalency）— 由 UAE 教育部出具，耗时较长，建议先办",
+    "3) 获录取 → 大学作为担保方申请入境许可（entry permit）",
+    "4) 入境后 60 天内完成：体检 + Emirates ID 生物信息 + 居留签证签发",
+    "5) 在读期间需保持有效保险与签证续签（1 年一签）",
+    "6) 毕业：可申请无担保人的求职签证（60/90/120 天）或转工作签；GPA 3.5+ 可申请 10 年 Golden Visa"
+   ],
+   "schoolProcess": [
+    "1) 官网在线申请（apply.uaeu.ac.ae），缴 AED 200 申请费",
+    "2) 提交成绩单 + 学位证 + 等同证明 + 雅思/托福 + 两封推荐信 + CV + 个人陈述",
+    "3) 院系评估（跨专业会加列补修课程清单）",
+    "4) 获录取后由国际学生办公室（ISO）指导办理居留签证与体检",
+    "5) 注册选课：需与导师确认是否走论文轨（33 学分）或非论文轨（30 学分）"
+   ],
+   "verifiedFields": [
+    "官方研究生费率表核实：MSc Civil Engineering 学分单价 AED 2,400、论文轨 33 学分、非论文轨 30 学分（费率有效期至 2025–2026 学年，2026–2027 学年费率待官网更新）",
+    "官方门户核实：学生居留签证由就读大学担保、需大学证明学习期限、1 年一签可续"
+   ],
+   "fetchedAt": "2026-10-02",
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+  },
+  {
+   "id": "uaeu-rsgis",
+   "field": "地理信息·测绘遥感",
+   "school": "阿联酋大学（哈利法城）",
+   "schoolEn": "United Arab Emirates University",
+   "region": "阿联酋",
+   "program": "Master of Science in Remote Sensing & Geographic Information System",
+   "programCn": "遥感与地理信息系统硕士",
+   "department": "地理与地球科学系（College of Humanities & Social Sciences）",
+   "duration": "2 年（30 学分）",
+   "intake": [
+    "8月",
+    "1月"
+   ],
+   "qsRank": 229,
+   "subjectRank": "地理/遥感 待核验",
+   "curriculum": [
+    "遥感与 GIS 主干：遥感数据处理与解译、GIS 空间分析、空间统计、地理数据库、专题制图；多数课程与地学/规划数据应用结合"
+   ],
+   "tuition": {
+    "amount": 45000,
+    "currency": "AED",
+    "cny": 82170,
+    "per": "年",
+    "note": "官方费率 AED 3,000/学分 × 30 学分 → 全项目 AED 90,000（本行按 2 年摊 AED 45,000/年）"
+   },
+   "livingCost": {
+    "amount": 33600,
+    "currency": "AED",
+    "cny": 61354,
+    "per": "年",
+    "note": "估算：Al Ain 校外合租 AED 2,800/月 → AED 33,600/年"
+   },
+   "entryReq": {
+    "degree": "相关专业本科学位（土木/工程/规划类）",
+    "gpaTier": {
+     "tier1": "80",
+     "tier2": "82",
+     "note": "官方门槛多为 CGPA 3.0/4.0；中国院校百分制折算口径各校不同，需以官方评估为准"
+    },
+    "language": {
+     "ielts": {
+      "overall": 6.0,
+      "min": 5.5
+     },
+     "toefl": {
+      "overall": 80
+     },
+     "langClass": true
+    },
+    "gre": "GPA 不足时部分学校要求（AUS 官方列为条件项）",
+    "prereq": "地理、测绘、环境、城规等相关本科；需具备 GIS/遥感基础",
+    "prereqHard": false,
+    "others": "需学历认证/等同证明（Certificate of Equivalency）",
+    "teachingLanguage": "英语",
+    "localLang": {
+     "type": "无本地语言要求",
+     "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
+     "langSchool": false,
+     "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    }
+   },
+   "materials": [
+    "本科成绩单（需认证）",
+    "学位证 + 等同证明",
+    "雅思 6.0 / 托福 80",
+    "两封推荐信",
+    "CV",
+    "个人陈述",
+    "申请费 AED 200"
+   ],
+   "admissionLogic": "以 GPA（CGPA 3.0/4.0 硬线）+ 相关背景 + 英语成绩评估；该方向对测绘/GIS 基础看权重较高",
+   "timeline": [
+    {
+     "date": "8 月入学（秋季）",
+     "event": "主轮申请（截止日待官网确认）"
+    },
+    {
+     "date": "1 月入学（春季）",
+     "event": "次轮申请"
+    },
+    {
+     "date": "入学前",
+     "event": "学历等同证明 + 学生签证（学校办理）"
+    }
+   ],
+   "match": {
+    "score": 84,
+    "tier": "高",
+    "explanations": [
+     {
+      "type": "核心",
+      "text": "《GIS 原理》《遥感导论》《空间分析》《测量学》直接覆盖该硕士主干：遥感数据处理、GIS 空间建模、空间统计"
+     },
+     {
+      "type": "核心",
+      "text": "城乡规划本科的空间数据与规划应用经验，与「遥感+GIS 在城市与国土监测中的应用」高度契合"
+     },
+     {
+      "type": "加分",
+      "text": "《城市规划原理》《区域规划》可用于做土地利用/城市扩张遥感的课题，是该系常见研究选题"
+     },
+     {
+      "type": "缺口",
+      "text": "若该硕士偏编程/算法（Python、机器学习、影像处理），需补编程基础；建议申请前补齐 Python"
+     }
+    ]
+   },
+   "visa": {
+    "type": "学生居留签证",
+    "duration": "1 年一签，逐年续",
+    "sponsor": "就读大学",
+    "policyYear": 2026,
+    "rule": "官方 u.ae：大学担保；需大学出具注明学习期限的证明；入境 60 天内完成居留手续",
+    "fundsNote": "联邦未统一金额；由大学收取押金",
+    "fundsProof": {
+     "amount": "未统一规定",
+     "currency": "AED",
+     "amountCny": null,
+     "covers": "由担保大学按学费 + 居留费收取押金",
+     "form": "大学代收押金/在读证明",
+     "timing": "入学注册时",
+     "note": "联邦层面未统一公布金额；以录取大学通知为准（待核验）",
+     "verified": false
+    }
+   },
+   "career": "GIS/遥感工程师、测绘与空间数据部门、城市规划与国土部门、环境监测、能源与基建空间数据岗",
+   "salary": {
+    "amount": "AED 200,000–320,000",
+    "cny": "约 37 万–58 万/年",
+    "note": "阿联酋薪资无个人所得税，到手即全额（来源：官方税务口径/行业薪酬报告，待核验）"
+   },
+   "workVisa": {
+    "name": "毕业求职签证（Job Seeker Visa）",
+    "duration": "60 / 90 / 120 天（无担保人）",
+    "condition": "毕业后用于找工作；转工作签后由雇主担保。GPA 3.5+（A 类院校）或 3.8+（B 类）可申请 10 年 Golden Visa",
+    "policyYear": 2026
+   },
+   "pr": {
+    "years": "无常规永久居留制度",
+    "conditions": [
+     "阿联酋不发常规永居；长期身份靠 10 年 Golden Visa（可续）"
+    ],
+    "policyYear": 2026
+   },
+   "citizenship": {
+    "years": "无常规入籍路径（需联邦特批，个案极少）",
+    "conditions": [
+     "阿联酋国籍原则上不通过留学/居住年限获得；极少数情况由联邦层面特批"
+    ],
+    "policyYear": 2026
+   },
+   "partTime": {
+    "hours": "需 MOHRE 学生工作许可 + 校方 NOC；学期内时长上限各校不一（第三方口径 15 小时/周）",
+    "hourlyWage": "AED 20–30/时（估算，待核验）",
+    "incomeYearCnyMax": 36520,
+    "note": "阿联酋打工必须先取得工作许可，无许可打工违法；以毕业求职签证与 Golden Visa 为更现实的留境路径"
+   },
+   "scholarships": [
+    {
+     "name": "UAEU 校长研究生奖学金",
+     "amount": "学费减免 + 津贴",
+     "amountCnyMax": 0,
+     "countable": false,
+     "effort": "学业表现评定，竞争型，不计入预算可行性"
+    }
+   ],
+   "verified": true,
+   "verifiedDate": "2026-10-02",
+   "sources": [
+    "https://www.uaeu.ac.ae/en/dvcsae/student_account_office/program_and_housing_rates.shtml（官方费率表：MSc Remote Sensing & GIS 30 学分、AED 3,000/学分）",
+    "https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-studying-in-the-uae"
+   ],
+   "adminDivision": "阿布扎比酋长国（Al Ain 校区）",
+   "adminRules": [
+    "**酋长国差异**：UAE 由 7 个酋长国组成，高校由联邦教育部（CAA）统一认证，但生活成本、房租差异显著（迪拜/阿布扎比高于 Al Ain、沙迦）",
+    "**学费口径**：公立大学（UAEU、KU）联邦费率统一公布；私立（AUS、沙迦大学）各自定价，同一国家不同校差异可达 2–3 倍",
+    "**校区所在地决定生活成本**：UAEU 主校区在 Al Ain，非迪拜/阿布扎比市区"
+   ],
+   "graduationLang": {
+    "req": "无本地语言要求（英语授课项目）",
+    "detail": "阿联酋高校普遍全英语授课，毕业不要求阿拉伯语",
+    "note": "★三个语言要求要分清：入学语言（雅思/托福）/ 毕业语言（本项目无）/ 永居入籍语言（UAE 无常规入籍路径）"
+   },
+   "countryProcess": [
+    "1) 选校 → 提交申请（多数学校 8 月秋季 / 1 月春季两轮入学）",
+    "2) 学历等同证明（Certificate of Equivalency）— 由 UAE 教育部出具，耗时较长，建议先办",
+    "3) 获录取 → 大学作为担保方申请入境许可（entry permit）",
+    "4) 入境后 60 天内完成：体检 + Emirates ID 生物信息 + 居留签证签发",
+    "5) 在读期间需保持有效保险与签证续签（1 年一签）",
+    "6) 毕业：可申请无担保人的求职签证（60/90/120 天）或转工作签；GPA 3.5+ 可申请 10 年 Golden Visa"
+   ],
+   "schoolProcess": [
+    "1) 官网在线申请（apply.uaeu.ac.ae），缴 AED 200 申请费",
+    "2) 提交成绩单 + 学位证 + 等同证明 + 雅思/托福 + 两封推荐信 + CV + 个人陈述",
+    "3) 院系评估（跨专业会加列补修课程清单）",
+    "4) 获录取后由国际学生办公室（ISO）指导办理居留签证与体检",
+    "5) 注册选课：需与导师确认是否走论文轨（33 学分）或非论文轨（30 学分）"
+   ],
+   "verifiedFields": [
+    "官方费率表核实：该硕士 30 学分、AED 3,000/学分 → 全项目 AED 90,000"
+   ],
+   "fetchedAt": "2026-10-02",
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+  },
+  {
+   "id": "aus-msce",
+   "field": "交通规划",
+   "school": "沙迦美国大学",
+   "schoolEn": "American University of Sharjah",
+   "region": "阿联酋",
+   "program": "Master of Science in Civil Engineering (MSCE)",
+   "programCn": "土木工程硕士",
+   "department": "土木工程系（College of Engineering）",
+   "duration": "2 年（30 学分）",
+   "intake": [
+    "8月",
+    "1月"
+   ],
+   "qsRank": 364,
+   "subjectRank": "土木 世界前 400（QS 学科，待核验）",
+   "curriculum": [
+    "土木工程核心与选修（含交通、结构、岩土、施工管理方向）；交通内容以选修课与论文题目形式出现，无独立「交通规划」学位"
+   ],
+   "tuition": {
+    "amount": 82100,
+    "currency": "AED",
+    "cny": 149915,
+    "per": "年",
+    "note": "官方学费页（2026–2027）：工程学院所有理学硕士 AED 5,480/学分 × 30 学分 = 全项目 AED 164,400（本行按 2 年摊 AED 82,200/年）"
+   },
+   "livingCost": {
+    "amount": 40800,
+    "currency": "AED",
+    "cny": 74501,
+    "per": "年",
+    "note": "估算：沙迦合租 AED 3,400/月（另：官方学生宿舍 AED 7,000–15,000/学期）→ 校外口径 AED 40,800/年"
+   },
+   "entryReq": {
+    "degree": "相关专业本科学位（土木/工程/规划类）",
+    "gpaTier": {
+     "tier1": "80",
+     "tier2": "82",
+     "note": "官方门槛多为 CGPA 3.0/4.0；中国院校百分制折算口径各校不同，需以官方评估为准"
+    },
+    "language": {
+     "ielts": {
+      "overall": 6.5,
+      "min": null
+     },
+     "toefl": {
+      "overall": 80
+     },
+     "langClass": false
+    },
+    "gre": "GPA 不足时部分学校要求（AUS 官方列为条件项）",
+    "prereq": "需土木工程本科；工程类或量化科学相关背景可个案考虑；四年制本科学位 + 需 UAE 教育部学历等同证明",
+    "prereqHard": true,
+    "others": "需学历认证/等同证明（Certificate of Equivalency）",
+    "teachingLanguage": "英语",
+    "localLang": {
+     "type": "无本地语言要求",
+     "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
+     "langSchool": false,
+     "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    }
+   },
+   "materials": [
+    "在线申请（apply.aus.edu）",
+    "官方成绩单 + 毕业证（需认证）",
+    "雅思 6.5 / 托福 iBT 80 / EmSAT 英语 1550",
+    "CV",
+    "两封推荐信",
+    "护照扫描",
+    "UAE 身份证（在阿联酋者）",
+    "申请费 AED 450 + 5% VAT",
+    "学历等同证明（境外学位必须）"
+   ],
+   "admissionLogic": "以 CGPA 3.0/4.0（或同等）+ 相关专业本科 + 英语成绩为主；交通方向通过选修模块与论文题目体现，非独立方向",
+   "timeline": [
+    {
+     "date": "8 月入学（秋季）",
+     "event": "主入学季（申请截止日以官网 deadlines 页为准）"
+    },
+    {
+     "date": "1 月入学（春季）",
+     "event": "次入学季；第三方显示春季截止约 12 月下旬（**待官网核验**）"
+    },
+    {
+     "date": "入学前 2–3 个月",
+     "event": "办理学历等同证明 + 学生签证"
+    }
+   ],
+   "match": {
+    "score": 72,
+    "tier": "中",
+    "explanations": [
+     {
+      "type": "缺口",
+      "text": "官方明确要求「BSc in Civil Engineering」；城乡规划本科属「closely related」以外，需个案审核（case-by-case），通过与否取决于院系"
+     },
+     {
+      "type": "核心",
+      "text": "《城市规划原理》《测量学》《工程基础》与 MSCE 的交通/基建方向有部分衔接"
+     },
+     {
+      "type": "先修风险",
+      "text": "跨专业申请 + 官方要求「四年制本科」双重把关；另需 UAE 教育部学历等同证明（Certificate of Equivalency），材料周期长"
+     },
+     {
+      "type": "加分",
+      "text": "美制学位、英语授课环境，若后续考虑北美方向有衔接优势"
+     }
+    ]
+   },
+   "visa": {
+    "type": "学生居留签证",
+    "duration": "1 年一签",
+    "sponsor": "就读大学",
+    "policyYear": 2026,
+    "rule": "官方 u.ae 口径同全国；AUS 由招生与注册办公室协助办理",
+    "fundsNote": "联邦未统一金额；学校收押金",
+    "fundsProof": {
+     "amount": "未统一规定",
+     "currency": "AED",
+     "amountCny": null,
+     "covers": "由担保大学按学费 + 居留费收取押金",
+     "form": "大学代收押金/在读证明",
+     "timing": "入学注册时",
+     "note": "联邦层面未统一公布金额；以录取大学通知为准（待核验）",
+     "verified": false
+    }
+   },
+   "career": "结构/交通/基建工程师、咨询公司（AECOM、Parsons、Jacobs 等在 GCC 招聘）、政府基建部门",
+   "salary": {
+    "amount": "AED 220,000–350,000",
+    "cny": "约 40 万–64 万/年",
+    "note": "阿联酋薪资无个人所得税，到手即全额（来源：官方税务口径/行业薪酬报告，待核验）"
+   },
+   "workVisa": {
+    "name": "毕业求职签证（Job Seeker Visa）",
+    "duration": "60 / 90 / 120 天（无担保人）",
+    "condition": "毕业后用于找工作；转工作签后由雇主担保。GPA 3.5+（A 类院校）或 3.8+（B 类）可申请 10 年 Golden Visa",
+    "policyYear": 2026
+   },
+   "pr": {
+    "years": "无常规永久居留制度",
+    "conditions": [
+     "阿联酋不发常规永居；长期身份靠 10 年 Golden Visa（可续）"
+    ],
+    "policyYear": 2026
+   },
+   "citizenship": {
+    "years": "无常规入籍路径（需联邦特批，个案极少）",
+    "conditions": [
+     "阿联酋国籍原则上不通过留学/居住年限获得；极少数情况由联邦层面特批"
+    ],
+    "policyYear": 2026
+   },
+   "partTime": {
+    "hours": "需 MOHRE 学生工作许可 + 校方 NOC；学期内时长上限各校不一（第三方口径 15 小时/周）",
+    "hourlyWage": "AED 20–30/时（估算，待核验）",
+    "incomeYearCnyMax": 36520,
+    "note": "阿联酋打工必须先取得工作许可，无许可打工违法；以毕业求职签证与 Golden Visa 为更现实的留境路径"
+   },
+   "scholarships": [
+    {
+     "name": "AUS 研究生助教/助研（Graduate Assistantship）",
+     "amount": "学费减免最多 9 学分 和/或 每学期最多 AED 20,000 津贴（第三方转述官方口径，**待核验**）",
+     "amountCnyMax": 0,
+     "countable": false,
+     "effort": "每年随录取周期评定；需单独申请并附推荐信。官方页面存在（aus.edu/graduate-assistantships-and-employment），金额待官网核实"
+    }
+   ],
+   "verified": true,
+   "verifiedDate": "2026-10-02",
+   "sources": [
+    "https://www.aus.edu/admissions/masters-degrees/graduate-tuition-and-fees（官方学费页 2026–2027：所有 MSc Engineering AED 5,480/学分、30 学分、全项目 AED 164,400；另列宿舍 AED 7,000–15,000/学期）",
+    "https://infodesk.aus.edu/（AUS 官方知识库 MSCE 条目：托福 80 / 雅思 6.5、申请材料、学历等同证明要求）",
+    "https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-studying-in-the-uae"
+   ],
+   "adminDivision": "沙迦酋长国（Sharjah）",
+   "adminRules": [
+    "**酋长国差异**：沙迦为私立高校密集区，学费由学校自定；生活成本低于迪拜/阿布扎比约 20–30%",
+    "**认证口径**：AUS 同时持有 UAE CAA 认证与美国 MSCHE 认证，属少数双认证院校",
+    "**学历等同**：境外学位申请者必须办 UAE 教育部等同证明（联邦层面要求，与学校无关）"
+   ],
+   "graduationLang": {
+    "req": "无本地语言要求（英语授课项目）",
+    "detail": "阿联酋高校普遍全英语授课，毕业不要求阿拉伯语",
+    "note": "★三个语言要求要分清：入学语言（雅思/托福）/ 毕业语言（本项目无）/ 永居入籍语言（UAE 无常规入籍路径）"
+   },
+   "countryProcess": [
+    "1) 选校 → 提交申请（多数学校 8 月秋季 / 1 月春季两轮入学）",
+    "2) 学历等同证明（Certificate of Equivalency）— 由 UAE 教育部出具，耗时较长，建议先办",
+    "3) 获录取 → 大学作为担保方申请入境许可（entry permit）",
+    "4) 入境后 60 天内完成：体检 + Emirates ID 生物信息 + 居留签证签发",
+    "5) 在读期间需保持有效保险与签证续签（1 年一签）",
+    "6) 毕业：可申请无担保人的求职签证（60/90/120 天）或转工作签；GPA 3.5+ 可申请 10 年 Golden Visa"
+   ],
+   "schoolProcess": [
+    "1) apply.aus.edu 在线申请，缴 AED 450 + 5% VAT 申请费",
+    "2) 上传成绩单、毕业证、语言成绩、CV、两封推荐信、护照扫描",
+    "3) 境外学位需先办 UAE 教育部学历等同证明（Certificate of Equivalency / QRR）",
+    "4) 院系评审 → 发放录取",
+    "5) 可同时申请助教/助研（Graduate Assistantship）",
+    "6) 录取后由学校协助办理学生居留签证"
+   ],
+   "verifiedFields": [
+    "官方学费页核实：AED 5,480/学分、30 学分、全项目 AED 164,400（2026–2027 学年）",
+    "官方知识库核实：雅思 6.5 / 托福 iBT 80、申请材料清单、需 Certificate of Equivalency"
+   ],
+   "fetchedAt": "2026-10-02",
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+  },
+  {
+   "id": "aus-mup",
+   "field": "城市与规划",
+   "school": "沙迦美国大学",
+   "schoolEn": "American University of Sharjah",
+   "region": "阿联酋",
+   "program": "Master of Urban Planning (MUP)",
+   "programCn": "城市规划硕士",
+   "department": "建筑、艺术与设计学院",
+   "duration": "2 年（33 学分）",
+   "intake": [
+    "8月",
+    "1月"
+   ],
+   "qsRank": 364,
+   "subjectRank": "建筑/建成环境 世界前 200（QS 学科，待核验）",
+   "curriculum": [
+    "规划理论、规划方法与 GIS、城市设计与形态、社区与经济发展、规划法与制度、毕业设计（studio/论文）"
+   ],
+   "tuition": {
+    "amount": 90420,
+    "currency": "AED",
+    "cny": 165107,
+    "per": "年",
+    "note": "官方学费页（2026–2027）：建筑艺术设计学院 AED 5,480/学分 × 33 学分 = 全项目 AED 180,840（本行按 2 年摊 AED 90,420/年）"
+   },
+   "livingCost": {
+    "amount": 40800,
+    "currency": "AED",
+    "cny": 74501,
+    "per": "年",
+    "note": "估算：沙迦合租 AED 3,400/月 → AED 40,800/年（官方宿舍 AED 7,000–15,000/学期）"
+   },
+   "entryReq": {
+    "degree": "相关专业本科学位（土木/工程/规划类）",
+    "gpaTier": {
+     "tier1": "80",
+     "tier2": "82",
+     "note": "官方门槛多为 CGPA 3.0/4.0；中国院校百分制折算口径各校不同，需以官方评估为准"
+    },
+    "language": {
+     "ielts": {
+      "overall": 6.5,
+      "min": null
+     },
+     "toefl": {
+      "overall": 80
+     },
+     "langClass": false
+    },
+    "gre": "GPA 不足时部分学校要求（AUS 官方列为条件项）",
+    "prereq": "建筑/规划/城市设计/地理/社科等相关本科；需作品集或写作样本（以官网为准）",
+    "prereqHard": false,
+    "others": "需学历认证/等同证明（Certificate of Equivalency）",
+    "teachingLanguage": "英语",
+    "localLang": {
+     "type": "无本地语言要求",
+     "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
+     "langSchool": false,
+     "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    }
+   },
+   "materials": [
+    "在线申请（apply.aus.edu）",
+    "成绩单 + 毕业证（需认证）",
+    "雅思 6.5 / 托福 80",
+    "CV",
+    "两封推荐信",
+    "作品集/写作样本（按官网要求）",
+    "学历等同证明",
+    "申请费 AED 450 + 5% VAT"
+   ],
+   "admissionLogic": "以专业对口的规划/建筑背景 + GPA + 英语为主；MUP 通常看重作品集与规划相关经历",
+   "timeline": [
+    {
+     "date": "8 月入学（秋季）",
+     "event": "主入学季"
+    },
+    {
+     "date": "1 月入学（春季）",
+     "event": "次入学季（截止日待官网）"
+    },
+    {
+     "date": "入学前",
+     "event": "学历等同证明 + 学生签证"
+    }
+   ],
+   "match": {
+    "score": 86,
+    "tier": "高",
+    "explanations": [
+     {
+      "type": "核心",
+      "text": "城乡规划五年制本科与 MUP 主线（规划理论、规划法、GIS 与规划分析、城市设计、社区规划）几乎逐门对应"
+     },
+     {
+      "type": "核心",
+      "text": "《城市总体规划》《控制性详细规划》《城市设计》《GIS 应用》构成 MUP 申请的强匹配"
+     },
+     {
+      "type": "加分",
+      "text": "规划本科 + GIS 技能在「空间分析与规划决策」课程中是显著优势"
+     },
+     {
+      "type": "缺口",
+      "text": "若 MUP 偏北美规划体系（zoning、规划法、公众参与），需适应制度差异；英语写作量较大"
+     }
+    ]
+   },
+   "visa": {
+    "type": "学生居留签证",
+    "duration": "1 年一签",
+    "sponsor": "就读大学",
+    "policyYear": 2026,
+    "rule": "官方 u.ae 口径同全国",
+    "fundsNote": "联邦未统一金额；学校收押金",
+    "fundsProof": {
+     "amount": "未统一规定",
+     "currency": "AED",
+     "amountCny": null,
+     "covers": "由担保大学按学费 + 居留费收取押金",
+     "form": "大学代收押金/在读证明",
+     "timing": "入学注册时",
+     "note": "联邦层面未统一公布金额；以录取大学通知为准（待核验）",
+     "verified": false
+    }
+   },
+   "career": "规划咨询、政府规划部门、房地产与城市开发、基础设施与交通规划协同岗",
+   "salary": {
+    "amount": "AED 200,000–320,000",
+    "cny": "约 37 万–58 万/年",
+    "note": "阿联酋薪资无个人所得税，到手即全额（来源：官方税务口径/行业薪酬报告，待核验）"
+   },
+   "workVisa": {
+    "name": "毕业求职签证（Job Seeker Visa）",
+    "duration": "60 / 90 / 120 天（无担保人）",
+    "condition": "毕业后用于找工作；转工作签后由雇主担保。GPA 3.5+（A 类院校）或 3.8+（B 类）可申请 10 年 Golden Visa",
+    "policyYear": 2026
+   },
+   "pr": {
+    "years": "无常规永久居留制度",
+    "conditions": [
+     "阿联酋不发常规永居；长期身份靠 10 年 Golden Visa（可续）"
+    ],
+    "policyYear": 2026
+   },
+   "citizenship": {
+    "years": "无常规入籍路径（需联邦特批，个案极少）",
+    "conditions": [
+     "阿联酋国籍原则上不通过留学/居住年限获得；极少数情况由联邦层面特批"
+    ],
+    "policyYear": 2026
+   },
+   "partTime": {
+    "hours": "需 MOHRE 学生工作许可 + 校方 NOC；学期内时长上限各校不一（第三方口径 15 小时/周）",
+    "hourlyWage": "AED 20–30/时（估算，待核验）",
+    "incomeYearCnyMax": 36520,
+    "note": "阿联酋打工必须先取得工作许可，无许可打工违法；以毕业求职签证与 Golden Visa 为更现实的留境路径"
+   },
+   "scholarships": [
+    {
+     "name": "AUS 研究生助教/助研",
+     "amount": "学费减免最多 9 学分 和/或 津贴（待核验）",
+     "amountCnyMax": 0,
+     "countable": false,
+     "effort": "随录取周期评定"
+    }
+   ],
+   "verified": true,
+   "verifiedDate": "2026-10-02",
+   "sources": [
+    "https://www.aus.edu/admissions/masters-degrees/graduate-tuition-and-fees（官方：MUP AED 5,480/学分、33 学分、全项目 AED 180,840）",
+    "https://infodesk.aus.edu/（官方知识库：研究生申请材料与语言要求）",
+    "https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-studying-in-the-uae"
+   ],
+   "adminDivision": "沙迦酋长国（Sharjah）",
+   "adminRules": [
+    "**酋长国差异**：沙迦为私立高校密集区，学费由学校自定；生活成本低于迪拜/阿布扎比约 20–30%",
+    "**认证口径**：AUS 同时持有 UAE CAA 认证与美国 MSCHE 认证，属少数双认证院校",
+    "**学历等同**：境外学位申请者必须办 UAE 教育部等同证明（联邦层面要求，与学校无关）"
+   ],
+   "graduationLang": {
+    "req": "无本地语言要求（英语授课项目）",
+    "detail": "阿联酋高校普遍全英语授课，毕业不要求阿拉伯语",
+    "note": "★三个语言要求要分清：入学语言（雅思/托福）/ 毕业语言（本项目无）/ 永居入籍语言（UAE 无常规入籍路径）"
+   },
+   "countryProcess": [
+    "1) 选校 → 提交申请（多数学校 8 月秋季 / 1 月春季两轮入学）",
+    "2) 学历等同证明（Certificate of Equivalency）— 由 UAE 教育部出具，耗时较长，建议先办",
+    "3) 获录取 → 大学作为担保方申请入境许可（entry permit）",
+    "4) 入境后 60 天内完成：体检 + Emirates ID 生物信息 + 居留签证签发",
+    "5) 在读期间需保持有效保险与签证续签（1 年一签）",
+    "6) 毕业：可申请无担保人的求职签证（60/90/120 天）或转工作签；GPA 3.5+ 可申请 10 年 Golden Visa"
+   ],
+   "schoolProcess": [
+    "1) apply.aus.edu 在线申请，缴 AED 450 + 5% VAT 申请费",
+    "2) 上传成绩单、毕业证、语言成绩、CV、两封推荐信、护照扫描",
+    "3) 境外学位需先办 UAE 教育部学历等同证明（Certificate of Equivalency / QRR）",
+    "4) 院系评审 → 发放录取",
+    "5) 可同时申请助教/助研（Graduate Assistantship）",
+    "6) 录取后由学校协助办理学生居留签证"
+   ],
+   "verifiedFields": [
+    "官方学费页核实：MUP 33 学分 × AED 5,480 = 全项目 AED 180,840（2026–2027）"
+   ],
+   "fetchedAt": "2026-10-02",
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+  },
+  {
+   "id": "ku-mscie",
+   "field": "交通规划",
+   "school": "哈利法大学",
+   "schoolEn": "Khalifa University of Science and Technology",
+   "region": "阿联酋",
+   "program": "Master of Science in Civil and Infrastructural Engineering",
+   "programCn": "土木与基础设施工程硕士",
+   "department": "土木与基础设施工程系",
+   "duration": "2 年（30 学分，含 9 学分学位论文）",
+   "intake": [
+    "8月",
+    "1月"
+   ],
+   "qsRank": 202,
+   "subjectRank": "土木与结构 世界前 200（QS 学科，待核验）",
+   "curriculum": [
+    "结构动力学、高层建筑设计、施工造价估算（核心）；选修含 Transportation Systems、Pavement Monitoring、Soil Structure Interaction、Coastal Engineering；9 学分论文"
+   ],
+   "tuition": {
+    "amount": 75000,
+    "currency": "AED",
+    "cny": 136950,
+    "per": "年",
+    "note": "官方 FAQ：硕士项目 AED 5,000/学分 × 30 学分 = 全项目 AED 150,000（本行按 2 年摊 AED 75,000/年）"
+   },
+   "livingCost": {
+    "amount": 54000,
+    "currency": "AED",
+    "cny": 98604,
+    "per": "年",
+    "note": "估算：阿布扎比合租 AED 4,500/月 → AED 54,000/年"
+   },
+   "entryReq": {
+    "degree": "相关专业本科学位（土木/工程/规划类）",
+    "gpaTier": {
+     "tier1": "80",
+     "tier2": "82",
+     "note": "官方门槛多为 CGPA 3.0/4.0；中国院校百分制折算口径各校不同，需以官方评估为准"
+    },
+    "language": {
+     "ielts": {
+      "overall": 6.5,
+      "min": null
+     },
+     "toefl": {
+      "overall": 80
+     },
+     "langClass": false
+    },
+    "gre": "GPA 不足时部分学校要求（AUS 官方列为条件项）",
+    "prereq": "需相关本科（土木/基础设施）；CGPA 3.0/4.0 为硬线；需两封推荐信 + 500–1000 字个人陈述 + 面试",
+    "prereqHard": true,
+    "others": "需学历认证/等同证明（Certificate of Equivalency）",
+    "teachingLanguage": "英语",
+    "localLang": {
+     "type": "无本地语言要求",
+     "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
+     "langSchool": false,
+     "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    }
+   },
+   "materials": [
+    "在线申请（ku.ac.ae）",
+    "成绩单",
+    "两封推荐信",
+    "个人陈述（500–1000 字）",
+    "雅思 6.5 / 托福 iBT 91（2 年内有效）",
+    "面试",
+    "CV"
+   ],
+   "admissionLogic": "CGPA 3.0/4.0 + 英语 + 推荐信 + SOP + 面试综合评估；官方注明「达到最低要求不保证录取，竞争激烈」",
+   "timeline": [
+    {
+     "date": "8 月入学（秋季）",
+     "event": "主入学季（部分专业设 1 月春季）"
+    },
+    {
+     "date": "入学前",
+     "event": "面试 + 学历等同（境外学位）"
+    },
+    {
+     "date": "入学后",
+     "event": "按学业表现评定学费奖学金（无需额外申请）"
+    }
+   ],
+   "match": {
+    "score": 74,
+    "tier": "中",
+    "explanations": [
+     {
+      "type": "核心",
+      "text": "该硕士选修含 CIVE 638 Transportation Systems、CIVE 637 Pavement Monitoring & Rehabilitation，是阿联酋少数把交通课明确列进课表的项目"
+     },
+     {
+      "type": "缺口",
+      "text": "研究型硕士（9 学分论文）为主，土木核心课（张量代数、结构动力学、高层设计）对规划背景偏难"
+     },
+     {
+      "type": "先修风险",
+      "text": "官方要求相关本科 + 面试；城乡规划背景需在面试中说明量化/工程基础，属跨专业高门槛项目"
+     },
+     {
+      "type": "加分",
+      "text": "KU 为研究型理工强校，若目标是读博或做交通模型研究，论文轨价值高"
+     }
+    ]
+   },
+   "visa": {
+    "type": "学生居留签证",
+    "duration": "1 年一签",
+    "sponsor": "就读大学",
+    "policyYear": 2026,
+    "rule": "官方 u.ae 口径同全国",
+    "fundsNote": "联邦未统一金额；学校收押金",
+    "fundsProof": {
+     "amount": "未统一规定",
+     "currency": "AED",
+     "amountCny": null,
+     "covers": "由担保大学按学费 + 居留费收取押金",
+     "form": "大学代收押金/在读证明",
+     "timing": "入学注册时",
+     "note": "联邦层面未统一公布金额；以录取大学通知为准（待核验）",
+     "verified": false
+    }
+   },
+   "career": "结构/交通/基建工程师、研究机构、政府基建与交通部门；论文轨毕业生多继续读博",
+   "salary": {
+    "amount": "AED 250,000–400,000",
+    "cny": "约 46 万–73 万/年",
+    "note": "阿联酋薪资无个人所得税，到手即全额（来源：官方税务口径/行业薪酬报告，待核验）"
+   },
+   "workVisa": {
+    "name": "毕业求职签证（Job Seeker Visa）",
+    "duration": "60 / 90 / 120 天（无担保人）",
+    "condition": "毕业后用于找工作；转工作签后由雇主担保。GPA 3.5+（A 类院校）或 3.8+（B 类）可申请 10 年 Golden Visa",
+    "policyYear": 2026
+   },
+   "pr": {
+    "years": "无常规永久居留制度",
+    "conditions": [
+     "阿联酋不发常规永居；长期身份靠 10 年 Golden Visa（可续）"
+    ],
+    "policyYear": 2026
+   },
+   "citizenship": {
+    "years": "无常规入籍路径（需联邦特批，个案极少）",
+    "conditions": [
+     "阿联酋国籍原则上不通过留学/居住年限获得；极少数情况由联邦层面特批"
+    ],
+    "policyYear": 2026
+   },
+   "partTime": {
+    "hours": "需 MOHRE 学生工作许可 + 校方 NOC；学期内时长上限各校不一（第三方口径 15 小时/周）",
+    "hourlyWage": "AED 20–30/时（估算，待核验）",
+    "incomeYearCnyMax": 36520,
+    "note": "阿联酋打工必须先取得工作许可，无许可打工违法；以毕业求职签证与 Golden Visa 为更现实的留境路径"
+   },
+   "scholarships": [
+    {
+     "name": "KU 硕士学费奖学金（分级）",
+     "amount": "按学业表现分级减免（官方：无需额外申请，录取流程结束时确认）",
+     "amountCnyMax": 0,
+     "countable": false,
+     "effort": "竞争型，未公布确定性额度，不计入预算可行性"
+    }
+   ],
+   "verified": true,
+   "verifiedDate": "2026-10-02",
+   "sources": [
+    "https://www.ku.ac.ae/?p=4673/（官方 FAQ：硕士 AED 5,000/学分、雅思 6.5 / 托福 iBT 91、GRE 仅直博需要、每年只能申请一个项目）",
+    "https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-studying-in-the-uae"
+   ],
+   "adminDivision": "阿布扎比酋长国（Abu Dhabi）",
+   "adminRules": [
+    "**酋长国差异**：阿布扎比生活成本与迪拜同档，高于 Al Ain / 沙迦；阿布扎比有独立的经济发展局（ADDED）与教育监管口径",
+    "**研究型定位**：KU 为研究型高校，硕士以论文为主；与企业/政府科研项目结合度高",
+    "**奖学金**：KU 官方对硕士设分级学费减免，博士多为全奖（与本例无关但常被混淆）"
+   ],
+   "graduationLang": {
+    "req": "无本地语言要求（英语授课项目）",
+    "detail": "阿联酋高校普遍全英语授课，毕业不要求阿拉伯语",
+    "note": "★三个语言要求要分清：入学语言（雅思/托福）/ 毕业语言（本项目无）/ 永居入籍语言（UAE 无常规入籍路径）"
+   },
+   "countryProcess": [
+    "1) 选校 → 提交申请（多数学校 8 月秋季 / 1 月春季两轮入学）",
+    "2) 学历等同证明（Certificate of Equivalency）— 由 UAE 教育部出具，耗时较长，建议先办",
+    "3) 获录取 → 大学作为担保方申请入境许可（entry permit）",
+    "4) 入境后 60 天内完成：体检 + Emirates ID 生物信息 + 居留签证签发",
+    "5) 在读期间需保持有效保险与签证续签（1 年一签）",
+    "6) 毕业：可申请无担保人的求职签证（60/90/120 天）或转工作签；GPA 3.5+ 可申请 10 年 Golden Visa"
+   ],
+   "schoolProcess": [
+    "1) ku.ac.ae 在线申请（每学期只能申请一个项目）",
+    "2) 提交成绩单、两封推荐信、500–1000 字个人陈述、语言成绩（2 年内）",
+    "3) 院系评审 + 面试（面试是官方列明的环节）",
+    "4) 录取后可申请分级学费奖学金（无需额外申请）",
+    "5) 境外学位需办 UAE 教育部学历等同；学校协助办学生签证"
+   ],
+   "verifiedFields": [
+    "官方 FAQ 核实：硕士学费 AED 5,000/学分；英语 IELTS 6.5 / TOEFL iBT 91（2 年内）；GRE 只对 Direct PhD 强制"
+   ],
+   "fetchedAt": "2026-10-02",
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+  },
+  {
+   "id": "uos-msce",
+   "field": "交通规划",
+   "school": "沙迦大学",
+   "schoolEn": "University of Sharjah",
+   "region": "阿联酋",
+   "program": "Master of Science in Civil Engineering (Transportation Engineering concentration)",
+   "programCn": "土木工程硕士（交通工程方向）",
+   "department": "土木与环境工程系（College of Engineering）",
+   "duration": "2 年（33 学分；官方给 2–4 年弹性，毕业速度视修课进度）",
+   "intake": [
+    "8月",
+    "1月"
+   ],
+   "qsRank": 465,
+   "subjectRank": "土木 世界前 500（QS 学科，待核验）",
+   "curriculum": [
+    "结构/交通方向课（Urban Transportation Planning、Pavement 相关）、水与环境、岩土；方向认定需 2 门方向课 + 方向论文"
+   ],
+   "tuition": {
+    "amount": 52800,
+    "currency": "AED",
+    "cny": 96413,
+    "per": "年",
+    "note": "官方费率表为 PDF；第三方转述硕士 AED 3,200/学分 × 33 学分 = 全项目 AED 105,600（本行按 2 年摊 AED 52,800/年）——**单价待官网 PDF 复核**"
+   },
+   "livingCost": {
+    "amount": 40800,
+    "currency": "AED",
+    "cny": 74501,
+    "per": "年",
+    "note": "估算：沙迦合租 AED 3,400/月 → AED 40,800/年"
+   },
+   "entryReq": {
+    "degree": "相关专业本科学位（土木/工程/规划类）",
+    "gpaTier": {
+     "tier1": "80",
+     "tier2": "82",
+     "note": "官方门槛多为 CGPA 3.0/4.0；中国院校百分制折算口径各校不同，需以官方评估为准"
+    },
+    "language": {
+     "ielts": {
+      "overall": 6.0,
+      "min": null
+     },
+     "toefl": {
+      "overall": 80
+     },
+     "langClass": true
+    },
+    "gre": "GPA 不足时部分学校要求（AUS 官方列为条件项）",
+    "prereq": "需土木/相关工程本科；CGPA 3.0 为常规线，2.50–2.99 可条件录取（首学期 6–9 学分需均分 B），否则退学；其他专业背景需补修本科课程",
+    "prereqHard": true,
+    "others": "需学历认证/等同证明（Certificate of Equivalency）",
+    "teachingLanguage": "英语",
+    "localLang": {
+     "type": "无本地语言要求",
+     "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
+     "langSchool": false,
+     "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    }
+   },
+   "materials": [
+    "在线申请 + 缴 AED 500 申请费",
+    "成绩单 + 毕业证（认证）",
+    "雅思 6.0 / 托福 550（ITP）",
+    "推荐信",
+    "部分情况需补修课程"
+   ],
+   "admissionLogic": "CGPA 3.0/4.0（2.50–2.99 条件录取）；专业相关性审核较严，非土木背景需补修",
+   "timeline": [
+    {
+     "date": "8 月入学（Fall）",
+     "event": "主入学季；2026 秋季研究生申请曾延长至 7 月 1 日（2027 轮次未公布）"
+    },
+    {
+     "date": "1 月入学（Spring）",
+     "event": "次入学季（部分项目）"
+    },
+    {
+     "date": "入学前",
+     "event": "学历认证 + 学生签证"
+    }
+   ],
+   "match": {
+    "score": 70,
+    "tier": "中",
+    "explanations": [
+     {
+      "type": "核心",
+      "text": "明确设有 Infrastructure Systems Engineering 流下的 Transportation Engineering 方向（需 2 门方向课 + 方向论文）"
+     },
+     {
+      "type": "缺口",
+      "text": "方向要求先修土木工程本科；规划背景需补修本科课程（官方写明 conditional + remedial courses）"
+     },
+     {
+      "type": "先修风险",
+      "text": "官方把 GPA 2.50–2.99 的条件录取与补修课程写得很清楚，跨专业申请大概率落在这条路上，会拉长学制与费用"
+     },
+     {
+      "type": "加分",
+      "text": "该系同时有水资源、环境、岩土方向，规划背景可在可持续基建交叉选题上做文章"
+     }
+    ]
+   },
+   "visa": {
+    "type": "学生居留签证",
+    "duration": "1 年一签",
+    "sponsor": "就读大学",
+    "policyYear": 2026,
+    "rule": "官方 u.ae 口径同全国",
+    "fundsNote": "联邦未统一金额；学校收押金",
+    "fundsProof": {
+     "amount": "未统一规定",
+     "currency": "AED",
+     "amountCny": null,
+     "covers": "由担保大学按学费 + 居留费收取押金",
+     "form": "大学代收押金/在读证明",
+     "timing": "入学注册时",
+     "note": "联邦层面未统一公布金额；以录取大学通知为准（待核验）",
+     "verified": false
+    }
+   },
+   "career": "交通工程、道路与市政基建、咨询、政府工程部门",
+   "salary": {
+    "amount": "AED 180,000–280,000",
+    "cny": "约 33 万–51 万/年",
+    "note": "阿联酋薪资无个人所得税，到手即全额（来源：官方税务口径/行业薪酬报告，待核验）"
+   },
+   "workVisa": {
+    "name": "毕业求职签证（Job Seeker Visa）",
+    "duration": "60 / 90 / 120 天（无担保人）",
+    "condition": "毕业后用于找工作；转工作签后由雇主担保。GPA 3.5+（A 类院校）或 3.8+（B 类）可申请 10 年 Golden Visa",
+    "policyYear": 2026
+   },
+   "pr": {
+    "years": "无常规永久居留制度",
+    "conditions": [
+     "阿联酋不发常规永居；长期身份靠 10 年 Golden Visa（可续）"
+    ],
+    "policyYear": 2026
+   },
+   "citizenship": {
+    "years": "无常规入籍路径（需联邦特批，个案极少）",
+    "conditions": [
+     "阿联酋国籍原则上不通过留学/居住年限获得；极少数情况由联邦层面特批"
+    ],
+    "policyYear": 2026
+   },
+   "partTime": {
+    "hours": "需 MOHRE 学生工作许可 + 校方 NOC；学期内时长上限各校不一（第三方口径 15 小时/周）",
+    "hourlyWage": "AED 20–30/时（估算，待核验）",
+    "incomeYearCnyMax": 36520,
+    "note": "阿联酋打工必须先取得工作许可，无许可打工违法；以毕业求职签证与 Golden Visa 为更现实的留境路径"
+   },
+   "scholarships": [
+    {
+     "name": "沙迦大学学业折扣（官方折扣口径）",
+     "amount": "如高中/本科成绩优异可享首学期折扣等（官方折扣页）",
+     "amountCnyMax": 0,
+     "countable": false,
+     "effort": "以官方 Guidelines for Discounts 为准"
+    }
+   ],
+   "verified": false,
+   "verifiedDate": "2026-10-02",
+   "sources": [
+    "https://www.sharjah.ac.ae/Academics/Degree/Graduate/Master-of-Civil-Engineering（官方项目页：33 学分、2–4 年、英语、两流含 Infrastructure Systems Engineering → Transportation Engineering 方向；CGPA 3.0，2.50–2.99 条件录取、需补修；雅思 6.0 / 托福 550）",
+    "https://www.sharjah.ac.ae/en/Admissions/Tuition-and-Fees/Admission-Tuition-Fees（官方学费页索引：硕士费率以 PDF 公布，本行单价 AED 3,200 属第三方转述，**待复核**）",
+    "https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-studying-in-the-uae"
+   ],
+   "adminDivision": "沙迦酋长国（Sharjah）",
+   "adminRules": [
+    "**酋长国差异**：沙迦为私立高校密集区，学费由学校自定；生活成本低于迪拜/阿布扎比约 20–30%",
+    "**认证口径**：AUS 同时持有 UAE CAA 认证与美国 MSCHE 认证，属少数双认证院校",
+    "**学历等同**：境外学位申请者必须办 UAE 教育部等同证明（联邦层面要求，与学校无关）"
+   ],
+   "graduationLang": {
+    "req": "无本地语言要求（英语授课项目）",
+    "detail": "阿联酋高校普遍全英语授课，毕业不要求阿拉伯语",
+    "note": "★三个语言要求要分清：入学语言（雅思/托福）/ 毕业语言（本项目无）/ 永居入籍语言（UAE 无常规入籍路径）"
+   },
+   "countryProcess": [
+    "1) 选校 → 提交申请（多数学校 8 月秋季 / 1 月春季两轮入学）",
+    "2) 学历等同证明（Certificate of Equivalency）— 由 UAE 教育部出具，耗时较长，建议先办",
+    "3) 获录取 → 大学作为担保方申请入境许可（entry permit）",
+    "4) 入境后 60 天内完成：体检 + Emirates ID 生物信息 + 居留签证签发",
+    "5) 在读期间需保持有效保险与签证续签（1 年一签）",
+    "6) 毕业：可申请无担保人的求职签证（60/90/120 天）或转工作签；GPA 3.5+ 可申请 10 年 Golden Visa"
+   ],
+   "schoolProcess": [
+    "1) 研究生在线申请 + AED 500 申请费",
+    "2) 提交成绩单、学位证、语言成绩、推荐信",
+    "3) 系研究生委员会审核（跨专业会要求补修本科课程）",
+    "4) 录取后注册选课：硕士 33 学分",
+    "5) 学校协助办理学生居留签证"
+   ],
+   "verifiedFields": [
+    "官方项目页核实：33 学分、2–4 年、英语授课、Transportation Engineering 方向存在、CGPA 3.0（2.50–2.99 条件录取+补修）、雅思 6.0 / 托福 550",
+    "**未核实**：学分单价 AED 3,200（官方 PDF 未能解析，未取得官方文本）"
+   ],
+   "fetchedAt": "2026-10-02",
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+  },
+  {
+   "id": "hw-dubai-msce",
+   "field": "交通规划",
+   "school": "赫瑞-瓦特大学迪拜校区",
+   "schoolEn": "Heriot-Watt University Dubai",
+   "region": "阿联酋",
+   "program": "MSc Civil Engineering",
+   "programCn": "土木工程硕士",
+   "department": "工程与建筑环境学院（迪拜校区）",
+   "duration": "1 年（授课型）",
+   "intake": [
+    "9月",
+    "1月"
+   ],
+   "qsRank": 0,
+   "subjectRank": "不适用（英国校区排名口径，迪拜校区单独评估）",
+   "curriculum": [
+    "土木工程核心 + 施工/项目管理模块；1 年制授课型"
+   ],
+   "tuition": {
+    "amount": 103000,
+    "currency": "AED",
+    "cny": 188078,
+    "per": "年",
+    "note": "第三方转述年学费 AED 103,000（1 年制）——**未取得官方页，待核验**"
+   },
+   "livingCost": {
+    "amount": 98600,
+    "currency": "AED",
+    "cny": 180044,
+    "per": "年",
+    "note": "估算：迪拜合租 AED 4,500/月 → AED 54,000/年"
+   },
+   "entryReq": {
+    "degree": "相关专业本科学位（土木/工程/规划类）",
+    "gpaTier": {
+     "tier1": "80",
+     "tier2": "82",
+     "note": "官方门槛多为 CGPA 3.0/4.0；中国院校百分制折算口径各校不同，需以官方评估为准"
+    },
+    "language": {
+     "ielts": {
+      "overall": 6.0,
+      "min": 5.5
+     },
+     "toefl": {
+      "overall": 80
+     },
+     "langClass": true
+    },
+    "gre": "GPA 不足时部分学校要求（AUS 官方列为条件项）",
+    "prereq": "需相关本科（工程类）；英制体系对学位等级（2:2/2:1）有要求，中国学位按均分折算",
+    "prereqHard": true,
+    "others": "需学历认证/等同证明（Certificate of Equivalency）",
+    "teachingLanguage": "英语",
+    "localLang": {
+     "type": "无本地语言要求",
+     "detail": "阿联酋高校普遍全英语授课；阿拉伯语为官方语言但项目不要求",
+     "langSchool": false,
+     "note": "英语授课项目入学与毕业均不要求阿拉伯语"
+    }
+   },
+   "materials": [
+    "在线申请",
+    "成绩单 + 学位证",
+    "雅思 6.0（多数项目单项不低于 5.5）/ 托福 80",
+    "个人陈述",
+    "推荐信",
+    "CV"
+   ],
+   "admissionLogic": "以本科专业相关性 + 均分（英制 2:2 起）+ 英语成绩评估；英制体系对文书与推荐信质量较看重",
+   "timeline": [
+    {
+     "date": "9 月入学",
+     "event": "主入学季（建议提前 3–6 个月申请）"
+    },
+    {
+     "date": "1 月入学",
+     "event": "次入学季"
+    },
+    {
+     "date": "入学前",
+     "event": "学生签证由校区协助办理"
+    }
+   ],
+   "match": {
+    "score": 68,
+    "tier": "中",
+    "explanations": [
+     {
+      "type": "缺口",
+      "text": "课程偏土木/施工管理，交通内容不成体系；申请「交通规划」需靠论文题目自选"
+     },
+     {
+      "type": "核心",
+      "text": "1 年制是其最大价值：总花费与时间成本显著低于 2 年制，对预算敏感者是关键差异"
+     },
+     {
+      "type": "先修风险",
+      "text": "英制项目对本科专业相关性与学位等级要求明确，跨专业（规划→土木）风险中等"
+     },
+     {
+      "type": "加分",
+      "text": "英国学位（同一学位在爱丁堡校区颁发）+ 迪拜就业市场，毕业后可走求职签证或 Golden Visa 路径"
+     }
+    ]
+   },
+   "visa": {
+    "type": "学生居留签证",
+    "duration": "1 年一签",
+    "sponsor": "就读大学（迪拜校区）",
+    "policyYear": 2026,
+    "rule": "官方 u.ae 口径同全国；迪拜由 GDRFA 办理",
+    "fundsNote": "联邦未统一金额；学校收押金",
+    "fundsProof": {
+     "amount": "未统一规定",
+     "currency": "AED",
+     "amountCny": null,
+     "covers": "由担保大学按学费 + 居留费收取押金",
+     "form": "大学代收押金/在读证明",
+     "timing": "入学注册时",
+     "note": "联邦层面未统一公布金额；以录取大学通知为准（待核验）",
+     "verified": false
+    }
+   },
+   "career": "基建与施工管理、咨询公司、迪拜基建项目（D33 规划下的轨交与城市开发）",
+   "salary": {
+    "amount": "AED 220,000–340,000",
+    "cny": "约 40 万–62 万/年",
+    "note": "阿联酋薪资无个人所得税，到手即全额（来源：官方税务口径/行业薪酬报告，待核验）"
+   },
+   "workVisa": {
+    "name": "毕业求职签证（Job Seeker Visa）",
+    "duration": "60 / 90 / 120 天（无担保人）",
+    "condition": "毕业后用于找工作；转工作签后由雇主担保。GPA 3.5+（A 类院校）或 3.8+（B 类）可申请 10 年 Golden Visa",
+    "policyYear": 2026
+   },
+   "pr": {
+    "years": "无常规永久居留制度",
+    "conditions": [
+     "阿联酋不发常规永居；长期身份靠 10 年 Golden Visa（可续）"
+    ],
+    "policyYear": 2026
+   },
+   "citizenship": {
+    "years": "无常规入籍路径（需联邦特批，个案极少）",
+    "conditions": [
+     "阿联酋国籍原则上不通过留学/居住年限获得；极少数情况由联邦层面特批"
+    ],
+    "policyYear": 2026
+   },
+   "partTime": {
+    "hours": "需 MOHRE 学生工作许可 + 校方 NOC；学期内时长上限各校不一（第三方口径 15 小时/周）",
+    "hourlyWage": "AED 20–30/时（估算，待核验）",
+    "incomeYearCnyMax": 36520,
+    "note": "阿联酋打工必须先取得工作许可，无许可打工违法；以毕业求职签证与 Golden Visa 为更现实的留境路径"
+   },
+   "scholarships": [
+    {
+     "name": "校区奖学金（按成绩）",
+     "amount": "部分比例学费减免（待核验）",
+     "amountCnyMax": 0,
+     "countable": false,
+     "effort": "申请时评定"
+    }
+   ],
+   "verified": false,
+   "verifiedDate": "2026-10-02",
+   "sources": [
+    "未取得官方学费/招生页（本轮仅命中第三方留学站：AED 103,000/年、雅思 6.0、9 月/1 月入学）——**使用前必须到 hw.ac.uk/dubai 官网复核**",
+    "https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-studying-in-the-uae"
+   ],
+   "adminDivision": "迪拜酋长国（Dubai）",
+   "adminRules": [
+    "**酋长国差异**：迪拜生活成本最高（房租比沙迦高约 30–50%）；签证由 GDRFA Dubai 办理（与其他酋长国渠道不同）",
+    "**国际分校口径**：迪拜国际学术城（DIAC）内的英国/澳洲分校，学位由母校颁发，但学费与母校不同、按迪拜定价",
+    "**就业市场**：迪拜基建（轨交扩建、D33 规划）对土木/交通岗位需求集中，但竞争同样集中"
+   ],
+   "graduationLang": {
+    "req": "无本地语言要求（英语授课项目）",
+    "detail": "阿联酋高校普遍全英语授课，毕业不要求阿拉伯语",
+    "note": "★三个语言要求要分清：入学语言（雅思/托福）/ 毕业语言（本项目无）/ 永居入籍语言（UAE 无常规入籍路径）"
+   },
+   "countryProcess": [
+    "1) 选校 → 提交申请（多数学校 8 月秋季 / 1 月春季两轮入学）",
+    "2) 学历等同证明（Certificate of Equivalency）— 由 UAE 教育部出具，耗时较长，建议先办",
+    "3) 获录取 → 大学作为担保方申请入境许可（entry permit）",
+    "4) 入境后 60 天内完成：体检 + Emirates ID 生物信息 + 居留签证签发",
+    "5) 在读期间需保持有效保险与签证续签（1 年一签）",
+    "6) 毕业：可申请无担保人的求职签证（60/90/120 天）或转工作签；GPA 3.5+ 可申请 10 年 Golden Visa"
+   ],
+   "schoolProcess": [
+    "1) 通过迪拜校区官网在线申请（英制滚动录取，建议提前 3–6 个月）",
+    "2) 提交成绩单、学位证、个人陈述、推荐信、雅思/托福",
+    "3) 院系审核（按英制学位等级折算中国均分）",
+    "4) 发放 offer（有条件/无条件）→ 缴押金",
+    "5) 校区协助办理学生居留签证；1 年制课程，毕业可申请求职签证"
+   ],
+   "verifiedFields": [
+    "**未核实**：学费、入学要求、截止日全部来自第三方，未取得官方页"
+   ],
+   "fetchedAt": "2026-10-02",
+   "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。"
+  }
+ ],
+ "schoolLinks": {
+  "uaeu-msce": {
+   "program": "https://www.uaeu.ac.ae/en/cgs/",
+   "admissions": "https://www.uaeu.ac.ae/en/admission/"
+  },
+  "uaeu-rsgis": {
+   "program": "https://www.uaeu.ac.ae/en/cgs/",
+   "admissions": "https://www.uaeu.ac.ae/en/admission/"
+  },
+  "aus-msce": {
+   "program": "https://www.aus.edu/cen/department-of-civil-engineering",
+   "admissions": "https://www.aus.edu/admissions/masters-degrees"
+  },
+  "aus-mup": {
+   "program": "https://www.aus.edu/caad/master-of-urban-planning",
+   "admissions": "https://www.aus.edu/admissions/masters-degrees"
+  },
+  "ku-mscie": {
+   "program": "https://www.ku.ac.ae/academics/college-of-engineering/department-of-civil-infrastructure-and-environmental-engineering",
+   "admissions": "https://www.ku.ac.ae/admissions/graduate-admissions"
+  },
+  "uos-msce": {
+   "program": "https://www.sharjah.ac.ae/Academics/Degree/Graduate/Master-of-Civil-Engineering",
+   "admissions": "https://www.sharjah.ac.ae/en/Admissions/Graduate"
+  },
+  "hw-dubai-msce": {
+   "program": "https://www.hw.ac.uk/dubai/study/postgraduate",
+   "admissions": "https://www.hw.ac.uk/dubai/study/apply"
+  }
+ },
+ "regionLinks": {
+  "阿联酋": [
+   [
+    "学生居留签证（官方 u.ae）",
+    "https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-studying-in-the-uae"
+   ],
+   [
+    "ICP 联邦身份与公民管理局（居留/签证）",
+    "https://icp.gov.ae/en/"
+   ],
+   [
+    "迪拜 GDRFA（迪拜签证事务）",
+    "https://gdrfad.gov.ae/en"
+   ],
+   [
+    "MOHRE 人力资源与本地化部（学生工作许可）",
+    "https://www.mohre.gov.ae/en/home.aspx"
+   ],
+   [
+    "教育部高等教育局 / CAA 认证查询",
+    "https://www.moe.gov.ae/En/EServices/Pages/HEI.aspx"
+   ],
+   [
+    "Golden Visa（长期居留，官方 u.ae）",
+    "https://u.ae/en/information-and-services/visa-and-emirates-id/residency/golden-visa"
+   ],
+   [
+    "学历等同证明（Certificate of Equivalency）",
+    "https://www.moe.gov.ae/En/EServices/Pages/Equivalency.aspx"
+   ]
+  ]
+ },
+ "exclusions": [
+  {
+   "school": "全阿联酋（CAA 认证高校普遍情况）",
+   "program": "独立的「交通规划 / Transportation Planning」硕士学位",
+   "reason": "阿联酋未开设独立的交通规划硕士：交通内容一律挂在土木/基建硕士之下的 concentration 或选修模块（已逐一在 UAEU / AUS / KU / University of Sharjah 官方项目页确认）。若目标是「交通规划」本体，需在土木硕士里选交通方向，或考虑荷兰/英国等设独立交通规划硕士的国家。",
+   "source": "UAEU 官方费率页（MSc Civil Engineering 含 Transportation and Pavement 方向）、AUS 官方 MSCE 知识库、KU 官方项目页（CIVE 638 Transportation Systems 为选修）、沙迦大学官方项目页（Infrastructure Systems Engineering → Transportation Engineering）",
+   "checkedDate": "2026-10-02"
+  },
+  {
+   "school": "哈利法大学 Khalifa University",
+   "program": "独立的交通工程硕士",
+   "reason": "KU 土木方向以「Civil and Infrastructural Engineering」统一招生，交通仅为选修课（CIVE 638 / CIVE 637），无独立交通硕士项目。",
+   "source": "https://www.ku.ac.ae/?p=4673/（官方 FAQ 与项目结构）",
+   "checkedDate": "2026-10-02"
+  },
+  {
+   "school": "沙迦美国大学 AUS",
+   "program": "Master of Science in Transportation Engineering",
+   "reason": "AUS 工程学院硕士统一为「All Master of Science Engineering programs」（AED 5,480/学分），无独立交通硕士；交通在土木硕士内以选修与论文题目体现。",
+   "source": "https://www.aus.edu/admissions/masters-degrees/graduate-tuition-and-fees",
+   "checkedDate": "2026-10-02"
+  },
+  {
+   "school": "阿布扎比大学 / 阿杰曼大学 / 迪拜其他分校（Birmingham Dubai、Middlesex Dubai、RIT Dubai 等）",
+   "program": "土木或交通类硕士",
+   "reason": "本轮未在其官方页取得「交通方向」的明确课程或 concentration 说明，为避免拿第三方转述当结论，暂列待核验、不入正式名单；如需覆盖，请按 finding-schools.md 的穷尽流程逐校核官网。",
+   "source": "待核验（本轮未取得官方项目页）",
+   "checkedDate": "2026-10-02"
+  },
+  {
+   "school": "赫瑞-瓦特大学迪拜校区 Heriot-Watt Dubai",
+   "program": "MSc Civil Engineering（交通方向）",
+   "reason": "已列入候选名单但标「待核验」：本轮只命中第三方留学站（AED 103,000/年），未取得官方页，因此**不标已核验**，学费与要求以官网复核为准。",
+   "source": "待核验（本轮仅第三方来源）",
+   "checkedDate": "2026-10-02"
+  }
+ ]
+}
