@@ -1,0 +1,31 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 数据审计 + 判定口径校验（UAE 参考案例）
+        run: |
+          node scripts/audit_dataset.js examples/uae-transportation/data.json
+          node scripts/verify_rules.js examples/uae-transportation/data.json
+
+      - name: 构建 + 渲染验证（UAE 案例，期望 7 张卡片）
+        run: |
+          node scripts/build.js _ci_uae.html examples/uae-transportation/data.json
+          node scripts/render_check.js _ci_uae.html
+
+      - name: 构建 + 渲染验证（演示数据集，期望 72 张卡片）
+        run: |
+          node scripts/build.js _ci_demo.html assets/data.json
+          node scripts/render_check.js _ci_demo.html
+
+      - name: 静态快照管线验证（build → snapshot 全链路）
+        run: |
+          node scripts/snapshot_static.js _ci_uae.html _ci_uae_static.html

@@ -1,0 +1,19 @@
+# 依赖与构建残留
+node_modules/
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 个人产物（含个人档案的 HTML 绝不上传——README 已声明，这里再兜底）
+选校对比.html
+*_个人*.html
+*personal*.html
+
+# 构建中间产物（交互版 HTML 只是 snapshot 的输入，不入库）
+result.html
+_ci_*.html
+
+# 本地环境
+.env
