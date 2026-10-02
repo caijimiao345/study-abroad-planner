@@ -39,7 +39,8 @@
 |---|---|
 | `data.json` | 完整数据集（7 条 × 20 项字段 + 官方链接 + 核验依据） |
 | `exclusions.json` | 排除清单 5 条（含「无独立交通规划硕士」这条负向结论） |
-| `result-static.html` | **静态快照（最终交付物）**：渲染结果已烤进 HTML，免 JS 直接可看；（交互版 result.html 只是构建中间产物，不随包存放） |
+| `result-static.html` | **静态快照（最终交付物）**：渲染结果已烤进 HTML，免 JS 直接可看 |
+| `demo.html` | **在线交互演示版**（GitHub Pages 用）：筛选/排序/档案实时重算可用；注意它不会"实时刷新数据"——数据永远是生成日口径，正式使用必须回官网复核 |
 | `notion_csv/` | Notion 四表 CSV：`1_application_projects.csv`（项目总表）/ `2_materials_checklist.csv`（材料清单）/ `3_timeline.csv`（时间线）/ `4_region_policies.csv`（地区政策库）。**文件名用 ASCII**：中文文件名在部分解压工具下会乱码（zip UTF-8 标志位不被识别） |
 
 ## 复现步骤（三条命令）

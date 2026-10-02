@@ -1,9 +1,9 @@
 # study-abroad-planner（留学选校规划技能）
 
 [![ci](https://github.com/caijimiao345/study-abroad-planner/actions/workflows/ci.yml/badge.svg)](https://github.com/caijimiao345/study-abroad-planner/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
 
-**在线演示**：[阿联酋×交通规划 · 静态快照](https://caijimiao345.github.io/study-abroad-planner/examples/uae-transportation/result-static.html)（GitHub Pages，免 JS 直接可看）
+**在线演示**：[阿联酋×交通规划 · 交互版](https://caijimiao345.github.io/study-abroad-planner/examples/uae-transportation/demo.html)（筛选/排序/档案实时重算可用）｜[静态快照版](https://caijimiao345.github.io/study-abroad-planner/examples/uae-transportation/result-static.html)（免 JS 环境用）。演示数据为生成日口径（2026-10-02），正式使用前必须回官网复核
 
 一个给 AI agent 用的**留学选校检索与呈现技能**：按用户档案（GPA / 本科背景 / 语言 / 预算 / 目标地区与专业）**穷尽检索**院校项目、逐条核验官网数据、估算课程匹配度与预算可行性，最后产出一个可筛选的自包含 HTML 对比页 + Notion 看板。
 
@@ -79,7 +79,7 @@ examples/
 
 ## 许可
 
-[MIT](LICENSE) —— 可自由复制 / 修改 / 商用，保留版权声明即可。引用院校数据请以官网为准。若你改进了检索规则或补充了新的国家/语言数据，欢迎提 PR。
+[CC BY-NC-SA 4.0](LICENSE) —— 可自由复制 / 修改 / 再分发，但**禁止商业使用**，且衍生作品须以相同条款共享并署名。引用院校数据请以官网为准。若你改进了检索规则或补充了新的国家/语言数据，欢迎提 PR。
 
 ## 参考案例与自检脚本
 
