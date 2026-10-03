@@ -3,6 +3,8 @@
 [![ci](https://github.com/caijimiao345/study-abroad-planner/actions/workflows/ci.yml/badge.svg)](https://github.com/caijimiao345/study-abroad-planner/actions/workflows/ci.yml)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
 
+**简体中文** | [English](README.en.md)
+
 **在线演示**：[交互版](https://caijimiao345.github.io/study-abroad-planner/examples/uae-transportation/demo.html)（筛选/排序可交互）｜[静态快照版](https://caijimiao345.github.io/study-abroad-planner/examples/uae-transportation/result-static.html)（免 JS 环境用）。演示数据为生成日口径（2026-10-02），正式使用前必须回官网复核
 
 一个给 AI agent 用的**留学选校检索与呈现技能**：按用户档案（GPA / 本科背景 / 语言 / 预算 / 目标地区与专业）**穷尽检索**院校项目、逐条核验官网数据、估算课程匹配度与预算可行性，最后产出一个可筛选的自包含 HTML 对比页 + Notion 看板。
