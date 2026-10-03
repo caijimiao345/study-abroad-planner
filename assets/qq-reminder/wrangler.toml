@@ -36,3 +36,6 @@ QQ_GROUP_OPENID = "<REPLACE_QQ_GROUP_OPENID>"
 # 跨域白名单：仅「直连 Worker」需要；走 Pages Functions 代理属同源、此值不起作用。
 # 填 Pages 生产域名（如 https://<project>.pages.dev）；填 * 表示放行任意来源（鉴权仍靠 Token）。
 ALLOWED_ORIGIN = "<REPLACE_PAGES_ORIGIN>"
+# 出群消息统一前缀（可选）。所有推给群的消息都以它开头；留空或删掉此行=不加前缀。
+# 例：MESSAGE_PREFIX = "【我的应用】" —— 一天多条推送时便于一眼区分来源。
+MESSAGE_PREFIX = ""

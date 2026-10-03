@@ -9,6 +9,7 @@
  * 环境变量（wrangler.toml / wrangler secret put）：
  *  QQ_APP_ID / QQ_APP_SECRET(secret) / QQ_GROUP_OPENID
  *  PUSH_GATEWAY_TOKEN(secret) / FRONTEND_TOKEN(secret) / ALLOWED_ORIGIN（CORS 白名单）
+ *  MESSAGE_PREFIX（可选，出群消息统一前缀；留空=不加）
  * Binding：DB(D1) / QQ_TOKEN_KV(KV)
  */
 export default {
@@ -30,10 +31,10 @@ export default {
           `INSERT OR IGNORE INTO sent_log (reminder_id, fire_date) VALUES (?, ?)`
         ).bind(r.id, today).run();
       }
-      await logPush(env, 'cron', text, 'sent');
+      await logPush(env, 'cron', decorate(env, text), 'sent');
       console.log(`[cron] 已发送待办清单（${due.length} 项）→ ${res.id || 'ok'}`);
     } catch (e) {
-      await logPush(env, 'cron', text, 'failed');
+      await logPush(env, 'cron', decorate(env, text), 'failed');
       console.error(`[cron] 发送失败: ${e.message}`);
     }
   },
@@ -61,10 +62,10 @@ export default {
         const source = String(body.source || 'skill');
         try {
           const res = await sendGroupMessage(env, text);
-          await logPush(env, source, text, 'sent');
+          await logPush(env, source, decorate(env, text), 'sent');
           return json({ ok: true, qq: res.id }, 200, env);
         } catch (e) {
-          await logPush(env, source, text, 'failed');
+          await logPush(env, source, decorate(env, text), 'failed');
           console.error(`[push] 发送失败: ${e.message}`);
           return json({ error: 'qq send failed: ' + e.message }, 502, env);
         }
@@ -214,12 +215,25 @@ function buildDailyDigest(due, today) {
 }
 
 /**
+ * 出群消息统一前缀。前缀取自 env.MESSAGE_PREFIX（wrangler.toml [vars]），
+ * 留空则原样返回；已带前缀的不重复加。
+ * 所有出群消息都经此函数 —— 改一处即覆盖 cron 日报与网关推送两条通道。
+ */
+function decorate(env, text) {
+  const p = String(env.MESSAGE_PREFIX || '').trim();
+  if (!p) return text;
+  const s = String(text);
+  return s.startsWith(p) ? s : `${p}\n${s}`;
+}
+
+/**
  * 发送文本消息到 QQ 群（msg_type=0 纯文本）。
  * 官方口径（bot.qq.com/wiki/develop/api-v2/dev-prepare/interface-framework/api-use.html）：
  *   - 统一地址 https://api.sgroup.qq.com
  *   - 鉴权头 Authorization: "QQBot {ACCESS_TOKEN}"（注意是 QQBot 前缀，不是 Bearer）
  */
-async function sendGroupMessage(env, text) {
+async function sendGroupMessage(env, rawText) {
+  const text = decorate(env, rawText);
   const token = await getAccessToken(env);
   const resp = await fetch(
     `https://api.sgroup.qq.com/v2/groups/${env.QQ_GROUP_OPENID}/messages`,

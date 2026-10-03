@@ -1,5 +1,34 @@
 # 更新日志
 
+## v1.2.2（2026-10-03）
+
+### 新增：QQ 提醒系统支持「出群消息统一前缀」
+
+群里同时有别家机器人、或一天推好几条时，加统一前缀能一眼认出来源。
+
+- Worker 侧新增 `decorate()`，前缀加在唯一收口点 `sendGroupMessage()` 上 —— `cron` 每日待办与 `/api/push` 网关推送**两条通道共用**，改一处即全覆盖
+- 前缀取自 `wrangler.toml` 的 `[vars] MESSAGE_PREFIX`（**模板里默认留空**，保持开源包中性；留空或删掉该行即不加前缀）
+- 正文已带该前缀时不重复加；前缀与正文之间自动补换行
+- `push_log` 改为记录 `decorate()` **之后**的文本，保证「日志 == 实际发出去的」，可据此核对线上效果
+- 文档同步：`assets/qq-reminder/README.md` 第 3 步、`references/qq-reminder.md` 第四节末（含"不要在各任务 prompt 里重复手写前缀"的说明与两步验证配方）
+
+### 文档：两个口令的分工写清楚了
+
+`references/qq-reminder.md` 第二节原来只写「`FRONTEND_TOKEN`（页面登录）、`PUSH_GATEWAY_TOKEN`（任务调网关）」，没说明**哪个接口认哪个**——实际接入第三方（如豆包）时高频踩坑：管理接口 401、推送接口 200，容易被误判成故障。现补：
+
+- 明确「`/api/push` 认 `PUSH_GATEWAY_TOKEN`，其余全部 `/api/*` 认 `FRONTEND_TOKEN`」的对应表
+- 典型现象与结论：**不是故障，是两套凭据**
+- 安全提示：只给第三方 `PUSH_GATEWAY_TOKEN`，别交 `FRONTEND_TOKEN`（后者=提醒的完整增删改权限）
+- 两条一正一反的自检 curl
+
+### 验证：每日 08:00 早报（cron）通道首次端到端跑通
+
+之前只验证过网关推送，**cron 早报从未在生产跑过**（`push_log` 里 `source='cron'` 一直是 0 行 —— 因为 `reminders` 表为空，`due.length===0` 直接返回，属预期行为而非故障）。本次本地全链路实测：触发 `__scheduled` → 识别窗口期 → 组装早报 → **真实入群**（QQ 返回消息 id）→ 落 `push_log`(`source='cron'`) 与 `sent_log` 去重行，且早报正文同样带统一前缀。
+
+顺带记录一个坑：**`wrangler.local.toml` 的 `[vars]` 必须与生产 `wrangler.toml` 同步**（尤其 `MESSAGE_PREFIX`），否则本地验证会报"前缀没生效"的假阴性。该文件的 `[vars]` 已补齐并写进参考文档。
+
+> 设计取舍：把前缀放在 Worker 收口点而非各定时任务的 prompt 里 —— 换前缀只改 `wrangler.toml` 一处、`wrangler deploy` 一次，三个监控任务不用动。
+
 ## v1.2.1（2026-10-03）
 
 ### 修复：多国搜索计划的「等待用户确认」闸门已移除（v1.2.0 回归项）

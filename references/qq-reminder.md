@@ -33,13 +33,34 @@
 
 自己生成、不再外传的两个口令：`FRONTEND_TOKEN`（页面登录）、`PUSH_GATEWAY_TOKEN`（任务调网关）。建议用几组短词连字符拼成的长串（好念又够长）。
 
+### ⚠️ 两个口令分管两条路，**拿错就是 401**（实测高频疑问）
+
+Worker 里是两处独立的 `checkAuth`，比对的 secret 不同：`/api/push` 认 `PUSH_GATEWAY_TOKEN`，**其余全部 `/api/*` 认 `FRONTEND_TOKEN`**。
+
+| 你要做的事 | 接口 | 用哪个口令 | 拿错的结果 |
+|---|---|---|---|
+| 定时任务/第三方把消息推给群 | `POST /api/push` | `PUSH_GATEWAY_TOKEN` | 用 FRONTEND_TOKEN → **401** |
+| 页面登录、增删改提醒、看推送日志 | `/api/reminders`、`/api/push-log` | `FRONTEND_TOKEN` | 用 PUSH_GATEWAY_TOKEN → **401** |
+
+**典型现象**：接第三方推送时"管理接口 401、推送接口 200"——**这不是故障，是两套凭据**。若对方只需要推群，**只给它 `PUSH_GATEWAY_TOKEN`**，别把 `FRONTEND_TOKEN` 交出去（后者等于交出提醒的完整增删改权限）。
+
+自检命令（两条，一正一反）：
+
+```bash
+# 管理接口：用 FRONTEND_TOKEN 应 200；换上 PUSH_GATEWAY_TOKEN 应 401
+curl -sS -o /dev/null -w "%{http_code}\n" "https://<Pages 域名>/api/reminders" -H "Authorization: Bearer <FRONTEND_TOKEN>"
+# 推送接口：用 PUSH_GATEWAY_TOKEN 应 200（会真的发消息）；换上 FRONTEND_TOKEN 应 401
+curl -sS -o /dev/null -w "%{http_code}\n" -X POST "https://<Pages 域名>/api/push" \
+  -H "Authorization: Bearer <PUSH_GATEWAY_TOKEN>" -H "Content-Type: application/json" --data-binary @payload.json
+```
+
 ---
 
 ## 三、部署（8 步，命令见 `assets/qq-reminder/README.md`）
 
 1. `wrangler d1 create` → 填 `database_id` → `d1 execute --remote --file=schema.sql` 建三表
 2. `wrangler kv namespace create`（生产 + `--preview`）→ 填两个 id
-3. `wrangler.toml` 填 `QQ_APP_ID` / `QQ_GROUP_OPENID` / `ALLOWED_ORIGIN`
+3. `wrangler.toml` 填 `QQ_APP_ID` / `QQ_GROUP_OPENID` / `ALLOWED_ORIGIN`（可选：`MESSAGE_PREFIX`，见第四节末）
 4. `wrangler secret put` 注入 `QQ_APP_SECRET` / `FRONTEND_TOKEN` / `PUSH_GATEWAY_TOKEN`
 5. `wrangler deploy` 部署 Worker
 6. 本地 `qq-botpy` 抓 `group_openid`（**必须用 `Intents(public_messages=True)`**，`Intents.all()` 会 4014）
@@ -83,6 +104,50 @@ c) 必须断言响应体含 "ok":true。若失败（网络不通 / HTTP 401 / HT
 | 签证预约与政策 | 每月 5 日 10:00 | `study-abroad-visa` | `_build/push_visa.json` |
 
 任务模板（`prompt` 与 `rrule`）见 `automations.md`。
+
+### 出群消息统一前缀（可选，默认关闭）
+
+群里同时有别的机器人、或一天推好几条时，加个前缀能一眼认出来源。在 `wrangler.toml` 的 `[vars]` 里设一行即可：
+
+```toml
+MESSAGE_PREFIX = "【workbuddy】"   # 留空或删掉此行 = 不加前缀
+```
+
+**实现方式（重要，别在别处重复加）**：前缀加在 Worker 的**唯一收口点 `sendGroupMessage()`** 里，`cron` 每日待办与 `/api/push` 网关推送两条通道**共用**它。所以——
+
+- **不要**在定时任务的 prompt 里手写前缀。任务只负责给正文，前缀由 Worker 统一贴；将来换前缀只改 `wrangler.toml` 一处、`wrangler deploy` 一次，三个任务不用动。
+- 前缀与正文之间自动补一个换行，多行简报读起来不挤；正文已带该前缀时**不重复加**。
+- `push_log` 记录的是**加了前缀之后的文本**（`decorate()` 之后的），所以「日志 == 实际发出去的」，可据此核对线上效果。
+- 改完必须 `wrangler deploy` 才生效（`[vars]` 不是 secret，随代码一起发布）。
+
+**验证配方**（不靠"部署成功"这个回执下结论）：
+
+```bash
+# 1) 发一条正文里不含前缀字样的测试推送
+curl -sS -X POST "https://<Pages 域名>/api/push" \
+  -H "Authorization: Bearer <PUSH_GATEWAY_TOKEN>" -H "Content-Type: application/json" \
+  --data-binary @_build/push_verify.json     # {"text":"测试正文","source":"verify-prefix"}
+# 2) 从 D1 回读实际发出的文本，确认开头是前缀
+wrangler d1 execute qq-reminder --remote --json \
+  --command "SELECT text FROM push_log WHERE source='verify-prefix' ORDER BY id DESC LIMIT 1"
+```
+
+第二步看到的 `text` 若以 `【workbuddy】\n` 开头，即证明收口点生效。
+
+**验证 cron 早报通道（本地触发，会真发一条到群）**：
+
+```bash
+wrangler dev --config wrangler.local.toml --test-scheduled   # 另开一个终端
+# 另开终端：先在本地库灌一条落在窗口期内的提醒（窗口 = due_date - lead_days ~ due_date）
+wrangler d1 execute qq-reminder-local --local --config wrangler.local.toml \
+  --command "INSERT INTO reminders (type,title,note,due_date,lead_days,frequency,enabled) \
+             VALUES ('验证','测试项','验完即删','2026-10-20',20,'daily',1)"
+curl "http://127.0.0.1:8787/__scheduled?cron=0+0+*+*+*"          # 触发 scheduled
+```
+
+预期：dev 日志出现 `[cron] 已发送待办清单（N 项）→ ROBOT1.0_…`（有消息 id = QQ 真收了），本地 `push_log` 落一条 `source='cron'`、正文以 `【workbuddy】` 开头，`sent_log` 落去重行。验完 `DELETE FROM reminders/sent_log/push_log` 清场。
+
+> ⚠️ **`wrangler.local.toml` 的 `[vars]` 必须与生产一致**（尤其 `MESSAGE_PREFIX`）—— 本地配置不带前缀时，本地验证会给出"前缀没生效"的**假阴性**。改生产 `wrangler.toml` 时记得同步本地这份。
 
 ---
 

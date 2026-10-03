@@ -68,6 +68,8 @@ wrangler kv namespace create QQ_TOKEN_KV --preview
 
 `wrangler.toml` 的 `[vars]`：`QQ_APP_ID`、`QQ_GROUP_OPENID`（第 6 步拿到）、`ALLOWED_ORIGIN`（第 8 步拿到）。
 
+可选：`MESSAGE_PREFIX` —— 给所有推给群的消息加统一前缀（如 `"【workbuddy】"`），留空则不加。前缀在 Worker 的 `sendGroupMessage()` 收口点统一贴，**定时任务的 prompt 里不要再手写**；改完 `wrangler deploy` 一次生效。
+
 ### 4. 注入三个 Secret
 
 ```bash

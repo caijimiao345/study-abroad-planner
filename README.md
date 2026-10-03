@@ -45,7 +45,7 @@ node scripts/generate_notion_csv.js assets/data.json notion_模板
 
 ```
 SKILL.md                       技能主文件（五步工作流 + 第 6 步可选增强：QQ 群提醒）
-CHANGELOG.md                   更新日志（v1.2.1：移除搜索计划的「等用户确认」闸门；v1.2.0：QQ 群提醒系统并入技能；v1.1.0：多国搜索计划 / 24 项字段 / 反偷懒门禁 / 本科对标 / 学分换算）
+CHANGELOG.md                   更新日志（v1.2.2：QQ 提醒支持出群消息统一前缀；v1.2.1：移除搜索计划的「等用户确认」闸门；v1.2.0：QQ 群提醒系统并入技能；v1.1.0：多国搜索计划 / 24 项字段 / 反偷懒门禁 / 本科对标 / 学分换算）
 references/
   finding-schools.md           ★ 检索手册：官方穷尽入口、24 项字段、核验纪律、坑清单、数量硬门槛、国家穷尽清单、小语种检索规则
   parallel-search.md           并行检索分片模板（多地区×多方向 → 多 agent 并跑）
