@@ -60,7 +60,7 @@
       {"type": "核心", "text": "《GIS原理》→ 覆盖 'Foundations of GIS' 模块"},
       {"type": "缺口", "text": "缺高级统计，建议补修或 PS 说明"},
       {"type": "本科对标", "text": "本科对标：该校同专业本科核心课 18 门，覆盖 13 门（72%）—— 缺《流体力学》《土力学》"},
-      {"type": "学分门槛", "text": "要求 240 ECTS；153.5 中国学分 ≈ 91 ECTS（AI 换算估算）→ 估算不足，属资格性缺口"}
+      {"type": "学分门槛", "text": "要求 240 ECTS；168 中国学分 ≈ 100 ECTS（AI 换算估算）→ 估算不足，属资格性缺口"}
     ]
   },
   "bachelorBenchmark": {                  // 本科对标（course-matching.md 第 4 步）：找不到官方页就只留 note 待核验
@@ -249,7 +249,7 @@ scripts/build.js        ← 唯一构建入口：注入 + 前置自检 + 输出 
   "profile": {"name":"","gpa":{"value":85.0,"scale":"百分制加权","schoolTier":"tier2"},
               "major":"","language":{"test":"IELTS","overall":6.5,"min":6.0},
               "budget":{"cnyTotal":200000},"goal":"就业回国",
-              "credits":{"total":153.5,"hoursPerCredit":16,"note":"五年制本科 88 门 153.5 学分"}},
+              "credits":{"total":168,"hoursPerCredit":16,"note":"示例学分口径"}},
   "data": [ /* 每校一条，字段见上 */ ],
   "schoolLinks": {"<id>": {"program":"","admissions":"","contact":{"email":"","phone":"","note":"","source":"","verifiedAt":""}}},
   "regionLinks": {"<region>": [["链接名","URL"]]},

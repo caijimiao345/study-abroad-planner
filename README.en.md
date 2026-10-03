@@ -46,7 +46,9 @@ node scripts/generate_notion_csv.js assets/data.json notion_templates
 
 ```
 SKILL.md                       Main skill file (5-step workflow + optional step 6: QQ reminders)
-CHANGELOG.md                   Changelog (v1.2.2: unified outgoing-message prefix for QQ reminders;
+CHANGELOG.md                   Changelog (v1.2.3: privacy cleanup — sample data no longer reuses a real
+                               applicant's credit figures; empty-table cron note;
+                               v1.2.2: unified outgoing-message prefix for QQ reminders;
                                v1.2.1: removed the "wait for confirmation" gate on search plans;
                                v1.2.0: QQ reminder system merged into the skill;
                                v1.1.0: multi-country search plan / 24 fields / anti-laziness gate /

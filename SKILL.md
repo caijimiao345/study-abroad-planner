@@ -160,7 +160,7 @@ node scripts/generate_notion_csv.js <数据.json> [输出目录]
 | `assets/qq-reminder/` | **可部署的 QQ 提醒系统模板**（Cloudflare Workers + Pages + D1 + KV）：Worker 源码 / D1 schema / 前端 / Pages 反代 / CI；`wrangler.toml` 为 `<REPLACE_*>` 占位模板，README 含逐步部署说明 |
 | `assets/template.html` | **纯模板**（`DATA=[]` 零示例数据）：由 `scripts/build.js` 注入 `data.json` 后出成品，禁止在模板里留示例数据。页面已内置「排除清单」主动展示区（默认展开、逐条理由、来源链接自动拆链）|
 | `examples/uae-transportation/` | **完整参考案例**（随机抽「阿联酋 × 交通规划」实跑）：data.json + exclusions.json + result.html + 免 JS 静态快照 + Notion CSV + README（含复现命令与数据分级说明），可作为新任务的模板 |
-| `assets/data.json` | 示例数据集（72 条，均为 `verified:false` 的骨架数据，仅用于跑通流程与演示，**不可当结论交付**）；完整参考案例见 `examples/uae-transportation/` |
+| `assets/data.json` | 示例数据集（72 条，均为 `verified:false` 的骨架数据，仅用于跑通流程与演示，**不可当结论交付**） |
 | `scripts/build.js` | **唯一构建入口**：读 data.json + exclusions.json + 模板 → 出成品 HTML；含前置自检（数据非空/字段完整/verifiedDate/policyYear/链接覆盖/零记忆核验依据），不合格直接构建失败 |
 | `scripts/audit_dataset.js` · `verify_rules.js` | 数据审计与判定口径复核 |
 | `scripts/render_check.js` | 无浏览器渲染自检：DOM stub 真跑页面 JS，数出渲染卡片数与统计条 |
