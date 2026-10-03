@@ -25,7 +25,7 @@
 | 赫瑞-瓦特迪拜 HW Dubai | 土木工程硕士（**1 年制**） | AED 103,000/年 ⚠ | 68 | ⚠ 全部待核验 |
 
 **判定分布（示例档案：GPA 85 / 雅思 6.5(6.0) / 家庭支持总额 ¥20 万）**
-录取：主申 7，其中 ⚠先修风险 5（城乡规划 → 土木硕士属跨专业）
+录取：主申 7，其中 ⚠先修风险 5（本科非土木 → 土木硕士属跨专业）
 预算：**①可行 0 · ②加兼职 1 · ③ 0 · ④超预算 6**
 
 ### 两个最该记住的结论
@@ -47,14 +47,14 @@
 
 ```bash
 # 1) 审计数据（字段完整性 / 链接覆盖 / 核验日期 / 政策年份）
-node ../scripts/audit_dataset.js data.json
+node ../../scripts/audit_dataset.js data.json
 
 # 2) 校验判定口径（录取四类 + 预算四档，含缺口与兼职上限）
-node ../scripts/verify_rules.js data.json
+node ../../scripts/verify_rules.js data.json
 
-# 3) 构建页面 + 烤静态快照（result.html 是中间产物，交付静态快照后可删）
-node ../scripts/build.js result.html data.json
-node ../scripts/snapshot_static.js result.html result-static.html
+# 3) 构建页面 + 烤静态快照（demo.html 是在线演示版，result-static.html 是免 JS 的最终交付物）
+node ../../scripts/build.js demo.html data.json
+node ../../scripts/snapshot_static.js demo.html result-static.html
 ```
 
 ## 数据纪律（本案例如何遵守「零记忆交付」）
