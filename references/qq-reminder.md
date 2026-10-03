@@ -149,6 +149,32 @@ curl "http://127.0.0.1:8787/__scheduled?cron=0+0+*+*+*"          # 触发 schedu
 
 > ⚠️ **`wrangler.local.toml` 的 `[vars]` 必须与生产一致**（尤其 `MESSAGE_PREFIX`）—— 本地配置不带前缀时，本地验证会给出"前缀没生效"的**假阴性**。改生产 `wrangler.toml` 时记得同步本地这份。
 
+### 提醒数据从哪来：cron 不认「空表」（高频误解）
+
+`reminders` 表为空、或没有一条落在窗口期内时，每日 cron **静默不发消息** —— 这是 `listDueReminders()` 的正常设计（`due.length === 0` 直接返回 0），**不是故障**。所以部署完必须先把用户真实的申请节点录进去，早报才有内容可发。
+
+三种录法：
+
+| 方式 | 适用场景 | 说明 |
+|---|---|---|
+| 页面录入 | 少量、随手增删改 | 登录后新增，最直观 |
+| `POST /api/reminders` | 脚本化批量 | 带**前端口令**（不是推送令牌），字段同上 |
+| SQL 批量灌 | 一次性导入整份时间线 | `wrangler d1 execute qq-reminder --remote --file=seed.sql` |
+
+SQL 批量灌时三件事必须记住：
+
+1. **`lead_days` 决定提醒窗口** = `[due_date − lead_days, due_date]`，只有窗口覆盖当天的条目才会进当天清单。想「提前 3 个月开始提醒」就写 `90`。
+2. **`frequency` 决定窗口内的重复频率**：`daily`（每天一条，直到截止）/ `weekly`（每 7 天）/ `monthly`；去重靠 `sent_log(reminder_id, fire_date)` 唯一索引，迟到的补跑也安全。
+3. **日期取官网原文**；只有估计值时照实写「估计值，须核对官网」——**别把估计值填成官方截止日**。
+
+灌完先自查哪些条目真在窗口内，再决定要不要跑 cron：
+
+```bash
+wrangler d1 execute qq-reminder --remote --json --command \
+  "SELECT id,title,due_date FROM reminders \
+   WHERE enabled=1 AND date(due_date,'-'||lead_days||' day') <= date('now') AND date('now') <= date(due_date)"
+```
+
 ---
 
 ## 五、验收清单（缺一项不算完成）

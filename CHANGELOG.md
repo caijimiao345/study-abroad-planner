@@ -1,5 +1,9 @@
 # 更新日志
 
+## 未发布（Unreleased）
+
+- 文档：`references/qq-reminder.md` 新增「提醒数据从哪来：cron 不认空表」小节 —— 说明 `reminders` 为空时每日 cron **静默不发**属正常设计而非故障，给出页面 / API / SQL 批量三种录法与 `lead_days`、`frequency` 的语义，并附「哪些条目真在窗口内」的自查 SQL
+
 ## v1.2.2（2026-10-03）
 
 ### 新增：QQ 提醒系统支持「出群消息统一前缀」
