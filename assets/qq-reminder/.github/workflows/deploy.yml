@@ -1,0 +1,64 @@
+# QQ 留学提醒系统 · GitHub Actions 自动部署
+# 借鉴 Uptime-Monitor / Subflare：push 到 main 自动部署 Worker + Pages。
+# 需要的 Repository secrets（Settings → Secrets and variables → Actions）：
+#   CLOUDFLARE_API_TOKEN  —— API Token，需权限：Workers Scripts(Edit)、Pages(Edit)、D1(Edit)
+#   CLOUDFLARE_ACCOUNT_ID —— Cloudflare 账号 ID
+#   D1_DATABASE_ID        —— D1 数据库 ID
+#   KV_NAMESPACE_ID       —— KV Namespace ID
+#   QQ_APP_ID             —— 机器人 AppID（非敏感，也可放 wrangler.toml）
+#   QQ_GROUP_OPENID       —— 目标群 openid
+# 并用 Variables 设置：ALLOWED_ORIGIN（Pages 域名）
+# 以下三项敏感项建议在 Cloudflare Dashboard 的 Worker 设置里用 Secret 配置，避免进 GitHub：
+#   QQ_APP_SECRET / PUSH_GATEWAY_TOKEN / FRONTEND_TOKEN
+
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 安装 wrangler
+        run: npm install -g wrangler
+
+      - name: 校验 wrangler.toml 已填真实 ID
+        run: |
+          if grep -q "<REPLACE_" wrangler.toml; then
+            echo "::error::wrangler.toml 仍含 <REPLACE_*> 占位符，请先填入 D1/KV/AppID/群 openid"
+            exit 1
+          fi
+          echo "wrangler.toml 检查通过"
+
+      - name: 应用 D1 表结构（幂等，IF NOT EXISTS）
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: wrangler d1 execute qq-reminder --remote --file=schema.sql
+
+      - name: 部署 Worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: wrangler deploy
+
+      - name: 部署前端到 Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: wrangler pages deploy web --project-name=qq-study-reminder-web
+
+      - name: 提示设置 Pages 环境变量
+        run: |
+          echo "部署完成。请在 Cloudflare Dashboard → Pages → qq-study-reminder-web → Settings → Environment variables 添加："
+          echo "  WORKER_URL = https://<worker 域名>（例如 https://qq-study-reminder.<子域>.workers.dev）"
+          echo "然后重新部署一次前端（Push 或再次 Run workflow）使变量生效。"

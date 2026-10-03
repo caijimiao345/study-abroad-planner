@@ -1,0 +1,16 @@
+# 依赖与本地产物（禁止入库）
+node_modules/
+.wrangler/
+dist/
+
+# 本地 secrets 与本地专用配置（真实密钥绝不入库）
+.dev.vars
+.env
+.env.*
+wrangler.local.toml
+group_openid.txt
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db

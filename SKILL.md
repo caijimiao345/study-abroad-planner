@@ -1,6 +1,6 @@
 ---
 name: study-abroad-planner
-description: 留学选校规划技能。当用户要求"留学选校、院校对比、按绩点/专业/语言筛选能申哪些学校、查申请要求/学费/奖学金/工签/永居/入籍、做选校对比表"时使用。根据用户档案（GPA、本科专业与课程、语言成绩、目标地区、预算）检索并核验院校项目数据，估算课程匹配度并逐条解释，生成带筛选功能的自包含 HTML 对比页。
+description: 留学选校规划技能。当用户要求"留学选校、院校对比、按绩点/专业/语言筛选能申哪些学校、查申请要求/学费/奖学金/工签/永居/入籍、做选校对比表"时使用。根据用户档案（GPA、本科专业与课程、语言成绩、目标地区、预算）检索并核验院校项目数据，估算课程匹配度并逐条解释，生成带筛选功能的自包含 HTML 对比页。可选增强：部署 Cloudflare 版 QQ 群提醒系统，把申请截止日、APS/语言考位、签证政策变更自动推到用户手机；"每天/每周提醒我别错过 DDL、有变更及时告诉我"也触发本技能。
 agent_created: true
 ---
 
@@ -39,6 +39,7 @@ agent_created: true
 - "做个选校对比表/选校报告"
 - "XX 国读研毕业后工签/永居怎么算"
 - "德国/法国/日本有哪些 XX 专业（含本地语授课）"——**英授与小语种项目都要查，用授课语言维度分开呈现**
+- "每天/每周提醒我别错过 DDL""有变更及时告诉我""推到 QQ 上"——**接第 6 步：QQ 群提醒系统**（可选增强，见 `references/qq-reminder.md`）
 
 ## 工作流（五步，顺序执行）
 
@@ -121,6 +122,17 @@ node scripts/generate_notion_csv.js <数据.json> [输出目录]
 - 交付时用 present_files 呈现 HTML，并说明：哪些条目已核验、哪些待核验
 - **交付前必跑渲染自检**：`node scripts/render_check.js <成品.html>` —— 确认「执行异常 ✅ 无」「渲染卡片数 = 数据条数」。**页面靠 JS 渲染，若自检显示 0 卡片，先怀疑自己没喂 payload（桩的问题），不要直接说"页面坏了"**。若接收方环境不执行 JS（部分预览器/邮件附件），用 `node scripts/snapshot_static.js <成品.html> <静态快照.html>` 生成免 JS 版本一并交付（渲染结果直接烤进 HTML，交互不可用但内容可见）
 
+### 第 6 步（可选增强）：接上 QQ 群提醒，让报告会说话
+
+**仅在用户表达「持续跟踪 / 别忘 DDL / 有变更告诉我 / 推到 QQ」时启用。** 完整指南见 `references/qq-reminder.md`，可直接部署的源码在 `assets/qq-reminder/`。
+
+1. **先征得同意**：部署会在用户的 Cloudflare 账号下创建资源（Worker / Pages / D1 / KV），并往**真实 QQ 群**发消息 —— 属于外部动作。先说清会建什么、发到哪个群，得到同意再做
+2. **收 4 样输入**：QQ 机器人 `AppID` + `AppSecret`（用户在 QQ 开放平台创建）、目标群 `group_openid`（**QQ 官方没有查询接口**，须用 `qq-botpy` 的 `Intents(public_messages=True)` 监听群 @消息抓取；`Intents.all()` 会 4014 断开）、Cloudflare 登录；另自上生成 `FRONTEND_TOKEN`（前端登录）与 `PUSH_GATEWAY_TOKEN`（任务调网关）
+3. **按 8 步部署**：建 D1 并跑 `schema.sql` → 建 KV（生产 + preview）→ 填 `wrangler.toml` 变量 → 注入 3 个 Secret → `wrangler deploy` → 抓 `group_openid` → 建 Pages 并部署前端 → 用 Cloudflare API 给 Pages 写 `WORKER_URL`（**漏了这一步 `/api/*` 会 500**，且改完要重新部署前端）
+4. **把监控任务接上网关**：按 `references/automations.md` 创建任务（院校窗口·周一 / APS 与语言考试·周二 / 签证政策·每月 5 日），每个 prompt 收尾追加「推送 QQ 群」固定步骤 —— **走 Pages 域名，不走 `*.workers.dev`**（国内 DNS 污染）；载荷先 Write 成 JSON 文件再 `curl --data-binary @文件`，**不要内联 `-d '{...}'`**（中文+换行+引号会被 shell 转义破坏）
+5. **验收九条全过才算完成**（清单见 `qq-reminder.md` 第五节）：重中之重是「触发 cron 后群内实收」与「同日二次触发不重复发」；生产冒烟数据用完要清理
+6. **安全红线**：`AppSecret`、两个 Token、`group_openid`、D1/KV 的 UUID、CF 账号 ID 与邮箱、本地绝对路径 —— **一律不得写入交付物、文档与仓库**。真实值只允许存在于三处：Cloudflare Secret（加密）、本机被 gitignore 的配置、以及运行任务的 prompt 内
+
 ## 语言范围说明
 
 技能同时支持**英语授课**与**小语种授课**（德/法/西/意/荷/日/韩等）项目：数据里用 `entryReq.teachingLanguage` 区分，页面有「授课语言」筛选器（英授 / 各小语种 / 双语多语），卡片与详情页都会显示授课语言与本地语言要求。用户要"纯英语"时，把本地语授课项目**移入排除清单并引用官方表述**（见 finding-schools.md 第十节）；用户未限定语言时，两类项目都要穷尽检索。
@@ -143,7 +155,9 @@ node scripts/generate_notion_csv.js <数据.json> [输出目录]
 | `references/course-matching.md` | 课程匹配度算法（含"先修风险"类型定义与逐条解释格式） |
 | `references/visa-work-rights.md` | 学签/工签/永居/入籍/兼职的官方入口与结构模板（数字须按当年核验） |
 | `references/notion-template.md` | Notion 看板四张表的字段设计与导入步骤（申请项目总表 / 材料清单 / 时间线 / 政策库） |
-| `references/automations.md` | 定时监控任务模板：申请节点监控（每周）+ 签证政策监控（每月），发现变更更新 Notion |
+| `references/automations.md` | **定时监控任务模板（三任务）**：院校窗口与截止日（每周一）、APS/语言考试与申请窗口（每周二）、签证预约与政策（每月 5 日）；含共用的「推送 QQ 群」固定收尾步骤与干跑自检 |
+| `references/qq-reminder.md` | **QQ 群提醒系统集成指南**：何时启用、需用户提供的 4 样凭据、8 步部署、任务接网关配方、九条验收清单、8 类故障速查、开源隐私边界 |
+| `assets/qq-reminder/` | **可部署的 QQ 提醒系统模板**（Cloudflare Workers + Pages + D1 + KV）：Worker 源码 / D1 schema / 前端 / Pages 反代 / CI；`wrangler.toml` 为 `<REPLACE_*>` 占位模板，README 含逐步部署说明 |
 | `assets/template.html` | **纯模板**（`DATA=[]` 零示例数据）：由 `scripts/build.js` 注入 `data.json` 后出成品，禁止在模板里留示例数据。页面已内置「排除清单」主动展示区（默认展开、逐条理由、来源链接自动拆链）|
 | `examples/uae-transportation/` | **完整参考案例**（随机抽「阿联酋 × 交通规划」实跑）：data.json + exclusions.json + result.html + 免 JS 静态快照 + Notion CSV + README（含复现命令与数据分级说明），可作为新任务的模板 |
 | `assets/data.json` | 示例数据集（72 条，均为 `verified:false` 的骨架数据，仅用于跑通流程与演示，**不可当结论交付**）；完整参考案例见 `examples/uae-transportation/` |

@@ -13,6 +13,7 @@
 - 覆盖 24 项必查字段 / 14 个维度：申请要求、材料、录取标准、时间线、**课程匹配度（逐条解释 + 本科对标校准）**、**学分换算（中国学分 ↔ ECTS 总量门槛）**、学签（中国学生口径）、毕业去向与薪资、工签、永居、入籍、学费生活费、兼职上限、奖学金、**工作经验要求**、**招生办官方联系方式**
 - 判定三件套：**录取四类**（保底/主申/冲刺/高风险）+ **先修风险**标记 + **预算四档**（可行/加兼职/兼职+奖学金/超预算）——页面显著声明均为 AI 机械估算，具体申请资格以招生办官方答复为准
 - 一切数字带来源：官网链接 + 核验日期；未核验的如实标「待核验」
+- **可选增强 · QQ 群提醒（自带可部署源码）**：把选校结论推到手机上，而不是停在浏览器标签里 —— 部署到 Cloudflare（Workers + Pages + D1 + KV，全部在免费额度内，零服务器成本），前端填提醒（类型 / 目标日期 / 提前 N 天 / 每天·每周·每月），每天北京时间 08:00 推「今日待办清单」到 QQ 群；配合三个定时监控任务，院校截止日与签证政策变更也会自动进群。见 `references/qq-reminder.md` 与 `assets/qq-reminder/`
 
 ## 安装
 
@@ -41,8 +42,8 @@ node scripts/generate_notion_csv.js assets/data.json notion_模板
 ## 目录结构
 
 ```
-SKILL.md                       技能主文件（五步工作流）
-CHANGELOG.md                   更新日志（v1.1.0：多国搜索计划 / 24 项字段 / 反偷懒门禁 / 本科对标 / 学分换算）
+SKILL.md                       技能主文件（五步工作流 + 第 6 步可选增强：QQ 群提醒）
+CHANGELOG.md                   更新日志（v1.2.0：QQ 群提醒系统并入技能；v1.1.0：多国搜索计划 / 24 项字段 / 反偷懒门禁 / 本科对标 / 学分换算）
 references/
   finding-schools.md           ★ 检索手册：官方穷尽入口、24 项字段、核验纪律、坑清单、数量硬门槛、国家穷尽清单、小语种检索规则
   parallel-search.md           并行检索分片模板（多地区×多方向 → 多 agent 并跑）
@@ -50,9 +51,11 @@ references/
   course-matching.md           课程匹配度算法（核心60%+加分25%+成绩15%，含先修风险）
   visa-work-rights.md          学签/工签/永居/入籍/兼职的官方入口与结构模板
   notion-template.md           Notion 看板设计与定时监控打通
-  automations.md               定时任务模板（院校截止日 / 签证政策监控）
+  automations.md               定时任务模板（三任务：院校截止日 / APS 与语言考试 / 签证政策）+ 推送 QQ 群固定收尾
+  qq-reminder.md               可选增强：QQ 群提醒系统集成指南（部署八步 / 接网关 / 九条验收 / 隐私边界）
 assets/
   template.html                ★ 纯模板（默认无数据，靠 payload 注入）
+  qq-reminder/                 可部署的 QQ 提醒系统模板（Worker 源码 + Pages 反代 + D1 schema + 前端 + CI；wrangler.toml 为占位符）
   data.json                    示例数据集（72 条 × 32 地区 × 22 专业方向，含小语种项目示例）
 scripts/
   build.js                     ★ 唯一构建入口（注入 + 前置自检）
@@ -70,6 +73,25 @@ examples/
 - 仓库内的数据是**示例数据**（示例档案），不含任何真实个人信息
 - `assets/data.json` 里的 `profile` 为示例值，使用时替换为你自己的档案
 - 生成你自己的对比页时，产物 HTML 会包含你填写的档案 → **不要公开分享含个人档案的 HTML**
+
+## 可选增强：QQ 群提醒（Cloudflare，含可部署源码）
+
+选校报告的终点不该是一张 HTML，而是**别错过 DDL**。本技能自带一套可直接部署的提醒系统（`assets/qq-reminder/`）：
+
+```
+三个定时监控任务 ──简报──▶ POST /api/push（Bearer 令牌）
+                                    │
+CF Pages 前端（填提醒）──▶ /api/reminders ─▶ Worker ─▶ D1
+                                    │
+CF Workers Cron（每日 UTC 00:00）──▶ 今日待办清单 ──▶ QQ 群
+```
+
+- **成本**：Workers + Pages + D1 + KV 全在 Cloudflare 免费额度内；无需服务器、公网 IP、备案
+- **每天 08:00**：扫出处在「提前 N 天」窗口期的申请节点，合并成一条「今日待办清单」推群，同日只发一次
+- **有变更就报**：院校截止日（每周一）、APS 与语言考位（每周二）、签证政策（每月 5 日）三类简报自动转发进同一个群
+- **架构细节**：前端不直连 Worker，而是经 Pages Functions 反代 `/api/*` —— 国内 `*.workers.dev` 常被 DNS 污染不可达，`*.pages.dev` 可达，反代顺带解决了可达性
+- **部署**：`references/qq-reminder.md`（八步 + 九条验收清单 + 8 类故障速查）；模板源码在 `assets/qq-reminder/`
+- **安全**：模板里只有 `<REPLACE_*>` 占位符。`AppSecret`、页面口令、网关令牌、群 `openid`、D1/KV 资源 ID 一律走 Cloudflare Secret 或本机被 gitignore 的配置，**绝不入仓库**
 
 ## 设计要点（为什么这样写）
 

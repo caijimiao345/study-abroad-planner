@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>留学申请 · QQ 提醒管理</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>📋 留学申请 · QQ 提醒管理</h1>
+  <p class="sub">自定义提醒 → 每天 08:00 推送到 QQ 群「今日待办清单」；技能定时任务简报也走这里入群。</p>
+</header>
+
+<main>
+  <!-- 登录 -->
+  <section id="login-box" class="card">
+    <h2>访问口令</h2>
+    <p class="hint">输入部署时设置的 FRONTEND_TOKEN（个人使用，保存在本浏览器）。</p>
+    <input type="password" id="token-input" placeholder="FRONTEND_TOKEN" autocomplete="off">
+    <button id="token-save">进入</button>
+    <p id="login-msg" class="error"></p>
+  </section>
+
+  <!-- 主界面 -->
+  <div id="app" hidden>
+    <section class="toolbar">
+      <button id="btn-new" class="primary">＋ 新建提醒</button>
+      <button id="btn-reload">刷新列表</button>
+      <button id="btn-logout">退出</button>
+    </section>
+
+    <!-- 新建 / 编辑表单 -->
+    <section id="form-box" class="card" hidden>
+      <h2 id="form-title">新建提醒</h2>
+      <form id="reminder-form">
+        <div class="grid">
+          <label>类型
+            <input id="f-type" list="type-options" placeholder="申请 / 签证 / 语言 / 通用…" required>
+            <datalist id="type-options">
+              <option value="申请"></option>
+              <option value="签证"></option>
+              <option value="语言"></option>
+              <option value="通用"></option>
+            </datalist>
+          </label>
+          <label>标题
+            <input id="f-title" placeholder="如：Potsdam 申请截止" required maxlength="120">
+          </label>
+          <label>目标日期
+            <input id="f-due" type="date" required>
+          </label>
+          <label>提前几天进入提醒窗口
+            <input id="f-lead" type="number" min="0" max="365" value="7" required>
+          </label>
+          <label>窗口期内频率
+            <select id="f-frequency">
+              <option value="daily" selected>每天一次</option>
+              <option value="weekly">每周一次</option>
+              <option value="monthly">每月一次</option>
+            </select>
+          </label>
+          <label>启用
+            <select id="f-enabled">
+              <option value="1" selected>启用</option>
+              <option value="0">停用</option>
+            </select>
+          </label>
+        </div>
+        <label>补充说明 / 动作建议
+          <textarea id="f-note" rows="2" maxlength="300" placeholder="如：发资格预审邮件、检查材料清单…"></textarea>
+        </label>
+        <div class="actions">
+          <button type="submit" class="primary">保存</button>
+          <button type="button" id="btn-cancel">取消</button>
+        </div>
+        <p id="form-msg" class="error"></p>
+      </form>
+    </section>
+
+    <!-- 提醒列表 -->
+    <section class="card">
+      <h2>提醒列表 <span id="count" class="badge"></span></h2>
+      <div id="reminder-list" class="list"></div>
+      <p id="list-empty" class="hint" hidden>还没有提醒。点「新建提醒」添加一条，例如 Potsdam 截止 11-15、提前 7 天、每天提醒。</p>
+    </section>
+
+    <!-- 推送记录 -->
+    <section class="card">
+      <h2>最近推送记录（QQ 群）</h2>
+      <div id="push-log" class="list"></div>
+    </section>
+  </div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

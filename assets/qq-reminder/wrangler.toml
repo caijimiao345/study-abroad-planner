@@ -1,0 +1,38 @@
+# QQ 留学提醒系统 · Cloudflare Workers 配置（模板）
+#
+# 本文件是**模板**：所有 <REPLACE_*> 占位符都必须在部署前换成真实值。
+#   敏感项（AppSecret / 前端口令 / 网关令牌）用 `wrangler secret put` 注入，绝不写进本文件。
+#   完整部署步骤见 ./README.md，与 ../../references/qq-reminder.md。
+#   也可以交给 .github/workflows/deploy.yml 自动部署（CI 会校验本文件无 <REPLACE_ 残留）。
+
+name = "qq-study-reminder"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# ── D1 数据库（reminders 提醒 / sent_log 已发记录 / push_log 推送日志）────────
+# 创建：wrangler d1 create qq-reminder  → 把返回的 database_id 填到下面
+[[d1_databases]]
+binding = "DB"
+database_name = "qq-reminder"
+database_id = "<REPLACE_D1_DATABASE_ID>"
+
+# ── KV（缓存 QQ access_token，官方有效期 7200s）─────────────────────────────
+# 创建：wrangler kv namespace create QQ_TOKEN_KV
+#       wrangler kv namespace create QQ_TOKEN_KV --preview
+[[kv_namespaces]]
+binding = "QQ_TOKEN_KV"
+id = "<REPLACE_KV_NAMESPACE_ID>"
+preview_id = "<REPLACE_KV_PREVIEW_ID>"
+
+# ── Cron：CF 一律用 UTC。UTC 00:00 = 北京 08:00（每天推「今日待办清单」）────
+[triggers]
+crons = ["0 0 * * *"]
+
+# ── 非敏感变量 ────────────────────────────────────────────────────────────
+[vars]
+QQ_APP_ID = "<REPLACE_QQ_APP_ID>"
+# 群 openid **没有查询接口**，只能靠机器人收到群消息/入群事件时抓取（见 README 第 6 步）
+QQ_GROUP_OPENID = "<REPLACE_QQ_GROUP_OPENID>"
+# 跨域白名单：仅「直连 Worker」需要；走 Pages Functions 代理属同源、此值不起作用。
+# 填 Pages 生产域名（如 https://<project>.pages.dev）；填 * 表示放行任意来源（鉴权仍靠 Token）。
+ALLOWED_ORIGIN = "<REPLACE_PAGES_ORIGIN>"
