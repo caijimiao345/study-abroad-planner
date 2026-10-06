@@ -12,9 +12,10 @@ A **university-search and presentation skill for AI agents**: given a student pr
 - **Any country or region** — no allow-list; official course directories are enumerated region by region
 - **Multi-country search plan**: the plan comes first (hard constraints → shortlisted countries → shown to the user, **no waiting for confirmation**), then each country is searched exhaustively; delivery includes a "country coverage table" — quotas apply **per country**, never averaged across countries, never one or two countries searched deeply with the rest waved through
 - **English and all non-English-taught programmes** (German / French / Spanish / Italian / Dutch / Japanese / Korean …), filterable to English-taught only
-- **24 mandatory fields / 14 dimensions**: entry requirements, documents, admission criteria, timeline, **course match (itemised explanation + undergraduate calibration)**, **credit conversion (Chinese credits ↔ ECTS thresholds)**, student visa (China-specific), graduate outcomes and salaries, post-study work rights, permanent residency, citizenship, tuition and living costs, part-time work limits, scholarships, **work-experience requirements**, **official admissions-office contact details**
+- **27 mandatory fields / 14 dimensions**: entry requirements, documents, admission criteria, timeline, **course match (itemised explanation + undergraduate calibration)**, **credit conversion (Chinese credits ↔ ECTS thresholds)**, student visa (China-specific), graduate outcomes and salaries (**local-average-salary fallback when graduate salary is undisclosed**), post-study work rights, permanent residency, citizenship, tuition and living costs, part-time work limits, scholarships, **work-experience requirements**, **official admissions-office contact details**, **QS ranking (mark "not applicable" when the school genuinely does not participate)**, **enrolment size**, **portfolio (required or not + specs)**
 - **Three-part verdict**: **four admission tiers** (safe / target / reach / high-risk) + **prerequisite-risk flags** + **four budget bands** (feasible / via part-time work / part-time + scholarship / over budget) — the page states prominently that these are mechanical AI estimates and that final eligibility must be confirmed with the admissions office
 - **Every number carries its source**: official link + verification date; anything unverified is honestly marked "unverified"
+- **Re-run safety**: every task searches from scratch (previous data is only a lead); before delivery, the new dataset is compared against the previous one (`scripts/compare_results.js`: list changes + key-field changes) and every difference is re-verified against official pages
 - **Optional add-on · QQ group reminders (deployable source included)**: push your shortlist conclusions to your phone instead of leaving them in a browser tab — deploy to Cloudflare (Workers + Pages + D1 + KV, all within the free tier, zero server cost), set reminders in the front end (type / target date / N days ahead / daily · weekly · monthly), and get a "today's to-dos" digest pushed to a QQ group every day at 08:00 Beijing time. Wired to three scheduled monitors, university deadlines and visa-policy changes also land in the group automatically. See `references/qq-reminder.md` and `assets/qq-reminder/`
 
 ## Installation
@@ -46,16 +47,19 @@ node scripts/generate_notion_csv.js assets/data.json notion_templates
 
 ```
 SKILL.md                       Main skill file (5-step workflow + optional step 6: QQ reminders)
-CHANGELOG.md                   Changelog (v1.2.4: sample dossier's undergrad major left blank;
-                               preview-injection cleanup; v1.2.3: privacy cleanup — sample data no
-                               longer reuses a real applicant's credit figures; empty-table cron note;
+CHANGELOG.md                   Changelog (v1.3.0: pre-delivery comparison (compare_results.js) +
+                               three new fields (QS not-applicable convention / enrolment size /
+                               portfolio) + fresh-search & salary-fallback rules; v1.2.4: sample
+                               dossier's undergrad major left blank; preview-injection cleanup;
+                               v1.2.3: privacy cleanup — sample data no longer reuses a real
+                               applicant's credit figures; empty-table cron note;
                                v1.2.2: unified outgoing-message prefix for QQ reminders;
                                v1.2.1: removed the "wait for confirmation" gate on search plans;
                                v1.2.0: QQ reminder system merged into the skill;
-                               v1.1.0: multi-country search plan / 24 fields / anti-laziness gate /
+                               v1.1.0: multi-country search plan / anti-laziness gate /
                                undergraduate calibration / credit conversion)
 references/
-  finding-schools.md           ★ Search handbook: official exhaustive entry points, 24 fields, verification
+  finding-schools.md           ★ Search handbook: official exhaustive entry points, 27 fields, verification
                                discipline, pitfall list, hard quotas, country checklist, non-English search rules
   parallel-search.md           Parallel-search sharding template (regions × majors → multiple agents)
   data-schema.md              Data dictionary (four-tier / four-band algorithms, non-English fields)
@@ -73,6 +77,7 @@ assets/
   data.json                    Sample dataset (72 records × 32 regions × 22 majors, includes non-English examples)
 scripts/
   build.js                     ★ The single build entry point (injection + upfront self-checks)
+  compare_results.js           Pre-delivery comparison (re-run: current vs previous data.json)
   audit_dataset.js             Dataset audit
   verify_rules.js              Offline verification of verdict rules
   generate_notion_csv.js       Notion CSV generation

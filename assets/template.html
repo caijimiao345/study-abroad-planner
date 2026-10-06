@@ -291,7 +291,9 @@ function detailHTML(x){const d=x.d,a=x.a,b=x.b;const li=a=>a.map(t=>`<li>${esc(t
     <span class="k">授课语言</span><span><b>${esc(langOf(d))}</b>${d.entryReq.localLang?` ｜ 本地语言要求：${esc(d.entryReq.localLang.detail||'')}${d.entryReq.localLang.langSchool?'（提供语言班/预科路径）':''}`:''}</span>
     <span class="k">毕业语言要求</span><span>${d.graduationLang?`<b>${esc(d.graduationLang.req)}</b> ｜ ${esc(d.graduationLang.detail)}<br><span style="color:var(--sub)">${esc(d.graduationLang.note||"")}</span>`:"待核验"}</span>
     <span class="k">先修要求</span><span>${esc(d.entryReq.prereq)}</span>
-    <span class="k">其他</span><span>${esc(d.entryReq.others)}</span></div></div>
+    <span class="k">其他</span><span>${esc(d.entryReq.others)}</span>
+    <span class="k">招生规模</span><span>${esc(d.enrollment||"待核验")}</span>
+    <span class="k">作品集</span><span>${(()=>{const p=d.portfolio;if(!p)return"待核验";if(p.required===true)return`<b style="color:var(--red)">必需</b>｜${esc(p.detail)}${p.note?"｜"+esc(p.note):""}`;if(p.required===false)return`<b style="color:var(--green)">不要求</b>${p.detail?"｜"+esc(p.detail):""}`;return`<b style="color:var(--orange)">待核验</b>${p.detail?"｜"+esc(p.detail):""}`})()}</span></div></div>
   <div class="dsec"><h4>所在州/大区与属地要求（${esc(d.adminDivision||'—')}）</h4>
     ${(d.adminRules&&d.adminRules.length)?`<ul>${d.adminRules.map(r=>`<li>${esc(r).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}</li>`).join('')}</ul>`:'<p style="color:var(--sub);font-size:12px">该地区未见州/大区层级差异；如为联邦制国家，需按 finding-schools.md 第十一节核验属地要求。</p>'}
     <p style="font-size:12px;color:var(--sub)">同一国家不同州/大区在学费档、授课语言、学历认证、移民州担保上可能不同——不要用国家级结论代替地方要求。</p></div>

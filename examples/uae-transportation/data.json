@@ -289,6 +289,11 @@
    "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
    "bachelorBenchmark": {
     "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   },
+   "enrollment": "待核验（本轮未单独核验，申请前请查官网招生页）",
+   "portfolio": {
+    "required": null,
+    "detail": "本轮未单独核验，申请前请查官网作品集要求"
    }
   },
   {
@@ -521,6 +526,11 @@
    "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
    "bachelorBenchmark": {
     "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   },
+   "enrollment": "待核验（本轮未单独核验，申请前请查官网招生页）",
+   "portfolio": {
+    "required": null,
+    "detail": "本轮未单独核验，申请前请查官网作品集要求"
    }
   },
   {
@@ -757,6 +767,11 @@
    "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
    "bachelorBenchmark": {
     "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   },
+   "enrollment": "待核验（本轮未单独核验，申请前请查官网招生页）",
+   "portfolio": {
+    "required": null,
+    "detail": "本轮未单独核验，申请前请查官网作品集要求"
    }
   },
   {
@@ -990,6 +1005,11 @@
    "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
    "bachelorBenchmark": {
     "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   },
+   "enrollment": "待核验（本轮未单独核验，申请前请查官网招生页）",
+   "portfolio": {
+    "required": null,
+    "detail": "本轮未单独核验，申请前请查官网作品集要求"
    }
   },
   {
@@ -1219,6 +1239,11 @@
    "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
    "bachelorBenchmark": {
     "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   },
+   "enrollment": "待核验（本轮未单独核验，申请前请查官网招生页）",
+   "portfolio": {
+    "required": null,
+    "detail": "本轮未单独核验，申请前请查官网作品集要求"
    }
   },
   {
@@ -1449,6 +1474,11 @@
    "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
    "bachelorBenchmark": {
     "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   },
+   "enrollment": "待核验（本轮未单独核验，申请前请查官网招生页）",
+   "portfolio": {
+    "required": null,
+    "detail": "本轮未单独核验，申请前请查官网作品集要求"
    }
   },
   {
@@ -1677,6 +1707,11 @@
    "verificationScope": "本案例为参考示范：带 ✅ 的字段来自本轮实时核验的官方页面；标「待核验」的字段未取得官方页，不可直接当结论使用。",
    "bachelorBenchmark": {
     "note": "对标本科（同校土木/相关专业本科）课程结构未取得官方页——待核验；取得后按 course-matching.md 第 4 步补覆盖率与缺口"
+   },
+   "enrollment": "待核验（本轮未单独核验，申请前请查官网招生页）",
+   "portfolio": {
+    "required": null,
+    "detail": "本轮未单独核验，申请前请查官网作品集要求"
    }
   }
  ],

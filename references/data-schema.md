@@ -27,8 +27,9 @@
   "department": "土木·环境与地理工程系",
   "duration": "1 年",
   "intake": ["9月"],
-  "qsRank": 9,                           // 当年 QS 综合
+  "qsRank": 9,                           // 当年 QS 综合排名（数字）；确实不参与 QS 排名（专门学院/独立校区）→ 填 0，页面显示"QS 不适用"，并在 subjectRank 说明，禁编造
   "subjectRank": "GIS 方向 QS 地理学科全球第 1 档",
+  "enrollment": "每届约 60 人（2026 招生统计口径）",   // 招生人数；查不到写"官方未披露"，禁编造
   "tuition": {"amount": 35000, "currency": "GBP", "cny": 322000, "per": "年"},
   "livingCost": {"amount": 15000, "currency": "GBP", "cny": 138000, "per": "年",
                  "note": "伦敦非伦敦差异大，英国学生签资金证明按官方口径单独算"},
@@ -45,6 +46,7 @@
     "prereqHard": false,                    // true=硬性先修，未覆盖时页面叠加"先修风险"警示
     "others": "相关实习/科研加分"
   },
+  "portfolio": {"required": false, "detail": "本项目不要求作品集；如有代码仓库/写作样本可在 PS 中附链接", "note": ""},   // 作品集：required true 必需 / false 不要求 / null 待核验；不要求也要写明"不要求"
   "materials": ["PS", "CV", "推荐信 ×2", "成绩单+均分证明", "在读证明/学位证", "语言成绩（可后补）"],
   "admissionLogic": "rolling+分轮审核；先到先得，GPA 过线后看 PS 与背景相关性；语言为门槛线不参与排序",
   "timeline": [
@@ -83,7 +85,7 @@
     "employers": ["Ordnance Survey", "Esri UK", "咨询与政府部门"],
     "note": "官网未披露就业率的不写数字"
   },
-  "salary": {"amount": "£28k-£38k", "cny": "26万-35万", "note": "英国 GIS 应届，Glassdoor/官方 LFS 口径"},
+  "salary": {"amount": "£28k-£38k", "cny": "26万-35万", "note": "英国 GIS 应届区间；官方就业报告未披露时用当地平均工资兜底（带年份+来源，注明非毕业生口径）"},
   "workVisa": {
     "name": "Graduate Route",
     "duration": "2 年（博士 3 年）",
@@ -133,7 +135,9 @@
 | id / **field** / school / schoolEn / region / program | ✅ | **field = 专业方向**（开放枚举，如「地理信息·测绘遥感」「城市与规划」「交通·出行规划」「环境·可持续·气候」）；前端的「目标专业方向」多选筛选器直接依赖此字段；一条记录只填一个主方向 |
 | region | ✅ | 开放枚举（全球任意地区；筛选器 chips 从数据动态生成，不设白名单） |
 | programCn / curriculum | ✅ | 专业中文名 + 研究生课程清单（中文写核心模块，必要时附英文原名） |
-| duration / **intake** / qsRank / subjectRank | ✅ | **intake = 入学时间数组**，写成可枚举月份（`["9月"]`、`["2月","7月"]`、`["4月","10月"]`）；前端的「入学季」筛选器直接依赖它。学制 duration 单独记（总花费 = 年花费 × 学制年数）。qsRank 用当年 QS 综合排名，不参与 QS 综合排名的专门学院填 0 并在 subjectRank 说明 |
+| duration / **intake** / qsRank / subjectRank | ✅ | **intake = 入学时间数组**，写成可枚举月份（`["9月"]`、`["2月","7月"]`、`["4月","10月"]`）；前端的「入学季」筛选器直接依赖它。学制 duration 单独记（总花费 = 年花费 × 学制年数）。qsRank 用当年 QS 综合排名；**不参与 QS 综合排名的（专门学院/独立校区）填 0 → 页面显示「QS 不适用」**，并在 subjectRank 说明依据；禁编造 |
+| **enrollment** | ✅ | **招生人数**（字符串）：每届/每年录取或入学规模；查不到写"官方未披露"。详情页「申请要求」区展示 |
+| **portfolio** | ✅ | **作品集**：`{required: true\|false\|null, detail, note}`；true 必需 / false 不要求 / null 待核验；**不要求也要写明**（detail 写清规格或"本项目不要求作品集"） |
 | tuition / livingCost | ✅ | 本币 amount+currency+cny 换算 |
 | entryReq | ✅ | gpaTier 分层、language 含小分、langClass 是否可配语言班 |
 | entryReq.**teachingLanguage** | ✅ | **授课语言**（"英语" / "德语" / "法语" / "西班牙语" / "日语" / "英语（部分模块德语）" 等）。前端「授课语言」筛选器依赖此字段；英授与小语种项目**同库共存** |
@@ -142,7 +146,7 @@
 | materials / admissionLogic / timeline | ✅ | admissionLogic 写清"按什么排"（分轮/rolling/权重） |
 | match | ✅ | score+tier+explanations（逐条解释，见 course-matching.md） |
 | visa | ✅ | type/process/materials/cost/processingTime |
-| career / salary | ✅ | 无来源不编数字 |
+| career / salary | ✅ | 无来源不编数字。薪资口径优先级：官方就业报告/统计 → 院校所在地平均工资兜底（带年份+来源，note 注明非毕业生口径）→"官方未披露" |
 | workVisa / pr / citizenship / visa | ✅ | 政策必须核验年份：**每个政策对象都要带 `policyYear`**（如 "2026"），月度监控任务据此比对政策是否变更 |
 | partTime / scholarships | ✅ | scholarships 至少 1 条，标获取难度 |
 | verified / verifiedDate / sources | ✅ | verified=false 时页面打灰标 |

@@ -37,7 +37,7 @@
 
 | 文件 | 说明 |
 |---|---|
-| `data.json` | 完整数据集（7 条 × 20 项字段 + 官方链接 + 核验依据） |
+| `data.json` | 完整数据集（7 条 × 27 项字段 + 官方链接 + 核验依据） |
 | `exclusions.json` | 排除清单 5 条（含「无独立交通规划硕士」这条负向结论） |
 | `result-static.html` | **静态快照（最终交付物）**：渲染结果已烤进 HTML，免 JS 直接可看 |
 | `demo.html` | **在线交互演示版**（GitHub Pages 用）：筛选/排序/档案实时重算可用；注意它不会"实时刷新数据"——数据永远是生成日口径，正式使用必须回官网复核 |
@@ -70,6 +70,6 @@ node ../../scripts/snapshot_static.js demo.html result-static.html
 本案例的可复用部分不是数据，而是**流程**：
 
 1. 按 `references/finding-schools.md` 的官方名录穷举该「地区 × 专业」（阿联酋对应 CAA 认证院校名录 + 各校官网 graduate programs 页）；
-2. 逐条按 20 项字段核验，拿不准的标「待核验」；
+2. 逐条按 27 项字段核验，拿不准的标「待核验」；
 3. 把不符合的（语言不符、方向不符、无该学位）写进 `exclusions.json`，含理由与来源；
 4. 用 `scripts/build.js` 出页 —— 上面三条命令完全一致，不需要改模板。

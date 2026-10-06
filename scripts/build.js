@@ -76,7 +76,7 @@ const errs = [], warns = [];
 const DATA = payload.data;
 if (!Array.isArray(DATA) || DATA.length === 0) errs.push('data 为空数组或缺失 —— 模板默认无数据，必须注入真实数据');
 const REQUIRED = ['id', 'field', 'school', 'schoolEn', 'region', 'program', 'programCn', 'duration', 'intake',
-  'curriculum', 'tuition', 'livingCost', 'entryReq', 'materials', 'admissionLogic', 'timeline',
+  'curriculum', 'tuition', 'livingCost', 'entryReq', 'enrollment', 'portfolio', 'materials', 'admissionLogic', 'timeline',
   'match', 'visa', 'career', 'salary', 'workVisa', 'pr', 'citizenship', 'partTime', 'scholarships', 'verified'];
 const POLICY_FIELDS = ['visa', 'workVisa', 'pr', 'citizenship'];
 (DATA || []).forEach((d, i) => {
@@ -85,7 +85,7 @@ const POLICY_FIELDS = ['visa', 'workVisa', 'pr', 'citizenship'];
   const miss = REQUIRED.filter(k => d[k] === undefined || d[k] === null || (Array.isArray(d[k]) && !d[k].length));
   if (miss.length) errs.push(tag + '：缺字段 ' + miss.join(','));
   if (!d.verifiedDate) errs.push(tag + '：缺 verifiedDate（核验日期为强制字段）');
-  if (d.qsRank === undefined || d.qsRank === null) errs.push(tag + '：缺 qsRank（如该校不参与 QS 综合排名，请填 0 并在 subjectRank 说明）');
+  if (d.qsRank === undefined || d.qsRank === null) errs.push(tag + '：缺 qsRank（参与 QS 综合排名填数字；确实不参与填 0，页面显示"QS 不适用"，并在 subjectRank 说明依据）');
   if (!d.adminDivision) errs.push(tag + '：缺 adminDivision（州/大区；联邦制国家必填，其余可写国家名）');
   if (d.verified === true) {
     if (!Array.isArray(d.verifiedFields) || !d.verifiedFields.length)
@@ -103,14 +103,16 @@ const POLICY_FIELDS = ['visa', 'workVisa', 'pr', 'citizenship'];
   if (d.match && (d.match.score === undefined || !Array.isArray(d.match.explanations) || !d.match.explanations.length))
     errs.push(tag + '：match 缺 score/explanations（匹配度必须带逐条解释）');
   if (d.partTime && typeof d.partTime.incomeYearCnyMax !== 'number') errs.push(tag + '：partTime.incomeYearCnyMax 非数字（预算四档的输入）');
-  // ── 反偷懒门禁（24 项字段收齐纪律：缺一项 = 这条记录不合格，不许交付）──
+  // ── 反偷懒门禁（27 项字段收齐纪律：缺一项 = 这条记录不合格，不许交付）──
   const hasCJK = s => /[\u4e00-\u9fff]/.test(String(s || ''));
   if (!hasCJK(d.school)) errs.push(tag + '：school 必须是中文校名（英文名放 schoolEn；页面所有输出中文优先）');
   if (!hasCJK(d.programCn)) errs.push(tag + '：programCn 必须是中文专业名（英文原名放 program）');
   if (!hasCJK(d.region)) errs.push(tag + '：region 必须是中文地区名');
   if (!d.career || typeof d.career !== 'object' || Array.isArray(d.career) || !Array.isArray(d.career.directions) || !Array.isArray(d.career.employers))
     errs.push(tag + '：career 必须为对象 {directions:[], employers:[], note}（毕业去向必查，不许只写一句话字符串）');
-  if (!d.salary || !d.salary.amount || !d.salary.cny) errs.push(tag + '：salary 缺 amount/cny（薪资必查；官方未披露也要写明"官方未披露"）');
+  if (!d.salary || !d.salary.amount || !d.salary.cny) errs.push(tag + '：salary 缺 amount/cny（薪资必查：官方就业报告优先 → 当地平均工资兜底（带年份+来源，note 注明非毕业生口径）→"官方未披露"）');
+  if (typeof d.enrollment !== 'string' || !d.enrollment.trim()) errs.push(tag + '：缺 enrollment（招生人数；查不到写"官方未披露"，禁编造）');
+  if (!d.portfolio || typeof d.portfolio !== 'object' || Array.isArray(d.portfolio) || d.portfolio.required === undefined || !d.portfolio.detail) errs.push(tag + '：缺 portfolio（作品集 {required: true|false|null, detail}；不要求也要写明"不要求"）');
   if (!d.entryReq.workExp) errs.push(tag + '：缺 entryReq.workExp（工作经验必查；页面无明示要求就写 required:false + note）');
   if (d.entryReq.creditReq === undefined) errs.push(tag + '：缺 entryReq.creditReq（学分门槛必查；无明示门槛也要留 note 说明）');
   if (d.bachelorBenchmark === undefined) errs.push(tag + '：缺 bachelorBenchmark（本科对标必须尝试；未取得官方课程结构页就只留 note 待核验，不许整个跳过）');

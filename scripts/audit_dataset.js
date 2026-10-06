@@ -83,7 +83,7 @@ function budgetCalc(s) {
 const B_LABEL = { 1: '① 可行', 2: '② 加兼职可行', 3: '③ 兼职+奖学金', 4: '④ 超预算' };
 
 const REQUIRED = ['id','field','school','schoolEn','region','program','programCn','duration','intake','qsRank',
-  'curriculum','tuition','livingCost','entryReq','materials','admissionLogic','timeline','match','visa','career',
+  'curriculum','tuition','livingCost','entryReq','enrollment','portfolio','materials','admissionLogic','timeline','match','visa','career',
   'salary','workVisa','pr','citizenship','partTime','scholarships','verified','verifiedDate'];
 const SL = P.schoolLinks || {}, RL = P.regionLinks || {};
 const bad = [];
@@ -95,6 +95,8 @@ DATA.forEach(d => {
   if (!d.tuition || typeof d.tuition.cny !== 'number') sub.push('tuition.cny');
   if (!d.livingCost || typeof d.livingCost.cny !== 'number') sub.push('livingCost.cny');
   if (!d.partTime || typeof d.partTime.incomeYearCnyMax !== 'number') sub.push('partTime.incomeYearCnyMax');
+  if (!d.enrollment || typeof d.enrollment !== 'string') sub.push('enrollment');
+  if (!d.portfolio || !d.portfolio.detail || d.portfolio.required === undefined) sub.push('portfolio');
   ['visa','workVisa','pr','citizenship'].forEach(k => { if (!d[k] || !d[k].policyYear) sub.push(k + '.policyYear'); });
   if (!SL[d.id]) sub.push('缺 schoolLinks');
   if (!RL[d.region]) sub.push('缺 regionLinks');
