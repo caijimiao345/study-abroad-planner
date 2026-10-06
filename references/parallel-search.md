@@ -33,7 +33,7 @@
 2) 逐个进项目页，抄 27 项字段（见 finding-schools.md 第三节）
 3) 语言核验：只保留「纯英语」项目；官方写明荷语/法语/德语的 → 进 exclusions，并原文引用官方表述
 4) 交叉核验：项目在招？截止日期？学费口径（本地生 vs 非 EEA）
-5) 输出两份：projects[]（符合条件，24 字段）+ exclusions[]（学校/项目/理由/来源/核验日期）
+5) 输出两份：projects[]（符合条件，27 字段）+ exclusions[]（学校/项目/理由/来源/核验日期）
 6) 不得输出任何未核验的数字；无来源的字段留空并在 note 写「待核验」
 ```
 
@@ -41,7 +41,7 @@
 
 ```json
 { "shard": "BE-PLAN", "checkedPages": 14, "candidates": 23,
-  "projects": [ { ...24 字段同 data-schema.md... } ],
+  "projects": [ { ...27 字段同 data-schema.md... } ],
   "exclusions": [ {"school":"","program":"","reason":"","source":"","checkedDate":""} ] }
 ```
 
