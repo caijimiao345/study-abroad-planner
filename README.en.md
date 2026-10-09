@@ -10,12 +10,12 @@
 A **university-search and presentation skill for AI agents**: given a student profile (GPA / undergraduate background / language scores / budget / target regions and majors), it **exhaustively searches** degree programmes, verifies every figure against official university pages, estimates course-match and budget feasibility, and finally produces a filterable, self-contained HTML comparison page plus a Notion board.
 
 - **Any country or region** — no allow-list; official course directories are enumerated region by region
-- **Multi-country search plan**: the plan comes first (hard constraints → shortlisted countries → shown to the user, **no waiting for confirmation**), then each country is searched exhaustively; delivery includes a "country coverage table" — quotas apply **per country**, never averaged across countries, never one or two countries searched deeply with the rest waved through
+- **Multi-country search plan**: the plan comes first (hard constraints → shortlisted countries → shown to the user, **no waiting for confirmation**), then each country is searched exhaustively; delivery includes a "country coverage table" — quotas apply **per country**, never averaged across countries, never one or two countries searched deeply with the rest waved through; **parallel work is split one sub-agent per country** (parallelism = number of countries; packing several countries into one agent is forbidden, while multiple directions inside one country run sequentially and share the same official directory)
 - **English and all non-English-taught programmes** (German / French / Spanish / Italian / Dutch / Japanese / Korean …), filterable to English-taught only
 - **27 mandatory fields / 14 dimensions**: entry requirements, documents, admission criteria, timeline, **course match (itemised explanation + undergraduate calibration)**, **credit conversion (Chinese credits ↔ ECTS thresholds)**, student visa (China-specific), graduate outcomes and salaries (**local-average-salary fallback when graduate salary is undisclosed**), post-study work rights, permanent residency, citizenship, tuition and living costs, part-time work limits, scholarships, **work-experience requirements**, **official admissions-office contact details**, **QS ranking (mark "not applicable" when the school genuinely does not participate)**, **enrolment size**, **portfolio (required or not + specs)**
 - **Three-part verdict**: **four admission tiers** (safe / target / reach / high-risk) + **prerequisite-risk flags** + **four budget bands** (feasible / via part-time work / part-time + scholarship / over budget) — the page states prominently that these are mechanical AI estimates and that final eligibility must be confirmed with the admissions office
 - **Every number carries its source**: official link + verification date; anything unverified is honestly marked "unverified"
-- **Re-run safety**: every task searches from scratch (previous data is only a lead); before delivery, the new dataset is compared against the previous one (`scripts/compare_results.js`: list changes + key-field changes) and every difference is re-verified against official pages
+- **Re-run safety**: every task searches from scratch (previous data is only a lead); before delivery, the new dataset is compared against the previous one (`scripts/compare_results.js`: list changes + key-field changes + **per-country entry reconciliation** — any country dropping by >20%, going to zero, or newly appearing must have its whereabouts accounted for) and every difference is re-verified against official pages
 - **Optional add-on · QQ group reminders (deployable source included)**: push your shortlist conclusions to your phone instead of leaving them in a browser tab — deploy to Cloudflare (Workers + Pages + D1 + KV, all within the free tier, zero server cost), set reminders in the front end (type / target date / N days ahead / daily · weekly · monthly), and get a "today's to-dos" digest pushed to a QQ group every day at 08:00 Beijing time. Wired to three scheduled monitors, university deadlines and visa-policy changes also land in the group automatically. See `references/qq-reminder.md` and `assets/qq-reminder/`
 
 ## Installation
@@ -47,7 +47,10 @@ node scripts/generate_notion_csv.js assets/data.json notion_templates
 
 ```
 SKILL.md                       Main skill file (5-step workflow + optional step 6: QQ reminders)
-CHANGELOG.md                   Changelog (v1.3.0: pre-delivery comparison (compare_results.js) +
+CHANGELOG.md                   Changelog (v1.4.0: one sub-agent per country (parallelism = country
+                               count, no multi-country packing); entries must never silently shrink
+                               (per-country reconciliation, >20% drop must be accounted for);
+                               v1.3.0: pre-delivery comparison (compare_results.js) +
                                three new fields (QS not-applicable convention / enrolment size /
                                portfolio) + fresh-search & salary-fallback rules; v1.2.4: sample
                                dossier's undergrad major left blank; preview-injection cleanup;

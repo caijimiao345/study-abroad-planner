@@ -145,14 +145,58 @@ if (!diffsFor.length) {
   });
 }
 
-// ── 三、排除清单变化（轻量对比）──
+// ── 三、按国入选数对账（某国下降 >20% 必须交代去向）──
+// 为什么单独一段：清单增删只能看出「少了哪几条」，看不出「某个国家整体缩水了」——
+// 后者正是多国任务最典型的偷懒（某国只象征性查了两条）。按 region 聚合 + 变化率，
+// 把需要交代的国家直接点名。
+const cntBy = (arr) => {
+  const m = new Map();
+  arr.forEach(d => { const k = (d && d.region) || '（未填地区）'; m.set(k, (m.get(k) || 0) + 1); });
+  return m;
+};
+const nc = cntBy(NEWDATA), oc = cntBy(OLDDATA);
+const regions = [...new Set([...oc.keys(), ...nc.keys()])].sort();
+const flaggedCountries = [];
+w('## 三、按国入选数对账（某国入选数比上轮下降 >20% 必须交代去向）');
+w('');
+if (!regions.length) {
+  w('无数据可比对。');
+} else {
+  w('| 国家/地区 | 上轮 | 本轮 | 条数变化 | 变化率 | 状态 |');
+  w('|---|---|---|---|---|---|');
+  regions.forEach(r => {
+    const a = oc.get(r) || 0, b = nc.get(r) || 0, diff = b - a;
+    const pct = a > 0 ? diff / a * 100 : null;
+    let status;
+    if (a === 0 && b > 0) { status = '新增国家（对照上轮无基数）'; flaggedCountries.push(r + '（新增国家）'); }
+    else if (a > 0 && b === 0) { status = '⚠️ 本轮清零——项目停招还是漏检？'; flaggedCountries.push(r + '（本轮清零）'); }
+    else if (pct !== null && pct <= -20) { status = '⚠️ 下降超 20%——必须交代去向'; flaggedCountries.push(r + '（下降 ' + pct.toFixed(1) + '%）'); }
+    else status = '正常波动';
+    const pctTxt = pct === null ? '—' : (diff >= 0 ? '+' : '') + pct.toFixed(1) + '%';
+    w('| ' + r + ' | ' + a + ' | ' + b + ' | ' + (diff === 0 ? '0' : (diff > 0 ? '+' + diff : String(diff))) + ' | ' + pctTxt + ' | ' + status + ' |');
+  });
+  w('');
+  if (flaggedCountries.length) {
+    w('**⚠️ 以下国家/地区必须逐个交代去向，不许静默变少**：');
+    flaggedCountries.forEach(f => w('- ' + f));
+    w('');
+    w('交代方式（逐国给证据，二选一）：');
+    w('  · 进排除清单并给官方来源（说明这轮为什么进不了：停招 / 语言不符 / 硬先修缺失 / 超预算 / 方向不符…）；');
+    w('  · 或回补检索把漏校找回来，然后重跑本比对，直到该国回到阈值内或差异有明确结论。');
+  } else {
+    w('✅ 各国入选数无异常下降（下降幅度均在 20% 以内）。');
+  }
+}
+w('');
+
+// ── 四、排除清单变化（轻量对比）──
 const ne = Array.isArray(NEW.exclusions) ? NEW.exclusions : [];
 const oe = Array.isArray(OLD.exclusions) ? OLD.exclusions : [];
 const eKey = e => (e && e.school || '?') + '｜' + (e && e.program || '');
 const nset = new Set(ne.map(eKey)), oset = new Set(oe.map(eKey));
 const eAdded = ne.filter(e => !oset.has(eKey(e)));
 const eRemoved = oe.filter(e => !nset.has(eKey(e)));
-w('## 三、排除清单变化');
+w('## 四、排除清单变化');
 w('');
 if (!eAdded.length && !eRemoved.length) {
   w('无：排除清单一致（本次 ' + ne.length + ' 条 / 上次 ' + oe.length + ' 条）。');
@@ -168,10 +212,12 @@ if (!eAdded.length && !eRemoved.length) {
 w('');
 
 // ── 汇总与下一步 ──
-w('## 四、汇总与下一步');
+w('## 五、汇总与下一步');
 w('');
 w('- 新增 ' + added.length + ' 条 / 移除 ' + removed.length + ' 条 / 字段差异 ' + fieldDiffCount +
   ' 处（涉及 ' + diffsFor.length + ' 条记录）');
+w('- 按国对账：' + regions.length + ' 个国家/地区，**需交代去向 ' + flaggedCountries.length + ' 个**' +
+  (flaggedCountries.length ? '（' + flaggedCountries.join('；') + '）' : ''));
 w('- **下一步（硬流程）**：对上面每一项差异回官网复核——');
 w('  · 官网确实变了 → 保留本次值，并在交付说明里标注该变更；');
 w('  · 本次检索/录入有误 → 修正数据后重跑本比对，直到差异全部有明确结论；');
