@@ -303,3 +303,27 @@ scripts/build.js        ← 唯一构建入口：注入 + 前置自检 + 输出 
 | **永居/入籍语言** | 申请身份时才考 | 见 `pr` / `citizenship`。荷兰 NT2、德国 B1、法国 B1、葡萄牙 A2、西班牙 A2…**几乎人人要考** |
 
 **给用户的提醒口径**：读英授项目 ≠ 不用学本地语——**毕业可能不需要，但留下来工作/拿身份几乎一定要**。回答这类问题时必须把三个节点分开说，不要一句"不用本地语"糊过去。
+
+---
+
+## 与上轮比对（payload.diff）
+
+**谁产出**：`node scripts/compare_results.js <本次data.json> <上次data.json> --json <diff.json>`。
+**谁消费**：`build.js` 把它写进 `payload.diff`，模板渲染成页面顶部「🔁 与上轮比对」卡片。
+**为什么两套**：`data.json` 描述"这次有哪些学校"，`diff` 描述"这次跟上次的差别"——后者不该污染前者（否则下次比对会拿自己的产物跟自己对）。
+
+**首轮交付没有 diff**：`payload.diff = null`，页面不显示该卡片，属正常。
+
+| 字段 | 结构 | 说明 |
+|---|---|---|
+| `meta` | `{comparedAt, oldLabel, newLabel, oldCount, newCount, matchKey}` | `newCount` 必须等于本次 `data.length`——`build.js` 会据此中止构建，防止 diff 与数据不同源 |
+| `summary` | `{added, removed, changedRecords, changedFields, countryTotal, flagged, identical}` | 与 `added`/`removed` 明细长度必须一致，否则中止构建 |
+| `added` / `removed` | `[{key, school, schoolEn, program, programCn, region}]` | 清单增删；页面渲染为标签云，按地区分组显示 |
+| `countries` | `[{region, old, now, diff, pct, pctText, status, level}]` | **按国入选数对账**；`level` 取值 `ok`/`up`/`new`/`drop`/`zero`，页面据此上色 |
+| `fieldDiffs` | `[{key, school, programCn, region, rows:[{field, old, now}]}]` | 字段级差异明细，页面折叠展示 |
+| `fieldHistogram` | `[{field, n}]` | 哪些字段最常变（降序）＝复核优先级 |
+| `flagged` | `[{label, note}]` | 必须逐个交代去向的国家，页面置顶告警 |
+| `exclusions` | `{added:[{school,program,reason}], removed:[{school,program}], oldCount, newCount}` | 排除清单变化 |
+| `note` | string | 比对不等于核验的免责口径，页面底部原样展示 |
+
+**判级口径（`level`）**：上轮 0 条本轮 >0 → `new`；上轮 >0 本轮 0 条 → `zero`；本轮比上轮下降 >20% → `drop`；上升 >20% → `up`；其余 `ok`。`drop` / `zero` / `new` 会进 `flagged`，必须在交付说明与排除清单里逐个交代去向。

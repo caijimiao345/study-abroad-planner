@@ -47,7 +47,12 @@ node scripts/generate_notion_csv.js assets/data.json notion_templates
 
 ```
 SKILL.md                       Main skill file (5-step workflow + optional step 6: QQ reminders)
-CHANGELOG.md                   Changelog (v1.4.0: one sub-agent per country (parallelism = country
+CHANGELOG.md                   Changelog (v1.5.0: comparison results now rendered in the HTML
+                               deliverable — a "compared with last round" card with KPIs, per-country
+                               bar comparison, added/removed entries, field-change histogram plus
+                               detail, and top-level alerts for countries that silently shrank;
+                               the build aborts if the diff does not come from the same dataset;
+                               v1.4.0: one sub-agent per country (parallelism = country
                                count, no multi-country packing); entries must never silently shrink
                                (per-country reconciliation, >20% drop must be accounted for);
                                v1.3.0: pre-delivery comparison (compare_results.js) +
@@ -65,7 +70,7 @@ references/
   finding-schools.md           ★ Search handbook: official exhaustive entry points, 27 fields, verification
                                discipline, pitfall list, hard quotas, country checklist, non-English search rules
   parallel-search.md           Parallel-search sharding template (regions × majors → multiple agents)
-  data-schema.md              Data dictionary (four-tier / four-band algorithms, non-English fields)
+  data-schema.md              Data dictionary (four-tier / four-band algorithms, non-English fields, last-round comparison diff structure)
   course-matching.md           Course-match algorithm (60% core + 25% bonus + 15% grades, with prerequisite risk)
   visa-work-rights.md          Official entry points and structural templates for visa / work rights / PR / citizenship / part-time work
   notion-template.md           Notion board design and scheduled-monitor wiring

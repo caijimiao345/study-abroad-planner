@@ -71,5 +71,17 @@ if (err) console.log(String(err.stack).split('\n').slice(0, 4).join('\n'));
 console.log('渲染卡片数:', cards);
 console.log('统计条:', stats.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 160));
 console.log('排除清单 HTML 长度:', excl.length, excl.length ? '（含表格 ✓）' : '（空）');
+const diffCard = els['diffCard'];
+const diffBody = els['diffBody'] ? els['diffBody'].innerHTML : '';
+if (diffCard) {
+  const shown = diffCard.style && diffCard.style.display === 'block';
+  if (process.argv.includes('--expect-diff')) {
+    if (!shown) { console.log('❌ 期望有比对卡片但 diffCard 未显示'); process.exit(1); }
+    if (diffBody.length < 200) { console.log('❌ 比对卡片内容过短：' + diffBody.length); process.exit(1); }
+    console.log('与上轮比对卡片:', '✅ 已渲染（' + diffBody.length + ' 字符，告警块 ' + (diffBody.match(/diffalert/g) || []).length + ' / 通过块 ' + (diffBody.match(/diffok/g) || []).length + '）');
+  } else {
+    console.log('与上轮比对卡片:', shown ? ('已渲染 ' + diffBody.length + ' 字符') : '未注入 diff（首轮交付，正常隐藏）');
+  }
+}
 console.log('行动清单 HTML 长度:', els['planCard'] ? (els['planCard'].innerHTML || '').length : 0);
 process.exit(cards > 0 && !err ? 0 : 1);

@@ -9,17 +9,26 @@
  *   · 两次数据同样错 → 本脚本发现不了（比对 ≠ 核验），仍须按铁律零逐字段实时核验。
  *
  * 用法：
- *   node compare_results.js <本次data.json> <上次data.json>
+ *   node compare_results.js <本次data.json> <上次data.json> [--json <输出路径>]
  *
- * 输出：Markdown 报告到 stdout（清单增删 / 关键字段变化 / 排除清单变化）。
+ * 输出：Markdown 报告到 stdout（清单增删 / 关键字段变化 / 按国对账 / 排除清单变化）。
+ *   加 --json <路径>：额外写一份结构化 diff（build.js 消费），字段见 references/data-schema.md
+ *   的「与上轮比对（diff）」。页面上的「与上轮比对」卡片就是由它渲染的——报告给人看，JSON 给页面看。
  * 退出码：0 = 报告已生成（有无差异均正常）；1 = 用法或读取错误。
  */
 'use strict';
 const fs = require('fs');
 
-const args = process.argv.slice(2);
+const argv = process.argv.slice(2);
+const jsonFlag = argv.indexOf('--json');
+const jsonOut = jsonFlag >= 0 ? argv[jsonFlag + 1] : null;
+const args = jsonFlag >= 0 ? argv.filter((_, i) => i !== jsonFlag && i !== jsonFlag + 1) : argv;
+if (!jsonOut && jsonFlag >= 0) {
+  console.error('用法: --json 后必须跟输出文件路径');
+  process.exit(1);
+}
 if (args.length < 2) {
-  console.error('用法: node compare_results.js <本次data.json> <上次data.json>');
+  console.error('用法: node compare_results.js <本次data.json> <上次data.json> [--json <输出路径>]');
   process.exit(1);
 }
 const [newPath, oldPath] = args;
@@ -95,6 +104,10 @@ w('');
 // ── 一、清单差异 ──
 const added = NEWDATA.filter(d => !om.has(keyOf(d)));
 const removed = OLDDATA.filter(d => !nm.has(keyOf(d)));
+// 结构化出口用：带上地区/中文校名/专业名，页面才能画得出「哪国多了哪校」
+const brief = d => ({ key: keyOf(d), school: (d && d.school) || '', schoolEn: (d && d.schoolEn) || '',
+  program: (d && d.program) || '', programCn: (d && d.programCn) || '', region: (d && d.region) || '（未填地区）' });
+const addedBrief = added.map(brief), removedBrief = removed.map(brief);
 w('## 一、清单差异');
 w('');
 if (!added.length && !removed.length) {
@@ -102,14 +115,14 @@ if (!added.length && !removed.length) {
 } else {
   if (added.length) {
     w('### 新增（本次有、上次无）：' + added.length + ' 条');
-    added.forEach(d => w('- ' + keyOf(d)));
+    added.forEach(d => w('- ' + keyOf(d) + '　[' + ((d && d.region) || '') + ']'));
     w('');
     w('> 新增条目必须确认：是新检索到的候选，还是上次漏检？若因新增而扩大了范围，记得同步排除清单。');
   }
   if (removed.length) {
     w('');
     w('### 移除（上次有、本次无）：' + removed.length + ' 条');
-    removed.forEach(d => w('- ' + keyOf(d)));
+    removed.forEach(d => w('- ' + keyOf(d) + '　[' + ((d && d.region) || '') + ']'));
     w('');
     w('> ⚠️ 移除条目必须逐条确认：是项目停招/不再符合（应写入排除清单留痕），还是本次漏检（应补回）？');
   }
@@ -117,6 +130,7 @@ if (!added.length && !removed.length) {
 w('');
 
 // ── 二、关键字段差异 ──
+const diffFieldBrief = [];
 const diffsFor = [];
 let fieldDiffCount = 0;
 nm.forEach((nd, k) => {
@@ -127,7 +141,13 @@ nm.forEach((nd, k) => {
     const a = fmt(get(od)), b = fmt(get(nd));
     if (a !== b) rows.push([label, a, b]);
   });
-  if (rows.length) { diffsFor.push([k, rows]); fieldDiffCount += rows.length; }
+  if (rows.length) {
+    diffsFor.push([k, rows]); fieldDiffCount += rows.length;
+    // 结构化出口：字段差异分布是页面「哪些字段最常变」统计的输入
+    diffFieldBrief.push({ key: k, school: (nd && nd.school) || '', schoolEn: (nd && nd.schoolEn) || '',
+      program: (nd && nd.program) || '', programCn: (nd && nd.programCn) || '', region: (nd && nd.region) || '（未填地区）',
+      rows: rows.map(([label, a, b]) => ({ field: label, old: a, now: b })) });
+  }
 });
 w('## 二、关键字段差异（逐条回官网复核后处理）');
 w('');
@@ -157,6 +177,7 @@ const cntBy = (arr) => {
 const nc = cntBy(NEWDATA), oc = cntBy(OLDDATA);
 const regions = [...new Set([...oc.keys(), ...nc.keys()])].sort();
 const flaggedCountries = [];
+const countryRows = [];
 w('## 三、按国入选数对账（某国入选数比上轮下降 >20% 必须交代去向）');
 w('');
 if (!regions.length) {
@@ -167,12 +188,13 @@ if (!regions.length) {
   regions.forEach(r => {
     const a = oc.get(r) || 0, b = nc.get(r) || 0, diff = b - a;
     const pct = a > 0 ? diff / a * 100 : null;
-    let status;
-    if (a === 0 && b > 0) { status = '新增国家（对照上轮无基数）'; flaggedCountries.push(r + '（新增国家）'); }
-    else if (a > 0 && b === 0) { status = '⚠️ 本轮清零——项目停招还是漏检？'; flaggedCountries.push(r + '（本轮清零）'); }
-    else if (pct !== null && pct <= -20) { status = '⚠️ 下降超 20%——必须交代去向'; flaggedCountries.push(r + '（下降 ' + pct.toFixed(1) + '%）'); }
-    else status = '正常波动';
+    let status, level;
+    if (a === 0 && b > 0) { status = '新增国家（对照上轮无基数）'; level = 'new'; flaggedCountries.push(r + '（新增国家）'); }
+    else if (a > 0 && b === 0) { status = '⚠️ 本轮清零——项目停招还是漏检？'; level = 'zero'; flaggedCountries.push(r + '（本轮清零）'); }
+    else if (pct !== null && pct <= -20) { status = '⚠️ 下降超 20%——必须交代去向'; level = 'drop'; flaggedCountries.push(r + '（下降 ' + pct.toFixed(1) + '%）'); }
+    else { status = '正常波动'; level = pct !== null && pct > 20 ? 'up' : 'ok'; }
     const pctTxt = pct === null ? '—' : (diff >= 0 ? '+' : '') + pct.toFixed(1) + '%';
+    countryRows.push({ region: r, old: a, now: b, diff, pct, pctText: pctTxt, status, level });
     w('| ' + r + ' | ' + a + ' | ' + b + ' | ' + (diff === 0 ? '0' : (diff > 0 ? '+' + diff : String(diff))) + ' | ' + pctTxt + ' | ' + status + ' |');
   });
   w('');
@@ -225,5 +247,48 @@ w('  · 上次数据有误且官网未变 → 说明上次是错的，本次修�
 w('- 提醒：比对只找"与上次不同"，**不能代替官网核验**（两次数据同样错的情况发现不了）；');
 w('  本次数据仍须满足铁律零：关键字段逐项实时核验、带来源与核验日期。');
 w('');
+
+// ── 结构化 diff 出口（给 build.js → 页面「与上轮比对」卡片消费）──
+// 为什么要有：Markdown 报告给人逐条复核，页面卡片给用户一眼看趋势（哪国缩了、哪个字段最常变、
+// 新增/移除了谁）。二者同源，避免"报告说降了、页面看不出来"。
+if (jsonOut) {
+  const ne2 = Array.isArray(NEW.exclusions) ? NEW.exclusions : [];
+  const oe2 = Array.isArray(OLD.exclusions) ? OLD.exclusions : [];
+  const diffJson = {
+    meta: {
+      comparedAt: (NEW.meta && NEW.meta.generatedDate) || '',
+      oldLabel: String(oldPath).replace(/\\/g, '/').split('/').pop(),
+      newLabel: String(newPath).replace(/\\/g, '/').split('/').pop(),
+      oldCount: OLDDATA.length,
+      newCount: NEWDATA.length,
+      matchKey: '学校｜项目（英文原名）'
+    },
+    summary: {
+      added: added.length, removed: removed.length,
+      changedRecords: diffsFor.length, changedFields: fieldDiffCount,
+      countryTotal: regions.length, flagged: flaggedCountries.length,
+      identical: !added.length && !removed.length && !fieldDiffCount
+    },
+    added: addedBrief,
+    removed: removedBrief,
+    countries: countryRows,
+    fieldDiffs: diffFieldBrief,
+    fieldHistogram: FIELDS.map(([label]) => ({ field: label, n: diffFieldBrief.reduce((a, r) => a + (r.rows.some(x => x.field === label) ? 1 : 0), 0) }))
+      .filter(f => f.n > 0).sort((a, b) => b.n - a.n),
+    flagged: flaggedCountries.map(f => { const i = f.indexOf('（'); return { label: f.slice(0, i), note: f.slice(i + 1, -1) }; }),
+    exclusions: {
+      added: eAdded.map(e => ({ school: e.school || '', program: e.program || '', reason: e.reason || '' })),
+      removed: eRemoved.map(e => ({ school: e.school || '', program: e.program || '' })),
+      oldCount: oe2.length, newCount: ne2.length
+    },
+    note: '比对只找「与上次不同」，不代替官网核验：两次数据同样错的情况发现不了。差异必须逐条回官网复核后处理。'
+  };
+  fs.writeFileSync(jsonOut, JSON.stringify(diffJson, null, 2), 'utf8');
+  w('## 附：结构化 diff 已写出');
+  w('');
+  w('- 路径：`' + jsonOut + '`');
+  w('- 用途：`node scripts/build.js 输出.html ' + newPath + ' ' + jsonOut + '` → 页面自动出现「与上轮比对」卡片');
+  w('');
+}
 
 process.stdout.write(out.join('\n') + '\n');

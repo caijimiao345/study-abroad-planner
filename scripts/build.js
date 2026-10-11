@@ -3,8 +3,15 @@
  * build.js —— 留学选校对比页构建器（唯一推荐的生成入口）
  *
  * 用法：
- *   node build.js [输出HTML路径] [数据JSON路径]
- *   默认：输出 选校对比.html，数据取 <技能目录>/assets/data.json
+ *   node build.js [输出HTML路径] [数据JSON路径] [比对diff路径]
+ *   node build.js 输出.html data.json diff.json
+ *   等价写法：--diff diff.json
+ *   默认：输出 选校对比.html，数据取 <技能目录>/assets/data.json，无比对卡片
+ *
+ * 第三个参数是 compare_results.js --json 产出的结构化 diff；给了就会在页面顶部
+ * 生成「与上轮比对」卡片（清单增删 / 字段差异 / 按国入选数对账），不给则不出现该卡片。
+ * 为什么要有：比对报告是 Markdown（给人逐条复核），页面卡片是给人"一眼看趋势"的——
+ * 两处同源，避免出现"报告说某国缩水了、页面上却看不出来"。
  *
  * 流程：读模板 → 读数据 → **前置自检（不通过则退出，不产出 HTML）** → 注入 → 写文件 → 打印摘要
  *
@@ -18,8 +25,13 @@ const SK = __dirname + '/..';
 const TEMPLATE = path.resolve(SK, 'assets/template.html');
 const EXCLUSIONS = path.resolve(SK, 'assets/exclusions.json');
 
-const outHtml = process.argv[2] || '选校对比.html';
-const dataPath = process.argv[3] || path.resolve(SK, 'assets/data.json');
+const argv = process.argv.slice(2);
+const diffFlag = argv.indexOf('--diff');
+const diffPath = diffFlag >= 0 ? argv[diffFlag + 1] : argv[2];
+const pos = diffFlag >= 0 ? argv.filter((_, i) => i !== diffFlag && i !== diffFlag + 1) : argv;
+
+const outHtml = pos[0] || '选校对比.html';
+const dataPath = pos[1] || path.resolve(SK, 'assets/data.json');
 
 function die(msg, details) {
   console.error('\n❌ 构建中止：' + msg);
@@ -70,6 +82,23 @@ if (fs.existsSync(SIBLING_EXCL)) {
 }
 payload.exclusions = mergedExcl;
 if (droppedByRegion) console.warn('⚠ 按地区过滤丢弃了 ' + droppedByRegion + ' 条不属于本数据集的排除项（防跨国混入）');
+
+// ── 与上轮比对（可选）──
+const DIFF = { meta: {}, summary: {}, added: [], removed: [], countries: [], fieldDiffs: [], fieldHistogram: [], flagged: [], exclusions: { added: [], removed: [], oldCount: 0, newCount: 0 }, note: '' };
+let diffLoaded = false;
+if (diffPath) {
+  if (!fs.existsSync(diffPath)) console.warn('⚠ 比对 diff 文件不存在：' + diffPath + '（已跳过「与上轮比对」卡片；请先跑 compare_results.js --json）');
+  else {
+    try {
+      const raw = JSON.parse(fs.readFileSync(diffPath, 'utf8').replace(/^﻿/, ''));
+      ['meta', 'summary', 'note'].forEach(k => { if (raw[k] && typeof raw[k] === 'object') DIFF[k] = Object.assign(DIFF[k], raw[k]); else if (typeof raw[k] === 'string') DIFF[k] = raw[k]; });
+      ['added', 'removed', 'countries', 'fieldDiffs', 'fieldHistogram', 'flagged'].forEach(k => { if (Array.isArray(raw[k])) DIFF[k] = raw[k]; });
+      if (raw.exclusions && typeof raw.exclusions === 'object') DIFF.exclusions = Object.assign(DIFF.exclusions, raw.exclusions);
+      diffLoaded = true;
+    } catch (e) { console.warn('⚠ 比对 diff 解析失败，已跳过「与上轮比对」卡片：' + e.message); }
+  }
+}
+payload.diff = diffLoaded ? DIFF : null;
 
 // ── 前置自检 ──
 const errs = [], warns = [];
@@ -137,6 +166,23 @@ const SL = payload.schoolLinks || {}, RL = payload.regionLinks || {};
 if ((DATA || []).length >= 8 && !(payload.exclusions || []).length)
   warns.push('排除清单为空：穷举检索的候选池必然大于入选数，零排除几乎不可能——若确实全候选入选，请在 meta.noExclusionNote 写明依据');
 // 结构校验（警告级）
+// 比对一致性：diff 是"与上轮"的结论，若它自己跟当前数据对不上，卡片会误导用户
+if (diffLoaded) {
+  const S = DIFF.summary || {};
+  const dAdded = Array.isArray(DIFF.added) ? DIFF.added.length : 0;
+  const dRemoved = Array.isArray(DIFF.removed) ? DIFF.removed.length : 0;
+  if (S.added !== undefined && S.added !== dAdded) errs.push('diff 汇总与明细不一致：summary.added=' + S.added + ' 但 added 明细 ' + dAdded + ' 条（比对报告与 diff 可能不是同一轮，重跑 compare_results.js）');
+  if (S.removed !== undefined && S.removed !== dRemoved) errs.push('diff 汇总与明细不一致：summary.removed=' + S.removed + ' 但 removed 明细 ' + dRemoved + ' 条');
+  if (typeof DIFF.meta.newCount === 'number' && DIFF.meta.newCount !== (payload.data || []).length)
+    errs.push('diff 是拿' + DIFF.meta.newCount + ' 条数据比的，但本次 data.json 是 ' + (payload.data || []).length + ' 条——比对的不是这一版数据，必须用本次 data.json 重跑 compare_results.js');
+  if (!DIFF.countries || !DIFF.countries.length) errs.push('diff 缺按国对账（countries）——用户最关心的"某国是不是缩水了"画不出来');
+  const flaggedNow = (DIFF.countries || []).filter(c => c.level === 'drop' || c.level === 'zero').map(c => c.region);
+  const regionsInData = new Set((payload.data || []).map(d => d && d.region));
+  flaggedNow.forEach(r => { if (regionsInData.size && !regionsInData.has(r) && DIFF.countries.some(c => c.region === r && c.now > 0))
+    errs.push('diff 把「' + r + '」判为入选数异常，但本次数据里该地区仍有 ' + DIFF.countries.find(c => c.region === r).now + ' 条 —— 结论与数据打架'); });
+  if (flaggedNow.length) console.warn('⚠ diff 中有 ' + flaggedNow.length + ' 个国家入选数异常下降：' + flaggedNow.join('、') + '（页面会置顶告警，必须逐个交代去向）');
+  if (S.identical === true) console.log('ℹ️ 比对结果：与上轮完全一致（清单与关键字段零差异）');
+}
 const cnt = { 保底: 0, 主申: 0, 冲刺: 0, 高风险: 0 };
 console.log('读入数据：' + (DATA || []).length + ' 条；地区 ' + new Set((DATA || []).map(d => d.region)).size +
   ' 个；专业方向 ' + new Set((DATA || []).map(d => d.field)).size + ' 个；排除清单 ' + payload.exclusions.length + ' 条（来源：' + exclSource + '）');
@@ -190,4 +236,7 @@ const html = template.replace(marker, '<script id="payload" type="application/js
 fs.writeFileSync(outHtml, html, 'utf8');
 console.log('\n✅ 构建完成 → ' + path.resolve(outHtml) + '  (' + (html.length / 1024).toFixed(0) + ' KB)');
 if (warns.length) console.log('ℹ️  提示：' + warns.length + ' 条记录标记为「待核验」（页面已灰标）');
+console.log((diffLoaded ? '✅ 已注入「与上轮比对」卡片：' : 'ℹ️ 未提供 diff，本次不含「与上轮比对」卡片：') +
+  (diffLoaded ? '（新增 ' + ((DIFF.summary || {}).added || 0) + ' / 移除 ' + ((DIFF.summary || {}).removed || 0) +
+    ' / 字段差异 ' + ((DIFF.summary || {}).changedFields || 0) + ' 处 / 需交代去向 ' + (DIFF.flagged || []).length + ' 个国家）' : ''));
 console.log('ℹ️  建议随后执行：node scripts/audit_dataset.js ' + dataPath + '  （字段与链接完整性审计）');
